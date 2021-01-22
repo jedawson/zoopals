@@ -1,0 +1,11 @@
+{
+  "name": "zoopals-backend",
+  "version": "1.0.0",
+  "description": "it's a zoo",
+  "main": "./build/app.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "",
+  "license": "ISC"
+}
