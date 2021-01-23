@@ -7,14 +7,10 @@ export class Exhibit {
 
     public animals: Animal[] = [];
 
-    public specialEvent?: SpecialEvent;
+    public specialEvent: SpecialEvent = new SpecialEvent;
 
-    constructor(name: string, animals: Animal[], specialEvent?: SpecialEvent){
+    constructor(name: string, animals: Animal[]){
         this.name = name;
         this.animals = animals;
-        if (specialEvent) {
-            this.specialEvent = specialEvent;
-        }
-
     }
 }
