@@ -1,4 +1,5 @@
 import { Animal } from './animal';
+import { SpecialEvent } from './ticket';
 
 export class Exhibit {
 
@@ -6,19 +7,15 @@ export class Exhibit {
 
     public admission = 0;
 
-    
-    public event = {
-        name: '',
-        time: '',
-        days: ['']
-    }; 
+    public specialEvent?: SpecialEvent;
 
-    constructor(animals: Animal[], admission: number, event: {
-            name: string; time: string; days: string[];
-        }){
+    constructor(animals: Animal[], admission: number, specialEvent?: SpecialEvent){
         this.animals = animals;
         this.admission = admission;
-        this.event = event;
+        
+        if (specialEvent) {
+            this.specialEvent = specialEvent;
+        }
 
     }
 }

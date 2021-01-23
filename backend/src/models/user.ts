@@ -11,7 +11,8 @@ class User {
 
 class Customer extends User {
 
-    public tickets = []; // what is a ticket?
+    public ticketIDs = [];
+    public membershipLevel:string = '';
 
 }
 class Zookeeper extends User {
@@ -23,6 +24,6 @@ class Zookeeper extends User {
 
 class Manager extends User {
 
-    public zookeepers: Zookeeper[] = [];
+    public zookeepers: Zookeeper[] = []; // should the manager extend zookeeper or user? like should a manager do zookeper things or just manage them?
 
 }

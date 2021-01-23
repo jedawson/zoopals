@@ -1,7 +1,17 @@
+export class SpecialEvent {
+    public name = '';
+    public dateTime = '';
+    
+}
+
 export class Ticket {
 
     public price = 0;
 
-    // general admission or event name
-    public eventName = '';
+    public ticketType = ''; // like child, student, adult, senior
+
+    public specialEvent: SpecialEvent = new SpecialEvent();
+    
+
 }
+
