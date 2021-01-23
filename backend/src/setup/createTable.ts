@@ -1,6 +1,8 @@
 import * as AWS from 'aws-sdk';
 import userService from './user.service'
 import { User, Customer, Zookeeper, Manager } from '../models/user'
+import { Animal } from '../models/animal';
+import { Exhibit } from '../models/exhibit';
 
 // Set the region
 AWS.config.update({ region: 'us-west-2' });
@@ -57,27 +59,39 @@ ddb.deleteTable(removeUsers, function (err, data) {
     }, 5000);
 });
 
-let customer1 = new Customer();
-customer1.username = 'dolittle'
-customer1.password = 'pass'
-customer1.age = 40
-customer1.membershipLevel = 'basic'
+// populate table with customers
+let customer1 = new Customer('dolittle', 'pass', 40);
+let customer2 = new Customer('steveirwin', 'pass', 40);
+let customer3 = new Customer('janegoodall', 'pass', 40);
 
-let customer2 = new Customer();
-customer2.username = 'steveirwin'
-customer2.password = 'pass'
-customer2.age = 40
-customer2.membershipLevel = 'basic'
+// create starter animals
+let lion1 = new Animal('Larry', 'Lion', 'Meat');
+let lion2 = new Animal('Leo', 'Lion', 'Meat');
+let lion3 = new Animal('Linda', 'Lion', 'Meat');
+let wallaby1 = new Animal('Wally', 'Wallaby', 'Grass');
+let wallaby2 = new Animal('Wally', 'Wallaby', 'Grass');
+let wallaby3 = new Animal('Wally', 'Wallaby', 'Grass');
 
-let customer3 = new Customer();
-customer3.username = 'janegoodall'
-customer3.password = 'pass'
-customer3.age = 40
-customer3.membershipLevel = 'basic'
+// create starter exhibits
+let lionExhibit = new Exhibit('Lion Exhibit', [lion1, lion2, lion3]);
+let wallabyExhibit = new Exhibit('Wallaby Exhibit', [wallaby1, wallaby2, wallaby3]);
+
+// populate table with zookeepers
+let zookeeper1 = new Zookeeper('Zookeeper1', 'pass', 30);
+zookeeper1.exhibits.push(lionExhibit);
+let zookeeper2 = new Zookeeper('Zookeeper2', 'pass', 30);
+zookeeper2.exhibits.push(wallabyExhibit);
+
+// populate table with managers
+let manager1 = new Manager('Manager1', 'pass', 30);
+manager1.zookeepers.push(zookeeper1, zookeeper2);
 
 function populateUserTable() {
     userService.addUser(customer1).then(()=>{});
     userService.addUser(customer2).then(()=>{});
     userService.addUser(customer3).then(()=>{});
+    userService.addUser(zookeeper1).then(()=>{});
+    userService.addUser(zookeeper2).then(()=>{});
+    userService.addUser(manager1).then(()=>{});
 }
 

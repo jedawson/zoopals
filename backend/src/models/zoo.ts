@@ -1,4 +1,5 @@
 import { Exhibit } from './exhibit';
+import { Ticket } from './ticket';
 
 class Zoo {
 
@@ -8,9 +9,10 @@ class Zoo {
 
     public expenses = 0;
 
-    constructor(exhibits: Exhibit[], profit: number, expenses: number){
+    public ticketsAvailable: Ticket[] = [];
+
+    constructor(exhibits: Exhibit[], ticketsAvailable: Ticket[]){
         this.exhibits = exhibits;
-        this.profit = profit;
-        this.expenses = expenses;
+        this.ticketsAvailable = ticketsAvailable;
     }
 }

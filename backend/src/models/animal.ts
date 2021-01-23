@@ -1,19 +1,14 @@
 export class Animal {
 
-    public zookeeper = '';
+    public name = '';
 
-    public information = {
-        name: '',
-        species: '',
-        diet: ['']
-    };
+    public species = '';
 
-    public exhibit = ''; // should it be an exhibit object or just name?
+    public diet = '';
 
-
-    constructor(zookeeper: string, information: { name: string; species: string; diet: string[]; }, exhibit: string){
-        this.zookeeper = zookeeper;
-        this.information = information;
-        this.exhibit = exhibit;
+    constructor(name: string, species: string, diet: string){
+        this.name = name;
+        this.species = species;
+        this.diet = diet;
     }
 }

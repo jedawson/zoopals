@@ -1,6 +1,12 @@
 export class SpecialEvent {
+
     public name = '';
-    public dateTime = '';
+
+    public dateTime = ''; // dateTime or timeFrame and dayOf?
+
+    // public timeFrame = '';
+
+    // public dayOf = '';
     
 }
 
@@ -12,6 +18,5 @@ export class Ticket {
 
     public specialEvent: SpecialEvent = new SpecialEvent();
     
-
 }
 

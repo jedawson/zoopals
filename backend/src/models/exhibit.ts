@@ -3,16 +3,15 @@ import { SpecialEvent } from './ticket';
 
 export class Exhibit {
 
-    public animals: Animal[] = [];
+    public name = '';
 
-    public admission = 0;
+    public animals: Animal[] = [];
 
     public specialEvent?: SpecialEvent;
 
-    constructor(animals: Animal[], admission: number, specialEvent?: SpecialEvent){
+    constructor(name: string, animals: Animal[], specialEvent?: SpecialEvent){
+        this.name = name;
         this.animals = animals;
-        this.admission = admission;
-        
         if (specialEvent) {
             this.specialEvent = specialEvent;
         }
