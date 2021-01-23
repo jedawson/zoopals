@@ -1,6 +1,6 @@
 import { Exhibit } from "./exhibit";
 
-class User {
+export class User {
 
     public username = '';
 
@@ -9,20 +9,20 @@ class User {
     public age = 0;
 }
 
-class Customer extends User {
-
-    public ticketIDs = [];
-    public membershipLevel:string = '';
+export class Customer extends User {
+    public ticketIds:string[] = []; // Is ticketID necessary or maybe instead an array of tickets?
+    public membershipLevel:string = ''; //like gold or silver
 
 }
-class Zookeeper extends User {
+
+export class Zookeeper extends User {
 
     public exhibits: Exhibit[] = [];
 
     public tasks: string[] = [];
 }
 
-class Manager extends User {
+export class Manager extends User {
 
     public zookeepers: Zookeeper[] = []; // should the manager extend zookeeper or user? like should a manager do zookeper things or just manage them?
 

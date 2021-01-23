@@ -8,7 +8,7 @@ export class Animal {
         diet: ['']
     };
 
-    public exhibit = '';
+    public exhibit = ''; // should it be an exhibit object or just name?
 
 
     constructor(zookeeper: string, information: { name: string; species: string; diet: string[]; }, exhibit: string){
