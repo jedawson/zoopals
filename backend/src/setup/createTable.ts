@@ -1,6 +1,6 @@
 import * as AWS from 'aws-sdk';
-import userService from './user.service'
-import { User, Customer, Zookeeper, Manager } from '../models/user'
+import userService from '../services/user.service'
+import { Customer, Zookeeper, Manager } from '../models/user'
 import { Animal } from '../models/animal';
 import { Exhibit } from '../models/exhibit';
 
