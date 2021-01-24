@@ -2,6 +2,8 @@ export class Food {
 
     public name = '';
     
+    public foodType = ''; // either animal or person
+
     public stock = 0;
 
     public price = 0;

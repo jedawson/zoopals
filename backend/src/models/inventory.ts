@@ -1,6 +1,6 @@
 import { Food } from "./food";
 
-class Inventory {
+export class Inventory {
 
     public animalFood: Food[] = [];
 

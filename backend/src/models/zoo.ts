@@ -1,7 +1,7 @@
 import { Exhibit } from './exhibit';
 import { Ticket } from './ticket';
 
-class Zoo {
+export class Zoo {
 
     public exhibits: Exhibit[] = [];
 

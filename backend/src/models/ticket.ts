@@ -2,11 +2,7 @@ export class SpecialEvent {
 
     public name = '';
 
-    public dateTime = ''; // dateTime or timeFrame and dayOf?
-
-    // public timeFrame = '';
-
-    // public dayOf = '';
+    public dateTime = '';
     
 }
 
