@@ -6,17 +6,10 @@ import { Title } from '../Title';
 function ManagerHome() {
     return (
         <View>
+            {/* add expenses, number of staff, number of exhibits? */}
             <Title title='STATISTICS'/>
             <View style={styles.customerHomeView}>
                 <Info name='Revenue'>$XXXX.XX</Info>
-            </View>
-            <br/>
-            <Title title='INVENTORY'/>
-            <View style={styles.customerHomeView}>
-                <Info name='foodType1'>Stock1</Info>
-                <Info name='foodType2'>Stock2</Info>
-                <Info name='foodType3'>Stock3</Info>
-
             </View>
         </View>
     )

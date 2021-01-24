@@ -7,6 +7,7 @@ function Profile() {
     return (
         <View>
             <Title title='PROFILE'/>
+            {/* change name to username */}
             <ProfileDetails name='Jack' age='#' role='Customer'></ProfileDetails>
         </View>
     )

@@ -13,10 +13,11 @@ function TicketForm() {
                 <View style={{alignSelf: 'center'}}>
                     <Info name='Total'>$XX.XX</Info> 
                 </View>     
-                <Form name='Name'/>
+                {/* We don't need the commented fields below, they need to be added to a registration screen */}
+                {/* <Form name='Name'/>
                 <Form name='Age'/>
                 <Form name='Date'/>
-                <Form name='Time'/>
+                <Form name='Time'/> */}
                 <Form name='Number of Children ($X ea.)'/>
                 <Form name='Number of Adults ($X ea.)'/>
                 <Form name='Number of Seniors ($X ea.)'/>

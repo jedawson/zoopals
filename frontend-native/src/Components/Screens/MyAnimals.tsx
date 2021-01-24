@@ -2,6 +2,8 @@ import React from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 import { Title } from '../Title';
 
+// This can be a list of animals. We could make an animal component that dynamically generates and is added to list.
+
 function MyAnimals() {
     return (
         <View>

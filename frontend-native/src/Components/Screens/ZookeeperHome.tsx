@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 import { Title } from '../Title';
 
+
+// To-Do: create a task component and add tasks dynamically into here
 function ZookeeperHome() {
     const [isSelected, setSelection] = useState(false);
     return (
