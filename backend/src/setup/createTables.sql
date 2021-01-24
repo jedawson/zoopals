@@ -7,13 +7,8 @@ create table food
 	foodID serial primary key not null,
 	stock int default 0 check (stock >=0),
 	price float not null,
+	foodName text not null,
 	foodType text not null
-);
-
-create table inventory
-(
-	inventoryID serial primary key not null,
-	foodID int
 );
 
 create table animal
@@ -21,15 +16,16 @@ create table animal
 	animalID serial primary key not null,
 	animalName text not null,
 	species text not null,
-	diet text not null
+	diet text not null,
+	exhibitID int
 );
 
 create table exhibit
 (
 	exhibitID serial primary key not null,
 	exhibitName text not null,
-	specialEventID int,
-	animalID int
+	zooID int,
+	specialEventID int
 );
 
 create table ticket
@@ -37,6 +33,7 @@ create table ticket
 	ticketID serial primary key not null,
 	price float not null,
 	ticketType text not null,
+	zooID int,
 	specialEventID int
 );
 
@@ -51,22 +48,15 @@ create table zoo
 (
 	zooID serial primary key not null,
 	profit float not null,
-	expenses float not null,
-	ticketID int,
-	exhibitID int
+	expenses float not null
 );
 
 /******************************************************
    Create Foreign Keys
 ******************************************************/
-
--- inventory HAS MANY food
-alter table inventory add constraint fk_inventoryFoodID
-    foreign key (foodID) references food (foodID) on delete no action on update no action;
-	
 -- exhibit HAS MANY animals and HAS A special event
-alter table exhibit add constraint fk_exhibitAnimalID
-    foreign key (animalID) references animal (animalID) on delete no action on update no action;
+alter table animal add constraint fk_animalExhibitID
+    foreign key (exhibitID) references exhibit (exhibitID) on delete no action on update no action;
    
 alter table exhibit add constraint fk_exhibitSpecialEventID
     foreign key (specialEventID) references specialEvent (specialEventID) on delete no action on update no action;
@@ -76,8 +66,8 @@ alter table ticket add constraint fk_ticketSpecialEventID
     foreign key (specialEventID) references specialEvent (specialEventID) on delete no action on update no action;
    
 -- zoo HAS MANY exhibits and HAS MANY tickets available
-alter table zoo add constraint fk_zooExhibitID
-    foreign key (exhibitID) references exhibit (exhibitID) on delete no action on update no action;
+alter table exhibit add constraint fk_exhibitZooID
+    foreign key (zooID) references zoo (zooID) on delete no action on update no action;
  
-alter table zoo add constraint fk_zooTicketID
-    foreign key (ticketID) references ticket (ticketID) on delete no action on update no action;
+alter table ticket add constraint fk_ticketZooID
+    foreign key (zooID) references zoo (zooID) on delete no action on update no action;

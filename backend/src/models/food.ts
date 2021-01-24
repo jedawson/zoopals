@@ -2,7 +2,7 @@ export class Food {
 
     public name = '';
     
-    public foodType = ''; // either animal or person
+    public foodType = ''; // either For Animals or For People
 
     public stock = 0;
 
