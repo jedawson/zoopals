@@ -1,18 +1,14 @@
 export class SpecialEvent {
+  public name = '';
 
-    public name = '';
-
-    public dateTime = '';
-    
+  public dateTime = '';
 }
 
 export class Ticket {
+  public price = 0;
 
-    public price = 0;
+  public ticketType = ''; // like child, student, adult, senior
 
-    public ticketType = ''; // like child, student, adult, senior
-
-    public specialEvent: SpecialEvent = new SpecialEvent();
-    
+  // general admission, animal feeding, swim with dolphins, etc
+  public specialEvent: SpecialEvent = new SpecialEvent();
 }
-

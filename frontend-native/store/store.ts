@@ -28,7 +28,7 @@ export interface ZooState {
   zoo: Zoo;
 }
 
-// inventory state?
+// inventory state? I think so if we have a table for them
 
 export interface ZooNameState
   extends UserState,

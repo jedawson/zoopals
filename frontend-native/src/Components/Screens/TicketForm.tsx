@@ -23,7 +23,6 @@ function TicketForm() {
         <Form name='Number of Adults ($X ea.)' />
         <Form name='Number of Seniors ($X ea.)' />
         <Form name='Event/Exhibit' />
-        <br />
         <Button>PURCHASE</Button>
       </View>
     </View>

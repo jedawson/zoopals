@@ -20,7 +20,6 @@ function CustomerHome() {
           exhibit='Exhibit: Koalas'
         />
       </View>
-      <br />
       <Title title='MAP' />
       <View style={styles.mapView}>
         <Image

@@ -13,7 +13,6 @@ function LoginForm() {
       <View style={styles.loginView}>
         <Form name='Username' />
         <Form name='Password' />
-        <br />
         <Button>LOGIN</Button>
       </View>
     </View>

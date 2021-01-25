@@ -31,7 +31,7 @@ function Router(props: any) {
       <Stack.Screen
         name='Login'
         component={LoginForm}
-        //  options={{ title: 'overview' }}
+        options={headerOptions}
         //      headerLeft: () => (
         //          <DrawerButton onPress={() => navigation.toggleDrawer()} />
         //        ),
