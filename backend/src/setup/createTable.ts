@@ -1,8 +1,9 @@
 import * as AWS from 'aws-sdk';
-import userService from './user.service'
-import { User, Customer, Zookeeper, Manager } from '../models/user'
+import userService from './user.service';
+import { User, Customer, Zookeeper, Manager } from '../models/user';
 import { Animal } from '../models/animal';
 import { Exhibit } from '../models/exhibit';
+import logger from '../log';
 
 // Set the region
 AWS.config.update({ region: 'us-west-2' });
@@ -11,52 +12,58 @@ AWS.config.update({ region: 'us-west-2' });
 const ddb = new AWS.DynamoDB({ apiVersion: '2012-08-10' });
 
 const removeUsers = {
-    TableName: 'zooUsers'
-}
+  TableName: 'zooUsers',
+};
 
 const customerSchema = {
-    AttributeDefinitions: [
-        {
-            AttributeName: 'username',
-            AttributeType: 'S'
-        }
-    ],
-    KeySchema: [
-        {
-            AttributeName: 'username',
-            KeyType: 'HASH'
-        }
-    ],
-    ProvisionedThroughput: {
-        ReadCapacityUnits: 3,
-        WriteCapacityUnits: 3
+  AttributeDefinitions: [
+    {
+      AttributeName: 'username',
+      AttributeType: 'S',
     },
-    TableName: 'zooUsers',
-    StreamSpecification: {
-        StreamEnabled: false
-    }
+  ],
+  KeySchema: [
+    {
+      AttributeName: 'username',
+      KeyType: 'HASH',
+    },
+  ],
+  ProvisionedThroughput: {
+    ReadCapacityUnits: 3,
+    WriteCapacityUnits: 3,
+  },
+  TableName: 'zooUsers',
+  StreamSpecification: {
+    StreamEnabled: false,
+  },
 };
 
 ddb.deleteTable(removeUsers, function (err, data) {
-    if (err) {
-        console.error('Unable to delete table. Error JSON:', JSON.stringify(err, null, 2));
-    } else {
-        console.log('Deleted table. Table description JSON:', JSON.stringify(data, null, 2));
-    }
-    setTimeout(()=>{
-        ddb.createTable(customerSchema, (err, data) => {
-            if (err) {
-                // log the error
-                console.log('Error', err);
-            } else {
-                // celebrate, I guess
-                console.log('Table Created', data);
-                setTimeout(()=>{
-                    populateUserTable();
-                }, 10000);
-            }
-        });
-    }, 5000);
+  if (err) {
+    logger.error(
+      'Unable to delete user table. Error JSON:',
+      JSON.stringify(err, null, 2)
+    );
+  } else {
+    logger.trace(
+      'Deleted user table. Table description JSON:',
+      JSON.stringify(data, null, 2)
+    );
+  }
+  setTimeout(() => {
+    ddb.createTable(customerSchema, (err, data) => {
+      if (err) {
+        // log the error
+        logger.error('Create user table error: ' + err);
+      } else {
+        // celebrate, I guess
+        logger.info('Created user table successfully: ' + data);
+        setTimeout(() => {
+          populateUserTable();
+        }, 10000);
+      }
+    });
+  }, 5000);
 });
 
 // populate table with customers
@@ -74,7 +81,11 @@ let wallaby3 = new Animal('Wally', 'Wallaby', 'Grass');
 
 // create starter exhibits
 let lionExhibit = new Exhibit('Lion Exhibit', [lion1, lion2, lion3]);
-let wallabyExhibit = new Exhibit('Wallaby Exhibit', [wallaby1, wallaby2, wallaby3]);
+let wallabyExhibit = new Exhibit('Wallaby Exhibit', [
+  wallaby1,
+  wallaby2,
+  wallaby3,
+]);
 
 // populate table with zookeepers
 let zookeeper1 = new Zookeeper('Zookeeper1', 'pass', 30);
@@ -87,11 +98,10 @@ let manager1 = new Manager('Manager1', 'pass', 30);
 manager1.zookeepers.push(zookeeper1, zookeeper2);
 
 function populateUserTable() {
-    userService.addUser(customer1).then(()=>{});
-    userService.addUser(customer2).then(()=>{});
-    userService.addUser(customer3).then(()=>{});
-    userService.addUser(zookeeper1).then(()=>{});
-    userService.addUser(zookeeper2).then(()=>{});
-    userService.addUser(manager1).then(()=>{});
+  userService.addUser(customer1).then(() => {});
+  userService.addUser(customer2).then(() => {});
+  userService.addUser(customer3).then(() => {});
+  userService.addUser(zookeeper1).then(() => {});
+  userService.addUser(zookeeper2).then(() => {});
+  userService.addUser(manager1).then(() => {});
 }
-
