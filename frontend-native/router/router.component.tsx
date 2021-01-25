@@ -3,10 +3,21 @@ import { Text } from 'react-native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { LoginForm } from '../src/Components/Screens/LoginForm';
 import { StackHeaderOptions } from '@react-navigation/stack/lib/typescript/src/types';
+import { Exhibit } from '../models/exhibit';
+import { Animal } from '../models/animal';
+import { Zookeeper } from '../models/user';
+import { Zoo } from '../models/zoo';
 
 export type Screens = {
   Login: undefined;
-  Restaurants: undefined;
+  Zoo: Zoo;
+  Zookeepers: undefined;
+  // maybe user for each
+  Zookeeper: Zookeeper;
+  Exhibits: undefined;
+  Exhibit: Exhibit;
+  Animals: undefined;
+  Animal: Animal;
 };
 
 const Stack = createStackNavigator<Screens>();
