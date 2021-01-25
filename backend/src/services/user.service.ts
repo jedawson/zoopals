@@ -10,14 +10,17 @@ class UserService {
     this.doc = dynamo; // We imported the DocumentClient from dyamo.ts
   }
 
-  // async getUsers(): Promise<User[]> {
-  //     const params = {
-  //         TableName: 'users'
-  //     };
-  //     return await this.doc.scan(params).promise().then((data) => {
-  //         return data.Items as User[];
-  //     })
-  // }
+  async getUsers(): Promise<User[]> {
+    const params = {
+      TableName: 'zooUsers',
+    };
+    return await this.doc
+      .scan(params)
+      .promise()
+      .then((data) => {
+        return data.Items as User[];
+      });
+  }
 
   //getUser
   // async getUserByName(name: string): Promise<User | null> {
