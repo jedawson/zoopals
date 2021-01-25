@@ -14,30 +14,16 @@ import { ZookeeperHome } from './src/Components/Screens/ZookeeperHome';
 import { MyAnimals } from './src/Components/Screens/MyAnimals';
 import { Inventory } from './src/Components/Screens/Inventory';
 import { Staff } from './src/Components/Screens/Staff';
+import { Provider } from 'react-redux';
+import store from './store/store';
 
 export default function App() {
   return (
-    // <Provider store={store}>
-      // <NavigationContainer>
-      //     <RouterComponent></RouterComponent>
-      // </NavigationContainer>
-    
-    // </Provider>
-    <View style = {styles.App}>
-            <Header></Header>
-    <View style={styles.container}>
-          {/* <LoginForm/> */}
-          {/* <TicketForm/> */}
-          {/* <CustomerHome/> */}
-          {/* <Profile/> */}
-          {/* <MyExhibits/> */}
-          {/* <ManagerHome/> */}
-          {/* <ZookeeperHome/> */}
-          {/* <MyAnimals/> */}
-          {/* <Inventory/> */}
-          <Staff/>
-    </View>
-    </View>
+    <Provider store={store}>
+      <NavigationContainer>
+        <Router></Router>
+      </NavigationContainer>
+    </Provider>
   );
 }
 
@@ -53,3 +39,19 @@ const styles = StyleSheet.create({
     padding: 20,
   },
 });
+
+/* <View style={styles.App}>
+      <Header></Header>
+      <View style={styles.container}> */
+/* <LoginForm /> */
+/* <TicketForm/> *
+        /* <CustomerHome /> */
+/* <Profile /> */
+/* <MyExhibits /> */
+/* <ManagerHome /> */
+/* <ZookeeperHome /> */
+/* <MyAnimals /> */
+/* <Inventory /> */
+/* <Staff /> */
+/* </View> */
+/* </View> */

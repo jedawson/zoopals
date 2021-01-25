@@ -2,13 +2,14 @@
    Create Tables
 ******************************************************/
 
-create table food
+create table inventoryItem
 (
-	foodID serial primary key not null,
+	itemID serial primary key not null,
 	stock int default 0 check (stock >=0),
 	price float not null,
 	foodName text not null,
-	foodType text not null
+	foodType text not null,
+	zooID int
 );
 
 create table animal
