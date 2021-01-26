@@ -6,7 +6,7 @@ import { Title } from '../Title';
 
 function CustomerHome() {
   return (
-    <View>
+    <View style={styles.viewContainer}>
       <Title title='MY TICKET' />
       <View style={styles.ticketView}>
         <Image
@@ -14,13 +14,12 @@ function CustomerHome() {
           source={require('../../images/ticket.png')}
         />
         <TicketDetail
-          name='Jack'
-          date='2/05/21'
-          time='12:00 PM'
-          exhibit='Exhibit: Koalas'
+          name='Jack '
+          date='2/05/21 '
+          time='12:00 PM '
+          exhibit='Exhibit: Koalas '
         />
       </View>
-      <br />
       <Title title='MAP' />
       <View style={styles.mapView}>
         <Image

@@ -5,7 +5,7 @@ import styles from '../../gobal-styles';
 function Header(props: any) {
   return (
     <View style={styles.header}>
-      <Image style={styles.zooname} source={require('../images/logo.png')} />
+      <Text style={styles.headerTitle}>ZOONAME  </Text>
     </View>
   );
 }

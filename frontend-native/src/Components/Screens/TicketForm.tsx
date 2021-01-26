@@ -8,7 +8,7 @@ import { Title } from '../Title';
 
 function TicketForm() {
   return (
-    <View>
+    <View style={styles.viewContainer}>
       <Title title='PURCHASE A TICKET' />
       <View style={styles.purchaseTicketView}>
         <View style={{ alignSelf: 'center' }}>
@@ -19,11 +19,11 @@ function TicketForm() {
                 <Form name='Age'/>
                 <Form name='Date'/>
                 <Form name='Time'/> */}
-        <Form name='Number of Children ($X ea.)' />
-        <Form name='Number of Adults ($X ea.)' />
-        <Form name='Number of Seniors ($X ea.)' />
+        <Form name='Number of Children ($X ea.)  ' />
+        <Form name='Number of Adults ($X ea.)  ' />
+        <Form name='Number of Seniors ($X ea.)  ' />
         <Form name='Event/Exhibit' />
-        <br />
+        <Text> </Text>
         <Button>PURCHASE</Button>
       </View>
     </View>

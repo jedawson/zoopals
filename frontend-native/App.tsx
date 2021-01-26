@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import Router from './router/router.component';
+// import LoginRouter from './router/login.router';
 import { NavigationContainer } from '@react-navigation/native';
 import { LoginForm } from './src/Components/Screens/LoginForm';
 import { Header } from './src/Components/Header';
@@ -14,30 +14,28 @@ import { ZookeeperHome } from './src/Components/Screens/ZookeeperHome';
 import { MyAnimals } from './src/Components/Screens/MyAnimals';
 import { Inventory } from './src/Components/Screens/Inventory';
 import { Staff } from './src/Components/Screens/Staff';
+import { CustomerRouter, ZookeeperRouter, ManagerRouter, LoginRouter } from './router/router.component';
 
 export default function App() {
+  //this is set to true so I can see the different screens
+  let signedIn = true;
   return (
     // <Provider store={store}>
-      // <NavigationContainer>
-      //     <RouterComponent></RouterComponent>
-      // </NavigationContainer>
-    
-    // </Provider>
     <View style = {styles.App}>
-            <Header></Header>
-    <View style={styles.container}>
-          {/* <LoginForm/> */}
-          {/* <TicketForm/> */}
-          {/* <CustomerHome/> */}
-          {/* <Profile/> */}
-          {/* <MyExhibits/> */}
-          {/* <ManagerHome/> */}
-          {/* <ZookeeperHome/> */}
-          {/* <MyAnimals/> */}
-          {/* <Inventory/> */}
-          <Staff/>
-    </View>
-    </View>
+      
+      <NavigationContainer>
+        {signedIn ? 
+        <>
+        <Header></Header>
+        <CustomerRouter/>
+        {/* <ZookeeperRouter/> */}
+        {/* <ManagerRouter/> */}
+        </> :
+        <LoginRouter/>
+      } 
+      </NavigationContainer>
+      </View>
+    // </Provider>
   );
 }
 

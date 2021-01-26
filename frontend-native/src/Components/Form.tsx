@@ -7,7 +7,7 @@ function Form(props: any) {
     <View>
       <Text style={styles.inputText}>{props.name}</Text>
       <TextInput style={styles.inputBox}></TextInput>
-      <br />
+      <Text> </Text>
     </View>
   );
 }

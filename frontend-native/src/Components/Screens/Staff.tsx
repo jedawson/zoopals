@@ -5,7 +5,7 @@ import { Title } from '../Title';
 
 function Staff() {
   return (
-    <View>
+    <View style={styles.viewContainer}>
       <Title title='STAFF' />
       <View style={styles.staffView}>
         <Text style={styles.staff}>Staff1</Text>
