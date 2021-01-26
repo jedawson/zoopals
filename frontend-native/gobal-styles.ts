@@ -10,6 +10,7 @@ const darkGray = '#363636';
 const blue = '#67a2e5';
 const green = '#2C7B56';
 
+//Styles
 const styles = StyleSheet.create({
   zooname: {
     flex: 1,
