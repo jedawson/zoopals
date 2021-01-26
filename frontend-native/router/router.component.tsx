@@ -57,7 +57,7 @@ export const  LoginRouter=(props: any)=> {
           component={LoginForm} 
           options={headerOptions}
         />
-        <Stack.Screen name='Home' component={CustomerHome} />
+        {/* <Stack.Screen name='Home' component={CustomerHome} /> */}
       </Stack.Navigator>
   );
 }

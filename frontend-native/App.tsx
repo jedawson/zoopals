@@ -15,6 +15,8 @@ import { MyAnimals } from './src/Components/Screens/MyAnimals';
 import { Inventory } from './src/Components/Screens/Inventory';
 import { Staff } from './src/Components/Screens/Staff';
 import { CustomerRouter, ZookeeperRouter, ManagerRouter, LoginRouter } from './router/router.component';
+import { Provider } from 'react-redux';
+import store from './store/store';
 
 export default function App() {
   //this is set to true so I can see the different screens
@@ -51,3 +53,19 @@ const styles = StyleSheet.create({
     padding: 20,
   },
 });
+
+/* <View style={styles.App}>
+      <Header></Header>
+      <View style={styles.container}> */
+/* <LoginForm /> */
+/* <TicketForm/> *
+        /* <CustomerHome /> */
+/* <Profile /> */
+/* <MyExhibits /> */
+/* <ManagerHome /> */
+/* <ZookeeperHome /> */
+/* <MyAnimals /> */
+/* <Inventory /> */
+/* <Staff /> */
+/* </View> */
+/* </View> */

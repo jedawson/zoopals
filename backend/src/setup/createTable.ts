@@ -76,8 +76,8 @@ let lion1 = new Animal('Larry', 'Lion', 'Meat');
 let lion2 = new Animal('Leo', 'Lion', 'Meat');
 let lion3 = new Animal('Linda', 'Lion', 'Meat');
 let wallaby1 = new Animal('Wally', 'Wallaby', 'Grass');
-let wallaby2 = new Animal('Wally', 'Wallaby', 'Grass');
-let wallaby3 = new Animal('Wally', 'Wallaby', 'Grass');
+let wallaby2 = new Animal('Wanda', 'Wallaby', 'Grass');
+let wallaby3 = new Animal('Willy', 'Wallaby', 'Grass');
 
 // create starter exhibits
 let lionExhibit = new Exhibit('Lion Exhibit', [lion1, lion2, lion3]);

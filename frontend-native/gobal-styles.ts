@@ -2,6 +2,14 @@ import { Dimensions, StyleSheet } from 'react-native';
 
 const width = Dimensions.get('window').width;
 const height = Dimensions.get('window').height;
+
+//Colors
+const lightGray = '#EAEAEA';
+const yellow = '#EDDFBC';
+const darkGray = '#363636';
+const blue = '#67a2e5';
+const green = '#2C7B56';
+
 const styles = StyleSheet.create({
   zooname: {
     flex: 1,
@@ -9,7 +17,7 @@ const styles = StyleSheet.create({
   },
   ticketView: {
     flex: 6,
-    backgroundColor: '#EDDFBC',
+    backgroundColor: yellow,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -35,7 +43,7 @@ const styles = StyleSheet.create({
   inventoryView: {},
   loginView: {
     flex: 6,
-    backgroundColor: '#EDDFBC',
+    backgroundColor: yellow,
     alignItems: 'center',
     justifyContent: 'flex-start',
     padding: 20,
@@ -70,13 +78,13 @@ const styles = StyleSheet.create({
   infoTitle: {
     fontWeight: '700',
     fontSize: 25,
-    color: '#363636',
+    color: darkGray,
     alignSelf: 'flex-start',
   },
   info: {
     fontWeight: '400',
     fontSize: 25,
-    color: '#363636',
+    color: darkGray,
     alignSelf: 'center',
   },
 
@@ -86,8 +94,8 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   button: {
-    backgroundColor: '#67a2e5',
-    width: '30%',
+    backgroundColor: blue,
+    width: '50%',
     padding: 20,
     alignItems: 'center',
     borderRadius: 10,
@@ -95,14 +103,14 @@ const styles = StyleSheet.create({
     // width: '100%'
   },
   buttonText: {
-    color: '#EAEAEA',
+    color: lightGray,
     fontSize: 20,
     fontWeight: '700',
   },
   inputText: {
     fontSize: 20,
     fontWeight: '500',
-    color: '#363636',
+    color: darkGray,
   },
   inputBox: {
     backgroundColor: 'white',
@@ -124,7 +132,7 @@ const styles = StyleSheet.create({
   title: {
     fontWeight: 'bold',
     fontSize: 30,
-    color: '#363636',
+    color: darkGray,
     alignSelf: 'center',
   },
   headerTitle: {
