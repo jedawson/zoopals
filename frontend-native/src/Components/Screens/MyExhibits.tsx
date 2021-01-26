@@ -9,13 +9,13 @@ import { Title } from '../Title';
 
 function MyExhibits() {
   return (
-    <View>
-      <Title title='MY EXHIBITS' />
+    <View style={styles.viewContainer}>
+      <Title title='MY EXHIBITS ' />
       <View style={styles.customerHomeView}>
-        <Info name='Exhibit Name'>Koalas</Info>
-        <Info name='Species'>Koala</Info>
+        <Info name='Exhibit Name'>Koalas </Info>
+        <Info name='Species'>Koala </Info>
         {/* Maybe istead of diet, we can list animals inside exhibit? */}
-        <Info name='Diet'>Eucalyptus</Info>
+        <Info name='Diet'>Eucalyptus </Info>
       </View>
     </View>
   );

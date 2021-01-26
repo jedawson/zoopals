@@ -7,7 +7,7 @@ import { Title } from '../Title';
 function ZookeeperHome() {
   const [isSelected, setSelection] = useState(false);
   return (
-    <View>
+    <View style={styles.viewContainer}>
       <Title title='MY TASKS' />
       <View style={styles.myTasksView}>
         <Text> insert checkboxes here?</Text>

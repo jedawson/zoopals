@@ -46,22 +46,25 @@ const styles = StyleSheet.create({
     flex: 6,
     backgroundColor: yellow,
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     padding: 20,
   },
   customerHomeView: {},
   myAnimalsView: {},
-  profileView: {},
+  profileView: {
+    flex: 6,
+    justifyContent: 'flex-start',
+  },
   staffView: {},
   staff: {
     fontWeight: '400',
     fontSize: 25,
     alignSelf: 'center',
+ 
   },
   purchaseTicketView: {
     flex: 6,
-    backgroundColor: yellow,
-    // alignItems: 'center',
+    backgroundColor: '#EDDFBC',
     // justifyContent: 'center',
   },
   myTasksView: {
@@ -117,14 +120,15 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   header: {
-    flex: 1,
-    backgroundColor: green,
+    flex: .1,
+    backgroundColor: '#2C7B56',
     justifyContent: 'center',
     alignContent: 'center',
   },
   titleView: {
     flex: 2,
     margin: 20,
+    backgroundColor: '#EDDFBC'
   },
   title: {
     fontWeight: 'bold',
@@ -132,6 +136,18 @@ const styles = StyleSheet.create({
     color: darkGray,
     alignSelf: 'center',
   },
+  headerTitle: {
+    fontWeight: 'bold',
+    fontSize: 30,
+    alignSelf: 'center',
+    backgroundColor: '#2C7B56',
+    color: '#EAEAEA'
+  },
+  viewContainer: {
+    backgroundColor: '#EDDFBC',
+    flex: 1,
+    justifyContent: 'space-around'
+  }
 });
 
 export default styles;
