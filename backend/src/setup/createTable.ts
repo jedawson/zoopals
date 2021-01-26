@@ -67,9 +67,9 @@ ddb.deleteTable(removeUsers, function (err, data) {
 });
 
 // populate table with customers
-let customer1 = new Customer('dolittle', 'pass', 40);
-let customer2 = new Customer('steveirwin', 'pass', 40);
-let customer3 = new Customer('janegoodall', 'pass', 40);
+let customer1 = new Customer('dolittle', 'password', 40);
+let customer2 = new Customer('steveirwin', 'password', 40);
+let customer3 = new Customer('janegoodall', 'password', 40);
 
 // create starter animals
 let lion1 = new Animal('Larry', 'Lion', 'Meat');
@@ -88,13 +88,13 @@ let wallabyExhibit = new Exhibit('Wallaby Exhibit', [
 ]);
 
 // populate table with zookeepers
-let zookeeper1 = new Zookeeper('Zookeeper1', 'pass', 30);
+let zookeeper1 = new Zookeeper('Zookeeper1', 'password', 30);
 zookeeper1.exhibits.push(lionExhibit);
-let zookeeper2 = new Zookeeper('Zookeeper2', 'pass', 30);
+let zookeeper2 = new Zookeeper('Zookeeper2', 'password', 30);
 zookeeper2.exhibits.push(wallabyExhibit);
 
 // populate table with managers
-let manager1 = new Manager('Manager1', 'pass', 30);
+let manager1 = new Manager('Manager1', 'password', 30);
 manager1.zookeepers.push(zookeeper1, zookeeper2);
 
 function populateUserTable() {
