@@ -5,7 +5,7 @@ import { Title } from '../Title';
 
 // This can be a list of animals. We could make an animal component that dynamically generates and is added to list.
 
-function MyAnimals() {
+function MyAnimals(props: any) {
   return (
     <View>
       <Title title='MY ANIMALS' />
