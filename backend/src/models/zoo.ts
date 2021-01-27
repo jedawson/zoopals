@@ -9,6 +9,8 @@ export class Zoo {
 
     public expenses = 0;
 
+    public ticketsSold = 0;
+
     public ticketsAvailable: Ticket[] = [];
 
     constructor(exhibits: Exhibit[], ticketsAvailable: Ticket[]){
