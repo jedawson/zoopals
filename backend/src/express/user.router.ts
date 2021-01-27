@@ -2,7 +2,7 @@ import express from 'express';
 import * as user from '../models/user';
 import axios from 'axios';
 import logger from '../log';
-import { AlexaForBusiness } from 'aws-sdk';
+
 //import publicDir from '../constant';
 
 const router = express.Router();
