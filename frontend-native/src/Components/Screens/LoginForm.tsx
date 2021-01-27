@@ -11,16 +11,9 @@ function LoginForm() {
     <View style={styles.viewContainer}>
       <Title title='WELCOME!' />
       <View style={styles.loginView}>
-<<<<<<< HEAD
-        <Form name='Username ' />
-        <Form name='Password ' />
-        <Text> </Text>
-        <Button >LOGIN</Button>
-=======
         <Form name='Username' />
         <Form name='Password' />
         <Button>LOGIN</Button>
->>>>>>> 18740bf7f26d7730bfca508df9112d54affd95b6
       </View>
     </View>
   );
