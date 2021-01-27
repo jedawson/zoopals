@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 // import LoginRouter from './router/login.router';
 import { NavigationContainer } from '@react-navigation/native';
 import { Header } from './src/Components/Header';
@@ -25,17 +25,19 @@ import store from './store/store';
 export default function App() {
   //this is set to true so I can see the different screens
   let signedIn = true;
+  console.log('store: ' + JSON.stringify(store));
+
   return (
     <Provider store={store}>
       <View style={styles.App}>
         <NavigationContainer>
           <Header></Header>
           {signedIn ? (
-            <CustomerRouter />
+            <CustomerRouter data={store} />
           ) : (
             /* <ZookeeperRouter /> */
-            /* <ManagerRouter/> */
-            <LoginRouter />
+            <ManagerRouter />
+            // <LoginRouter />
           )}
         </NavigationContainer>
       </View>

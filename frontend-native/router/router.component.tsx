@@ -17,6 +17,7 @@ import { Staff } from '../src/Components/Screens/Staff';
 import { useSelector } from 'react-redux';
 import store, { ZooNameState } from '../store/store';
 import { MyAnimals } from '../src/Components/Screens/MyAnimals';
+import { View } from 'react-native';
 
 export type Screens = {
   Login: undefined;
@@ -61,7 +62,9 @@ export const LoginRouter = () => {
   );
 };
 
-export const CustomerRouter = () => {
+export function CustomerRouter(props: any) {
+  console.log(JSON.stringify(props));
+
   return (
     <Tab.Navigator
       initialRouteName='Home'
@@ -79,7 +82,7 @@ export const CustomerRouter = () => {
       <Tab.Screen name='Profile' component={Profile} />
     </Tab.Navigator>
   );
-};
+}
 
 export const ZookeeperRouter = () => {
   return (

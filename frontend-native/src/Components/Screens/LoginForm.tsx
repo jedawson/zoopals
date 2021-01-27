@@ -14,7 +14,9 @@ import { Form } from '../Form';
 import { Title } from '../Title';
 
 function LoginForm() {
-  function submitForm() {}
+  function submitForm() {
+    str = 'button was pressed';
+  }
   console.log('Pressed button');
   return (
     <View style={styles.viewContainer}>
@@ -23,14 +25,13 @@ function LoginForm() {
         <Form name='Username' />
         <Form name='Password' />
         <TouchableOpacity style={styles.button}>
-          <Button
-            onPress={() => Alert.alert('Cannot press this one')}
-            title='Login'
-          />
+          <Button onPress={submitForm} title='Login' />
         </TouchableOpacity>
+        <Text></Text>
       </View>
     </View>
   );
 }
-
 export { LoginForm };
+
+let str = 'Here is some text.';

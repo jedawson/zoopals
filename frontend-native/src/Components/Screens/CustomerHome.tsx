@@ -1,10 +1,21 @@
 import React from 'react';
 import { View, Dimensions, Image, Text } from 'react-native';
+import { useSelector } from 'react-redux';
 import styles from '../../../gobal-styles';
+import { Ticket } from '../../../models/ticket';
+import { UserState } from '../../../store/store';
 import { TicketDetail } from '../Details/TicketDetail';
 import { Title } from '../Title';
 
-function CustomerHome() {
+interface CustomerHomeProps {
+  data: Ticket;
+}
+
+function CustomerHome({ data }: CustomerHomeProps) {
+  const selectUser = (state: UserState) => state.user;
+  const user = useSelector(selectUser);
+  console.log(JSON.stringify(user));
+
   return (
     <View style={styles.viewContainer}>
       <Title title='MY TICKET' />
