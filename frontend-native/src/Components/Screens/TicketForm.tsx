@@ -14,8 +14,11 @@ import { Dimensions, StyleSheet } from 'react-native';
  */
 function TicketForm() {
 
+  // make initial array not of type never
+  const array: any[] | (() => any[]) = [];
+
   // create ticket state
-  const [tickets, setTickets] = useState([[]]);
+  const [tickets, setTickets] = useState(array);
 
   useEffect( () => {
 
@@ -124,4 +127,5 @@ const flexStyle = StyleSheet.create(
   }
  }
 );
+
 export { TicketForm };
