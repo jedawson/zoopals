@@ -34,18 +34,24 @@ router.delete('/', (req, res, next) => {
   res.sendStatus(204);
 })
 
-const URI = ''
-async function login (username, password) {
-  return axios.post()
+const URI = 'https://8cf402b61d.execute-api.us-west-2.amazonaws.com/default/users/login'
+async function login (username:string, password:string) {
+  let res = await axios.post(URI, {username: String(username)})
+  logger.debug(res)
+  return res.data
 }
 router.post('/', function(req: any, res, next) {
   logger.debug(req.body);
-  login(req.body.name, req.body.password).then((user) => {
-    if(user === null) {
+  logger.debug(req.body.username)
+  login(req.body.username, req.body.password).then((user) => {
+    if(user === null || user.password != req.body.password) {
       res.sendStatus(401);
-    }
+    } 
+    logger.debug(user)
     req.session.user = user;
-    res.send(JSON.stringify(user))
+    res.json(JSON.stringify(user))
+  }).catch((err) => {
+    console.log(err)
   });
 });
 

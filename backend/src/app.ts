@@ -6,7 +6,7 @@ import session from 'express-session';
 import MemoryStore from 'memorystore';
 import cors from 'cors';
 
-import usersRouter from './src/express/user.router';
+import router from './express/user.router';
 
 
 import dotenv from 'dotenv';
@@ -31,7 +31,7 @@ app.use(session({
  The second parameter is a "router". This is an object that will handle a request for me.
 */
 
-app.use('/users', usersRouter);
+app.use('/users', router);
 
 
 // catch 404 and forward to error handler
