@@ -1,6 +1,6 @@
 import { Animal } from '../models/animal';
 import { Exhibit } from '../models/exhibit';
-import { User, Zookeeper } from '../models/user';
+import { Customer, Manager, User, Zookeeper } from '../models/user';
 import { Zoo } from '../models/zoo';
 
 /**
@@ -68,7 +68,9 @@ export interface AppAction {
  * getUser takes in a User and returns an action with user as a payload
  * @param user - given User
  */
-export function getUser(user: User): UserAction<User> {
+export function getUser(
+  user: User | Customer | Zookeeper | Manager
+): UserAction<User> {
   const action: UserAction<User> = {
     type: UserActions.GetUser,
     payload: user,

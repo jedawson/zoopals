@@ -1,5 +1,5 @@
 import { NavigationContainer } from '@react-navigation/native';
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   View,
   StyleSheet,
@@ -8,15 +8,40 @@ import {
   Button,
   Alert,
 } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
 import styles from '../../../gobal-styles';
+import { Customer } from '../../../models/user';
+import { getUser } from '../../../store/action';
+import { UserState } from '../../../store/store';
 // import { Button } from '../Button';
 import { Form } from '../Form';
 import { Title } from '../Title';
 
-function LoginForm() {
+interface LoginProp {
+  navigation: any;
+}
+
+function LoginForm({ navigation }: LoginProp) {
+  const selectUser = (state: UserState) => state.user;
+  let user = useSelector(selectUser);
+  const dispatch = useDispatch();
   function submitForm() {
-    str = 'button was pressed';
+    user = { ...user, role: 'Manager', zookeepers: [] };
+    dispatch(getUser(user));
+    console.log(`User: ${JSON.stringify(user)}`);
+
+    if (user.role === 'Zookeeper') {
+      navigation.navigate('Zookeeper', { screen: 'Home' });
+    } else if (user.role === 'Manager') {
+      navigation.navigate('Manager', { screen: 'Home' });
+    } else {
+      navigation.navigate('Customer', { screen: 'Home' });
+    }
   }
+  useEffect(() => {
+    dispatch;
+  }, [user]);
+
   console.log('Pressed button');
   return (
     <View style={styles.viewContainer}>

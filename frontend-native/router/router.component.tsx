@@ -18,6 +18,8 @@ import { useSelector } from 'react-redux';
 import store, { ZooNameState } from '../store/store';
 import { MyAnimals } from '../src/Components/Screens/MyAnimals';
 import { View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 
 export type Screens = {
   Login: undefined;
@@ -49,22 +51,30 @@ const headerOptions: StackHeaderOptions = {
     alignSelf: 'center',
   },
 };
-export const LoginRouter = () => {
+const Drawer = createDrawerNavigator();
+
+export function RouterComponent() {
+  const user = useSelector((state: ZooNameState) => state.user);
   return (
-    <Stack.Navigator initialRouteName='Login'>
-      <Stack.Screen
-        name='Login'
-        component={LoginForm}
-        options={headerOptions}
-      />
-      {/* <Stack.Screen name='Home' component={CustomerHome} /> */}
-    </Stack.Navigator>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName='Login'>
+        <Stack.Screen name='Login' component={LoginForm} />
+        <Stack.Screen name='Customer' component={CustomerComponent} />
+        <Stack.Screen name='Zookeeper' component={ZookeeperComponent} />
+        <Stack.Screen name='Manager' component={ManagerComponent} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
-};
+}
 
-export function CustomerRouter(props: any) {
-  console.log(JSON.stringify(props));
+// export function LoginRouter() {
+//   return (
 
+//   );
+// }
+
+export function CustomerComponent() {
+  // console.log(JSON.stringify(props));
   return (
     <Tab.Navigator
       initialRouteName='Home'
@@ -84,7 +94,7 @@ export function CustomerRouter(props: any) {
   );
 }
 
-export const ZookeeperRouter = () => {
+export function ZookeeperComponent() {
   return (
     <Tab.Navigator
       initialRouteName='Home'
@@ -99,13 +109,13 @@ export const ZookeeperRouter = () => {
       }}>
       <Tab.Screen name='Home' component={ZookeeperHome} />
       <Tab.Screen name='View Inventory' component={Inventory} />
-      {/* <Tab.Screen name='View Animals' component={MyAnimals(store)} /> */}
+      <Tab.Screen name='View Animals' component={MyAnimals} />
       <Tab.Screen name='Profile' component={Profile} />
     </Tab.Navigator>
   );
-};
+}
 
-export const ManagerRouter = () => {
+export function ManagerComponent() {
   return (
     <Tab.Navigator
       initialRouteName='Home'
@@ -124,7 +134,7 @@ export const ManagerRouter = () => {
       <Tab.Screen name='Profile' component={Profile} />
     </Tab.Navigator>
   );
-};
+}
 
 // export const createRootNavigator = (signedIn = false) => {
 //     return createSwitchNavigator(
@@ -142,4 +152,4 @@ export const ManagerRouter = () => {
 //     );
 //   };
 
-export default LoginRouter;
+export default RouterComponent;

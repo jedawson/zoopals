@@ -24,7 +24,15 @@ class userService {
   // add user
 
   // update user
-
+  updateUser(user: User): Promise<null> {
+    return axios
+      .put(this.URI, user)
+      .then((result) => null)
+      .catch((err) => {
+        console.log(`Update user error: ${err}`);
+        return null;
+      });
+  }
   // get zookeepers
 }
 

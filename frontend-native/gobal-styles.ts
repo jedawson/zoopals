@@ -48,8 +48,9 @@ const styles = StyleSheet.create({
     fontWeight: '500',
   },
   purchaseTicketView: {
-    flex: 6,
+    flex: 5,
     backgroundColor: yellow,
+    fontSize: 25,
     justifyContent: 'center',
   },
   // MAP
