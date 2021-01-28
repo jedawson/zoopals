@@ -51,10 +51,8 @@ const headerOptions: StackHeaderOptions = {
     alignSelf: 'center',
   },
 };
-const Drawer = createDrawerNavigator();
 
 export function RouterComponent() {
-  const user = useSelector((state: ZooNameState) => state.user);
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName='Login'>

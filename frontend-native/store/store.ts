@@ -7,6 +7,8 @@ import { Zoo } from '../models/zoo';
 import { AppAction } from './action';
 import reducer from './reducer';
 
+// changed to specific role types because
+// Typescript kept saying "X attribute does not exist on type User"
 export interface UserState {
   user: Customer | Zookeeper | Manager;
   loginUser: Customer | Zookeeper | Manager;

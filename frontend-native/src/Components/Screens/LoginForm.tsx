@@ -1,16 +1,7 @@
-import { NavigationContainer } from '@react-navigation/native';
 import React, { useEffect } from 'react';
-import {
-  View,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  Button,
-  Alert,
-} from 'react-native';
+import { View, Text, TouchableOpacity, Button } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from '../../../gobal-styles';
-import { Customer } from '../../../models/user';
 import { getUser } from '../../../store/action';
 import { UserState } from '../../../store/store';
 // import { Button } from '../Button';
@@ -25,11 +16,15 @@ function LoginForm({ navigation }: LoginProp) {
   const selectUser = (state: UserState) => state.user;
   let user = useSelector(selectUser);
   const dispatch = useDispatch();
+  //handles the login button
   function submitForm() {
-    user = { ...user, role: 'Manager', zookeepers: [] };
+    // Since no login at the moment, we can change this user to
+    // simulate a user being got from the database
+    user = { ...user, role: 'Customer', zookeepers: [] };
     dispatch(getUser(user));
     console.log(`User: ${JSON.stringify(user)}`);
 
+    // Checks the user role to determine which Screen to go to.
     if (user.role === 'Zookeeper') {
       navigation.navigate('Zookeeper', { screen: 'Home' });
     } else if (user.role === 'Manager') {
@@ -38,11 +33,12 @@ function LoginForm({ navigation }: LoginProp) {
       navigation.navigate('Customer', { screen: 'Home' });
     }
   }
+
+  // Needed for when we get the login in functionality
   useEffect(() => {
     dispatch;
   }, [user]);
 
-  console.log('Pressed button');
   return (
     <View style={styles.viewContainer}>
       <Title title='WELCOME!' />
@@ -58,5 +54,3 @@ function LoginForm({ navigation }: LoginProp) {
   );
 }
 export { LoginForm };
-
-let str = 'Here is some text.';

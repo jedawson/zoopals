@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { View, Dimensions, Image, Text } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from '../../../gobal-styles';
 import { Ticket } from '../../../models/ticket';
@@ -22,8 +23,9 @@ function CustomerHome({ data }: CustomerHomeProps) {
   }
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
-
   console.log('User: ' + JSON.stringify(user));
+
+  // Simulate a customer for the ticket display
   let customer: Customer = {
     ...user,
     membershipLevel: 'basic',
@@ -41,6 +43,9 @@ function CustomerHome({ data }: CustomerHomeProps) {
     ],
   };
   console.log('Customer: ' + JSON.stringify(customer));
+
+  // gets the User from the login and updates the user
+  // Maybe make updating a useState?
   // useEffect(() => {
   //   userService.getLogin().then((loggedUser) => {
   //     dispatch(getUser(loggedUser));
@@ -51,27 +56,32 @@ function CustomerHome({ data }: CustomerHomeProps) {
   // }, []);
 
   return (
-    <View style={styles.viewContainer}>
-      <Title title='MY TICKETS' />
-      {/* <View style={styles.ticketView}>
-        <Image
-          style={styles.ticket}
-          source={require('../../images/ticket.png')}
-        />
-        <TicketDetail data={customer.tickets[0]} />
-      </View> */}
-      {customer.tickets.forEach((ticket) => {
-        console.log('loop ticket: ' + JSON.stringify(ticket));
-        return <TicketDetail data={ticket} />;
-      })}
-      <Title title='MAP' />
-      <View style={styles.mapView}>
-        <Image
-          style={styles.map}
-          source={require('../../images/placeholder.png')}
-        />
+    <ScrollView>
+      <View style={styles.viewContainer}>
+        <Title title='MY TICKETS' />
+
+        <View style={styles.ticketView}>
+          <Image
+            style={styles.ticket}
+            source={require('../../images/ticket.png')}
+          />
+          <TicketDetail data={customer.tickets[0]} />
+        </View>
+        {/* TODO: loop through the tickets properly and have them show. Not sure why they don't show */}
+        {/* Supposed to loop through the tickets of the customer, but is not doing that? */}
+        {customer.tickets.forEach((ticket) => {
+          console.log('loop ticket: ' + JSON.stringify(ticket));
+          return <TicketDetail data={ticket} />;
+        })}
+        <Title title='MAP' />
+        <View style={styles.mapView}>
+          <Image
+            style={styles.map}
+            source={require('../../images/placeholder.png')}
+          />
+        </View>
       </View>
-    </View>
+    </ScrollView>
   );
 }
 
