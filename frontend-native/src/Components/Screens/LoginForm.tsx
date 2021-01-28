@@ -7,10 +7,24 @@ import styles from '../../../gobal-styles';
 import { Button } from '../Button';
 import { Form } from '../Form';
 import { Title } from '../Title';
+import { UserState } from '../../../store/store';
+import userService from '../../../services/user.service';
 
 function LoginForm() {
+  const userSelector = (state: UserState) => state.loginUser;
+  const user = useSelector(userSelector);
+  const dispatch = useDispatch();
+  
   async function loginUser() {
-
+    userService.signIn(user.name, user.password).then((user) => {
+      console.log(user);
+      let newUser = new User();
+      newUser.name = user.username;
+      newUser.password = user.password;
+      newUser.role = user.role;
+      dispatch(getUser(newUser));
+      navigation.navigate('Restaurants');
+    });
   }
 
   return (
@@ -20,9 +34,9 @@ function LoginForm() {
         <Text>Username: </Text>
           <TextInput
             onChangeText={(value) =>
-                dispatch(loginAction({ ...user, name: value }))
+                dispatch(loginAction({ ...user, username: value }))
             }
-            value={user.name}
+            value={user.username}
           />
         <Text>Password: </Text>
           <TextInput
