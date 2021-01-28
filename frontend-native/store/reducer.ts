@@ -1,6 +1,6 @@
 import { Animal } from '../models/animal';
 import { Exhibit } from '../models/exhibit';
-import { User } from '../models/user';
+import { Customer, User } from '../models/user';
 import { Zoo } from '../models/zoo';
 import * as Actions from './action';
 import { ZooNameState } from './store';
