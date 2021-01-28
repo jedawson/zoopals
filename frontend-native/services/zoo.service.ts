@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { Exhibit } from '../models/exhibit';
+import { Ticket } from '../models/ticket';
 
 class zooService {
   private URI: string;
@@ -22,7 +23,13 @@ class zooService {
   }
   // update exhibits (for an event)
 
-  // get tickets
+  /* get tickets : result returns data. 
+  I console logged the result object to see what is being returned.
+  You need to get the data's body's results and from there the rows property,
+  which is an array of ticket objects. */
+  getTickets(): Promise<Ticket[]> {
+    return axios.get('https://4xp40d62ra.execute-api.us-west-2.amazonaws.com/default/tickets').then(result => result.data.rows);
+  }
 
   // update tickets
 }

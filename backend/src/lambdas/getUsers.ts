@@ -10,12 +10,19 @@ let docClient = new AWS.DynamoDB.DocumentClient({
 // create handler
 export const handler = async () => {
   const users = await getUsers();
-  if (users) {
-    return JSON.stringify(users);
-  } else {
-    return Error('404'); // he said this was not a good way to do this
-  }
+  const response = {
+    statusCode: 200,
+    headers: {
+        "Access-Control-Allow-Headers" : "Content-Type",
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "OPTIONS,POST,GET"
+    },
+    body: JSON.stringify(users)
+  };
+  return response;
 };
+
+
 
 // dao function
 async function getUsers(): Promise<User[]> {
