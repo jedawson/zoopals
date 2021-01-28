@@ -1,6 +1,7 @@
 import { DocumentClient } from 'aws-sdk/clients/dynamodb';
 import dynamo from '../dynamo/dynamo';
 import logger from '../log';
+import { Exhibit } from '../models/exhibit';
 import { User, Customer, Zookeeper, Manager } from '../models/user';
 
 class UserService {
