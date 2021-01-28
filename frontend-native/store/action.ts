@@ -51,12 +51,11 @@ export interface ZookeeperAction extends AppAction {
  * payload will be numbers
  */
 export enum ZooActions {
-  GetProfit = 'GET_PROFIT',
-  GetExpenses = 'GET_EXPENSES',
+  GetZoo = 'GET_ZOO'
 }
 export interface ZooAction extends AppAction {
   type: ZooActions;
-  payload: number;
+  payload: Zoo;
 }
 
 export interface AppAction {
@@ -105,23 +104,10 @@ export function getExhibits(zookeeper: Zookeeper): ZookeeperAction {
  * payload of the given zoo expenses
  * @param zoo - Zoo object to get the expenses from
  */
-export function changeExpenses(zoo: Zoo): ZooAction {
+export function changeZoo(zoo: Zoo): ZooAction {
   const action: ZooAction = {
-    type: ZooActions.GetExpenses,
-    payload: zoo.expenses,
-  };
-  return action;
-}
-
-/**
- * changeProfit gets the profit of the Zoo and returns an action with the
- * payload of the given zoo profit
- * @param zoo - Zoo object to get the profit from
- */
-export function changeProfit(zoo: Zoo): ZooAction {
-  const action: ZooAction = {
-    type: ZooActions.GetProfit,
-    payload: zoo.profit,
+    type: ZooActions.GetZoo,
+    payload: zoo,
   };
   return action;
 }

@@ -24,7 +24,7 @@ class zooService {
   I console logged the result object to see what is being returned.
   You need to get the data's body's results and from there the rows property,
   which is an array of ticket objects. */
-  getTickets(): Promise<Ticket[]> {
+  getTickets(): Promise<any[]> {
     return axios.get('https://4xp40d62ra.execute-api.us-west-2.amazonaws.com/default/tickets').then(result => result.data.rows);
   }
 
