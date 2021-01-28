@@ -53,7 +53,8 @@ create table specialEvent
 (
 	specialEventID serial primary key not null,
 	specialEventName text not null,
-	dateTime text not null
+	specialEventDate text not null,
+	specialEventTime text not null
 );
 
 create table zoo

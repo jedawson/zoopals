@@ -10,11 +10,24 @@ const darkGray = '#363636';
 const blue = '#67a2e5';
 const green = '#2C7B56';
 
+//Styles
 const styles = StyleSheet.create({
   zooname: {
     flex: 1,
     resizeMode: 'center',
   },
+  loginView: {
+    flex: 6,
+    backgroundColor: yellow,
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    padding: 20,
+  },
+  /**
+   *  CUSTOMER VIEW
+   */
+  customerHomeView: {},
+  // TICKETS
   ticketView: {
     flex: 6,
     backgroundColor: yellow,
@@ -34,42 +47,41 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: '500',
   },
+  purchaseTicketView: {
+    flex: 5,
+    backgroundColor: yellow,
+    fontSize: 25,
+    justifyContent: 'center',
+  },
+  // MAP
   mapView: {},
   map: {
     resizeMode: 'contain',
     width: width,
     height: height * 0.35,
   },
+  /*
+   * ZOOKEEPER VIEW
+   */
   inventoryView: {},
-  loginView: {
-    flex: 6,
-    backgroundColor: yellow,
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-    padding: 20,
-  },
-  customerHomeView: {},
   myAnimalsView: {},
   profileView: {
     flex: 6,
     justifyContent: 'flex-start',
   },
+  myTasksView: {
+    flex: 2,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  /*
+   * MANAGER VIEW
+   */
   staffView: {},
   staff: {
     fontWeight: '400',
     fontSize: 25,
     alignSelf: 'center',
- 
-  },
-  purchaseTicketView: {
-    flex: 6,
-    backgroundColor: '#EDDFBC',
-    // justifyContent: 'center',
-  },
-  myTasksView: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
   },
   infoView: {
     flex: 2,
@@ -114,20 +126,21 @@ const styles = StyleSheet.create({
   },
   inputBox: {
     backgroundColor: 'white',
-    borderRadius: 6,
-    height: 30,
+    borderRadius: 10,
+    height: 50,
     padding: 10,
+    margin: 10,
   },
   header: {
-    flex: .1,
-    backgroundColor: '#2C7B56',
+    flex: 0.1,
+    backgroundColor: green,
     justifyContent: 'center',
     alignContent: 'center',
   },
   titleView: {
-    flex: 2,
+    flex: 1,
     margin: 20,
-    backgroundColor: '#EDDFBC'
+    backgroundColor: yellow,
   },
   title: {
     fontWeight: 'bold',
@@ -139,14 +152,14 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 30,
     alignSelf: 'center',
-    backgroundColor: '#2C7B56',
-    color: '#EAEAEA'
+    backgroundColor: green,
+    color: lightGray,
   },
   viewContainer: {
-    backgroundColor: '#EDDFBC',
+    backgroundColor: yellow,
     flex: 1,
-    justifyContent: 'space-around'
-  }
+    justifyContent: 'space-around',
+  },
 });
 
 export default styles;

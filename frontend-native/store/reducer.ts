@@ -1,6 +1,6 @@
 import { Animal } from '../models/animal';
 import { Exhibit } from '../models/exhibit';
-import { User } from '../models/user';
+import { Customer, User } from '../models/user';
 import { Zoo } from '../models/zoo';
 import * as Actions from './action';
 import { ZooNameState } from './store';
@@ -38,11 +38,8 @@ const reducer = (
     case Actions.ExhibitActions.GetExhibit:
       newState.exhibit = action.payload as Exhibit;
       return newState;
-    case Actions.ZooActions.GetExpenses:
-      newState.zoo.expenses = action.payload;
-      return newState;
-    case Actions.ZooActions.GetProfit:
-      newState.zoo.profit = action.payload;
+    case Actions.ZooActions.GetZoo:
+      newState.zoo = action.payload;
       return newState;
     case Actions.ZookeeperActions.GetExhibits:
       newState.exhibits = action.payload as Exhibit[];

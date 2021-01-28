@@ -1,7 +1,7 @@
 export class SpecialEvent {
   public name = '';
-
-  public dateTime = '';
+  public date = '';
+  public time = '';
 }
 
 export class Ticket {

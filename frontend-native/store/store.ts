@@ -2,14 +2,16 @@ import { applyMiddleware, createStore, Store } from 'redux';
 import thunk from 'redux-thunk';
 import { Animal } from '../models/animal';
 import { Exhibit } from '../models/exhibit';
-import { User } from '../models/user';
+import { Customer, Manager, User, Zookeeper } from '../models/user';
 import { Zoo } from '../models/zoo';
 import { AppAction } from './action';
 import reducer from './reducer';
 
+// changed to specific role types because
+// Typescript kept saying "X attribute does not exist on type User"
 export interface UserState {
-  user: User;
-  loginUser: User;
+  user: Customer | Zookeeper | Manager;
+  loginUser: Customer | Zookeeper | Manager;
 }
 
 export interface AnimalState {
