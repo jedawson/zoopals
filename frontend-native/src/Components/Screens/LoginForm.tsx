@@ -26,11 +26,11 @@ function LoginForm({ navigation }: LoginProp) {
 
     // Checks the user role to determine which Screen to go to.
     if (user.role === 'Zookeeper') {
-      navigation.navigate('Zookeeper', { screen: 'Home' });
+      navigation.navigate('Zookeeper', { screen: 'Home' }, { user: user });
     } else if (user.role === 'Manager') {
-      navigation.navigate('Manager', { screen: 'Home' });
+      navigation.navigate('Manager', { screen: 'Home' }, { user: user });
     } else {
-      navigation.navigate('Customer', { screen: 'Home' });
+      navigation.navigate('Customer', { screen: 'Home' }, { user: user });
     }
   }
 

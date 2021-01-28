@@ -4,7 +4,13 @@ import styles from '../../../gobal-styles';
 import { Info } from '../Info';
 import { Title } from '../Title';
 
-function ManagerHome() {
+interface ManagerProps {
+  data: any;
+}
+
+function ManagerHome(props: ManagerProps) {
+  console.log('Manager Home Props: ' + JSON.stringify(props));
+
   return (
     <View style={styles.viewContainer}>
       {/* add expenses, number of staff, number of exhibits? */}

@@ -13,10 +13,11 @@ import { Title } from '../Title';
 
 interface CustomerHomeProps {
   data: Ticket;
+  user: Customer;
 }
 
-function CustomerHome({ data }: CustomerHomeProps) {
-  console.log(JSON.stringify(data));
+function CustomerHome(props: CustomerHomeProps) {
+  console.log(JSON.stringify(props.data));
 
   function selectUser(state: UserState) {
     return state.user;
