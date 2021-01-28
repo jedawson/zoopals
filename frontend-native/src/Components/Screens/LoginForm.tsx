@@ -7,7 +7,6 @@ import { UserState } from '../../../store/store';
 // import { Button } from '../Button';
 import { Form } from '../Form';
 import { Title } from '../Title';
-import { UserState } from '../../../store/store';
 import userService from '../../../services/user.service';
 
 interface LoginProp {
