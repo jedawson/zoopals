@@ -29,19 +29,25 @@ function LoginForm({ navigation }: LoginProp) {
 
     userService.signIn(user.username, user.password).then((user) => {
       console.log(user);
-      let newUser = new User();
-      newUser.username = user.username;
-      newUser.password = user.password;
-      newUser.role = user.role;
-      dispatch(getUser(newUser));
-      // Checks the user role to determine which Screen to go to.
-      if (user.role === 'Zookeeper') {
-        navigation.navigate('Zookeeper', { screen: 'Home' });
-      } else if (user.role === 'Manager') {
-        navigation.navigate('Manager', { screen: 'Home' });
+      if (user) {
+        let newUser = new User();
+        newUser.username = user.username;
+        newUser.password = user.password;
+        newUser.role = user.role;
+        dispatch(getUser(newUser));
+        // Checks the user role to determine which Screen to go to.
+        if (user.role === 'Zookeeper') {
+          navigation.navigate('Zookeeper', { screen: 'Home' });
+        } else if (user.role === 'Manager') {
+          navigation.navigate('Manager', { screen: 'Home' });
+        } else {
+          navigation.navigate('Customer', { screen: 'Home' });
+        }
       } else {
-        navigation.navigate('Customer', { screen: 'Home' });
+        alert('Username and/or password is incorrect')
+        dispatch(getUser(new User()))
       }
+      
   });
     
   }
