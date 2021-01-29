@@ -29,6 +29,9 @@ const reducer = (
       newState.user = action.payload as User;
       newState.loginUser = new User();
       return newState;
+    case Actions.UserActions.LoginChange:
+      newState.loginUser = action.payload as User;
+      return newState;
     case Actions.ExhibitActions.GetAnimals:
       newState.animals = action.payload as Animal[];
       return newState;
@@ -38,11 +41,8 @@ const reducer = (
     case Actions.ExhibitActions.GetExhibit:
       newState.exhibit = action.payload as Exhibit;
       return newState;
-    case Actions.ZooActions.GetExpenses:
-      newState.zoo.expenses = action.payload;
-      return newState;
-    case Actions.ZooActions.GetProfit:
-      newState.zoo.profit = action.payload;
+    case Actions.ZooActions.GetZoo:
+      newState.zoo = action.payload;
       return newState;
     case Actions.ZookeeperActions.GetExhibits:
       newState.exhibits = action.payload as Exhibit[];

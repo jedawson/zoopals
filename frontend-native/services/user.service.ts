@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { User } from '../models/user';
+import { Customer, Manager, User, Zookeeper } from '../models/user';
 
 class userService {
   private URI: string;
@@ -8,6 +8,18 @@ class userService {
     this.URI = ''; // process.env.gatewayURI
   }
 
+  signIn(username:string, password:string): Promise<Customer|Zookeeper|Manager> {
+    return axios
+      .post('https://8cf402b61d.execute-api.us-west-2.amazonaws.com/default/users/login', 
+      {username:username, password:password})
+      .then((result) => {
+        return result.data
+      })
+      .catch((err) => {
+        console.log(`Error logging in: ${err}`);
+        return null;
+      })
+  }
   // get user
   getLogin(): Promise<User> {
     return axios
