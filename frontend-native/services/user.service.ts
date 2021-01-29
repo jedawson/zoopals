@@ -10,7 +10,7 @@ class userService {
 
   signIn(username:string, password:string): Promise<Customer|Zookeeper|Manager> {
     return axios
-      .post('ec2-54-188-26-201.us-west-2.compute.amazonaws.com:3000/users', 
+      .post('https://8cf402b61d.execute-api.us-west-2.amazonaws.com/default/users/login', 
       {username:username, password:password})
       .then((result) => {
         return result.data
