@@ -40,7 +40,8 @@ function TicketForm() {
     price: number,
     tickettype: string,
     specialeventname: string,
-    datetime: string
+    specialeventdate: string,
+    specialeventtime: string
   }
 
   return (
@@ -61,7 +62,8 @@ function TicketForm() {
             <Text style={[flexStyle.flexPriority, {color: '#FFFFFF'}]}>Price</Text>
             <Text style={[flexStyle.flexPriority, {color: '#FFFFFF'}]}>Ticket Type</Text>
             <Text style={{ flex: 1.5,alignSelf: 'center',justifyContent: 'center', color: '#FFFFFF'}}>Event</Text>
-            <Text style={{ flex: 1.5,alignSelf: 'center',justifyContent: 'center', color: '#FFFFFF'}}>Date/Time</Text>
+            <Text style={{ flex: 1.5,alignSelf: 'center',justifyContent: 'center', color: '#FFFFFF'}}>Date</Text>
+            <Text style={{ flex: 1.5,alignSelf: 'center',justifyContent: 'center', color: '#FFFFFF'}}>Time</Text>
             <Text style={[flexStyle.flexPriority, {color: '#FFFFFF'}]}>Quantity</Text>
           </View>
 
@@ -73,7 +75,8 @@ function TicketForm() {
                 <Text style={[flexStyle.flexPriority]}>${item.price}</Text>
                 <Text style={[flexStyle.flexPriority]}>{item.tickettype}</Text>
                 <Text style={{ flex: 1.5,alignSelf: 'center',justifyContent: 'center'}}>{item.specialeventname}</Text>
-                <Text style={{flex: 1.5,alignSelf: 'center',justifyContent: 'center' }}>{item.datetime}</Text>
+                <Text style={{flex: 1.5,alignSelf: 'center',justifyContent: 'center' }}>{item.specialeventdate}</Text>
+                <Text style={{flex: 1.5,alignSelf: 'center',justifyContent: 'center' }}>{item.specialeventtime}</Text>
                 <View style={{
                   flex: 1,
                   flexDirection: 'row',

@@ -7,7 +7,7 @@ exports.handler = async (/*event*/) => {
     const client = new Client();
     await client.connect();
     
-    const res = await client.query('select t.price, t.tickettype, s.specialeventname, s.datetime from ticket t join specialevent s on t.specialeventid = s.specialeventid;');
+    const res = await client.query('select t.price, t.tickettype, s.specialeventname, s.specialeventdate, s.specialeventtime from ticket t join specialevent s on t.specialeventid = s.specialeventid;');
     await client.end();
 
     const response = {
