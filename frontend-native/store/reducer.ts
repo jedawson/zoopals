@@ -29,6 +29,9 @@ const reducer = (
       newState.user = action.payload as User;
       newState.loginUser = new User();
       return newState;
+    case Actions.UserActions.LoginChange:
+      newState.loginUser = action.payload as User;
+      return newState;
     case Actions.ExhibitActions.GetAnimals:
       newState.animals = action.payload as Animal[];
       return newState;
