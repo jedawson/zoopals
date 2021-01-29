@@ -2,7 +2,7 @@ import { RouteProp } from '@react-navigation/native';
 import React, { useState } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 import { useSelector } from 'react-redux';
-import styles from '../../../gobal-styles';
+import styles from '../../../global-styles';
 import { Screens } from '../../../router/router.component';
 import { ZooNameState } from '../../../store/store';
 import { Title } from '../Title';

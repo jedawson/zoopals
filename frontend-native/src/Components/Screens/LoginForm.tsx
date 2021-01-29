@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { View, Text, TouchableOpacity, Button, TextInput } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import styles from '../../../gobal-styles';
+import styles from '../../../global-styles';
 import { getUser, loginAction } from '../../../store/action';
 import { UserState } from '../../../store/store';
 // import { Button } from '../Button';

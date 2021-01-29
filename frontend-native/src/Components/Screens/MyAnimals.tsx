@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { View, StyleSheet, Text, FlatList } from 'react-native';
 import { State } from 'react-native-gesture-handler';
 import { useDispatch, useSelector } from 'react-redux';
-import styles from '../../../gobal-styles';
+import styles from '../../../global-styles';
 import zooService from '../../../services/zoo.service';
 import { ExhibitState, UserState } from '../../../store/store';
 import { AnimalDetails } from '../Details/AnimalDetails';

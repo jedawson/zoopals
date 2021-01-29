@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, SafeAreaView} from 'react-native';
 import { FlatList, ScrollView, TextInput, TouchableOpacity } from 'react-native-gesture-handler';
-import styles from '../../../gobal-styles';
+import styles from '../../../global-styles';
 import zooService from '../../../services/zoo.service';
 import { Button } from '../Button';
 import { Info } from '../Info';

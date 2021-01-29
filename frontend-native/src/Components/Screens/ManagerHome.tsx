@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
-import styles from '../../../gobal-styles';
+import styles from '../../../global-styles';
 import { Info } from '../Info';
 import { Title } from '../Title';
 
