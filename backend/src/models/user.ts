@@ -18,6 +18,8 @@ export class User {
 
 export class Customer extends User {
 
+    public role: string = 'Customer';
+
     public tickets: Ticket[] = [];
     
     public membershipLevel:string = 'Basic'; //like gold or silver
@@ -29,6 +31,8 @@ export class Customer extends User {
 
 export class Zookeeper extends User {
 
+    public role: string = 'Zookeeper';
+
     public exhibits: Exhibit[] = [];
 
     public tasks: string[] = [];
@@ -39,6 +43,8 @@ export class Zookeeper extends User {
 }
 
 export class Manager extends User {
+
+    public role: string = 'Manager';
 
     public zookeepers: Zookeeper[] = []; // should the manager extend zookeeper or user? like should a manager do zookeper things or just manage them?
 
