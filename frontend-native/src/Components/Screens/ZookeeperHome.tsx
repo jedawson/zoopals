@@ -24,6 +24,7 @@ function ZookeeperHome(props: ZookeeperProps) {
       <Text>Tasks here</Text>
       <View style={styles.myTasksView}>
         <Text> insert checkboxes here?</Text>
+        <Text>{JSON.stringify(props)}</Text>
       </View>
     </View>
   );

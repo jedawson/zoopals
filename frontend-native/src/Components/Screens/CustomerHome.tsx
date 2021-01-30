@@ -59,6 +59,7 @@ function CustomerHome(props: CustomerHomeProps) {
   return (
     <ScrollView>
       <View style={styles.viewContainer}>
+        <Text>{JSON.stringify(props)}</Text>
         <Title title='MY TICKETS' />
 
         <View style={styles.ticketView}>

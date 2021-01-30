@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
 import styles from '../../../gobal-styles';
 import { Info } from '../Info';
 import { Title } from '../Title';
@@ -13,6 +13,7 @@ function ManagerHome(props: ManagerProps) {
 
   return (
     <View style={styles.viewContainer}>
+      <Text>{JSON.stringify(props)}</Text>
       {/* add expenses, number of staff, number of exhibits? */}
       <Title title='STATISTICS' />
       <View style={styles.customerHomeView}>

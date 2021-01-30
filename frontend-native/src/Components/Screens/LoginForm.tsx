@@ -4,8 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import styles from '../../../gobal-styles';
 import { getUser, loginAction } from '../../../store/action';
 import { UserState } from '../../../store/store';
-// import { Button } from '../Button';
-import { Form } from '../Form';
 import { Title } from '../Title';
 import userService from '../../../services/user.service';
 import { User } from '../../../models/user';
@@ -50,11 +48,6 @@ function LoginForm({ navigation }: LoginProp) {
     });
   }
 
-  // Needed for when we get the login in functionality
-  // useEffect(() => {
-  //   dispatch;
-  // }, [user]);
-
   return (
     <View style={styles.viewContainer}>
       <Title title='WELCOME!' />
@@ -76,9 +69,7 @@ function LoginForm({ navigation }: LoginProp) {
           }
           value={user.password}
         />
-        <TouchableOpacity style={styles.button}>
-          <Button onPress={submitForm} title='Login' />
-        </TouchableOpacity>
+        <Button onPress={submitForm} title='Login' />
         <Text></Text>
       </View>
     </View>
