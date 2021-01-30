@@ -19,28 +19,13 @@ function LoginForm({ navigation }: LoginProp) {
   const dispatch = useDispatch();
   //handles the login button
   function submitForm() {
-    // Since no login at the moment, we can change this user to
-    // simulate a user being got from the database
-    //user = { ...user, role: 'Customer', zookeepers: [] };
-    //dispatch(getUser(user));
     console.log(`User: ${JSON.stringify(user)}`);
-
     userService.signIn(user.username, user.password).then((user) => {
-      console.log(user);
+      console.log('signed in user: ' + JSON.stringify(user));
       if (user) {
-        let newUser = new User();
-        newUser.username = user.username;
-        newUser.password = user.password;
-        newUser.role = user.role;
+        let newUser = { ...user };
         dispatch(getUser(newUser));
-        // Checks the user role to determine which Screen to go to.
-        if (user.role === 'Zookeeper') {
-          navigation.navigate('Zookeeper', { screen: 'Home' });
-        } else if (user.role === 'Manager') {
-          navigation.navigate('Manager', { screen: 'Home' });
-        } else {
-          navigation.navigate('Customer', { screen: 'Home' });
-        }
+        navigation.navigate(`${newUser.role}`, { screen: 'Home' });
       } else {
         alert('Username and/or password is incorrect');
         dispatch(getUser(new User()));
