@@ -64,7 +64,17 @@ const styles = StyleSheet.create({
    * ZOOKEEPER VIEW
    */
   inventoryView: {},
-  myAnimalsView: {},
+  myAnimalsView: {
+    alignSelf: 'center',
+    borderColor: 'green',
+    borderTopWidth: 2,
+    borderLeftWidth: 2,
+    borderRightWidth: 2,
+    borderBottomWidth: 2,
+    width: '70%',
+    flexDirection: 'row',
+    justifyContent: 'space-around'
+  },
   profileView: {
     flex: 6,
     justifyContent: 'flex-start',
