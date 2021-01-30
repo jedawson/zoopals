@@ -84,7 +84,9 @@ function LoginForm({ navigation }: LoginProp) {
       <TouchableOpacity style={styles.button}>
         <Button onPress={submitForm} title='Login' />
       </TouchableOpacity>
+      <Text></Text>
       <Text> I don't have an account and I need to register.</Text>
+      <Button onPress={submitForm} title='Register'/>
       </View>
     </View>
   );
