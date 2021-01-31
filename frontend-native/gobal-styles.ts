@@ -26,7 +26,10 @@ const styles = StyleSheet.create({
   /**
    *  CUSTOMER VIEW
    */
-  customerHomeView: {},
+  managerHomeView: {
+    flex: 6,
+    alignItems: 'center',
+  },
   // TICKETS
   ticketView: {
     flex: 6,
@@ -73,7 +76,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 2,
     width: '70%',
     flexDirection: 'row',
-    justifyContent: 'space-around'
+    justifyContent: 'space-around',
   },
   profileView: {
     flex: 6,

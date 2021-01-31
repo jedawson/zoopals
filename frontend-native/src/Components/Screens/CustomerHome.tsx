@@ -13,10 +13,11 @@ import { Title } from '../Title';
 
 interface CustomerHomeProps {
   data: Ticket;
+  user: Customer;
 }
 
-function CustomerHome({ data }: CustomerHomeProps) {
-  console.log(JSON.stringify(data));
+function CustomerHome(props: CustomerHomeProps) {
+  console.log(JSON.stringify(props.data));
 
   function selectUser(state: UserState) {
     return state.user;
@@ -58,6 +59,7 @@ function CustomerHome({ data }: CustomerHomeProps) {
   return (
     <ScrollView>
       <View style={styles.viewContainer}>
+        <Text>{JSON.stringify(props)}</Text>
         <Title title='MY TICKETS' />
 
         <View style={styles.ticketView}>
