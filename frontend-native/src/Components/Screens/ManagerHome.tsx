@@ -17,15 +17,16 @@ function ManagerHome(props: ManagerProps) {
   const zoo = useSelector((state: ZooNameState) => state.zoo);
   const dispatch = useDispatch();
 
-  async function getZoo() {
-    const zooStats = await zooService.getZoo();
-    let newZoo: Zoo = new Zoo();
-    newZoo = { ...zooStats.rows[0] };
-    console.log(JSON.stringify(newZoo));
-    dispatch(changeZoo(newZoo));
-  }
-
-  getZoo();
+  useEffect(() => {
+    async function getZoo() {
+      const zooStats = await zooService.getZoo();
+      let newZoo: Zoo = new Zoo();
+      newZoo = { ...zooStats.rows[0] };
+      console.log(JSON.stringify(newZoo));
+      dispatch(changeZoo(newZoo));
+    }
+    getZoo();
+  }, []);
 
   return (
     <View style={styles.viewContainer}>
