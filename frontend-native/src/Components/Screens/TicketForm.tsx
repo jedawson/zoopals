@@ -1,11 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, SafeAreaView} from 'react-native';
-import { FlatList, ScrollView, TextInput, TouchableOpacity } from 'react-native';
+import { View, Text} from 'react-native';
+import { FlatList, ScrollView, TouchableOpacity } from 'react-native';
 import styles from '../../../gobal-styles';
 import zooService from '../../../services/zoo.service';
 import { Info } from '../Info';
 import { Title } from '../Title';
 import { StyleSheet } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+import { UserState} from '../../../store/store';
+import { Customer } from '../../../models/user';
+import { Ticket } from '../../../models/ticket';
+import userService from '../../../services/user.service';
+import { getUser } from '../../../store/action';
 
 /**
  * TicketForm displays the available tickets for purchase.
@@ -13,9 +19,7 @@ import { StyleSheet } from 'react-native';
  */
 function TicketForm() {
 
-  // make initial array not of type never
-  const array: any[] | (() => any[]) = [];
-
+  
   // create a ticket interface for rendering each ticket
   interface ticket {
     price: number,
@@ -25,10 +29,17 @@ function TicketForm() {
     specialeventtime: string
   }
 
+  // make initial array not of type never
+  const array: any[] | (() => any[]) = [];
+  const ticketArray: ticket[] = [];
+
   // create component's state
   const [tickets, setTickets] = useState(array);
   let [totalPurchase, setTotal] = useState(0);
-  let ticketsPurchased: ticket[] = [];
+  let [ticketsPurchased, setPurchased] = useState(ticketArray);
+  const currentUser = useSelector((state: UserState) => state.user);
+  const newUser: Customer = {...currentUser, tickets: [], membershipLevel: 'Basic'};
+  const dispatch = useDispatch();
 
   useEffect( () => {
     // get tickets from the database after each render
@@ -37,10 +48,36 @@ function TicketForm() {
       setTickets(tickets);
     }
     getTickets();
-    // also check to see if totalPurchase changes
-  }, [totalPurchase]);
+  }, [totalPurchase, ticketsPurchased]);
 
   // on purchase, submit tickets to customer
+  async function sendTickets() {
+    // change tickets to Tickets
+    const ticketsArray: Ticket[] = [];
+    for (let i = 0; i < ticketsPurchased.length; i++) {
+      let ticket: Ticket = {
+        price: ticketsPurchased[i].price, 
+        ticketType: ticketsPurchased[i].tickettype, 
+        specialEvent: {
+          name: ticketsPurchased[i].specialeventname, 
+          date: ticketsPurchased[i].specialeventdate,
+          time: ticketsPurchased[i].specialeventtime
+        }
+      }
+      ticketsArray.push(ticket);
+    }
+
+    // update user's tickets
+    newUser.tickets = ticketsArray;
+    console.log('new tickets: ', newUser.tickets)
+
+    // update user in db
+    let result = await userService.updateUser(newUser);
+    console.log('result: ', result);
+    
+    // update user in store
+    dispatch(getUser(newUser));
+  }
 
   return (
     <View style={styles.purchaseTicketView}>
@@ -68,7 +105,13 @@ function TicketForm() {
               <Text style={[flexStyle.ticketInfo, {flex: 2}]}>{item.specialeventname}</Text>
               <Text style={[flexStyle.ticketInfo, {flex: 1.5}]}>{item.specialeventdate}</Text>
               <Text style={[flexStyle.ticketInfo, {flex: 1.5}]}>{item.specialeventtime}</Text>
-              <TouchableOpacity style={[flexStyle.button, {marginLeft: 10, marginRight: 20}]} onPress={() => {setTotal(totalPurchase += item.price)}}>
+              <TouchableOpacity 
+              style={[flexStyle.button, {marginLeft: 10, marginRight: 20}]} 
+              onPress={() => {
+                setTotal(totalPurchase += item.price);
+                setPurchased([...ticketsPurchased, item]);
+              }}
+              >
                 <Text  style={{color: '#FFFFFF'}}>+</Text>
               </TouchableOpacity>
             </View>)}
@@ -80,11 +123,11 @@ function TicketForm() {
           <Info name='Total'>{'$' + totalPurchase}</Info>
         </View>
         <View style={{flex: 1, flexDirection: 'row', alignItems: 'center', marginTop: 30, marginLeft: 50, marginRight: 50}}>
-          <TouchableOpacity style={flexStyle.globalButton} onPress={() => {setTotal(0); ticketsPurchased = []}}>
+          <TouchableOpacity style={flexStyle.globalButton} onPress={() => {setTotal(0); setPurchased([]); console.log(ticketsPurchased)}}>
             <Text style={{color: '#FFF'}}>START OVER</Text>
           </TouchableOpacity>
           <View style={{flex: 1}}></View>
-          <TouchableOpacity style={flexStyle.globalButton} onPress={() => {console.log('purchase button pressed!')}}>
+          <TouchableOpacity style={flexStyle.globalButton} onPress={(sendTickets)}>
             <Text style={{color: '#FFF'}}>PURCHASE</Text>
           </TouchableOpacity>
         </View>
