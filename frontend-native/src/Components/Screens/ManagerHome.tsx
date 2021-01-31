@@ -33,7 +33,7 @@ function ManagerHome(props: ManagerProps) {
       <Text>{JSON.stringify(zoo)}</Text>
       {/* add expenses, number of staff, number of exhibits? */}
       <Title title='STATISTICS' />
-      <View style={styles.customerHomeView}>
+      <View style={styles.managerHomeView}>
         <Info name='Profit'> {zoo.profit}</Info>
         <Info name='Expenses'> {zoo.expenses}</Info>
         <Info name='Inventory Items'> {zoo.inventoryItems}</Info>

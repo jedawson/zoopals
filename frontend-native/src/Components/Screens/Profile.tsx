@@ -8,10 +8,12 @@ function Profile() {
   return (
     <View style={styles.viewContainer}>
       <Title title='PROFILE ' />
-      <ProfileDetails
-        username='Jack '
-        age='# '
-        role='Customer '></ProfileDetails>
+      <View style={styles.managerHomeView}>
+        <ProfileDetails
+          username='Jack '
+          age='# '
+          role='Customer '></ProfileDetails>
+      </View>
     </View>
   );
 }
