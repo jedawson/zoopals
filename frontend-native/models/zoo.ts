@@ -9,7 +9,7 @@ export class Zoo {
 
   public expenses = -1;
 
-  public ticketsSold = -1;
+  public ticketssold = -1;
 
   // public ticketsAvailable: Ticket[] = [];
 

@@ -30,12 +30,13 @@ function ManagerHome(props: ManagerProps) {
 
   return (
     <View style={styles.viewContainer}>
-      <Text>{JSON.stringify(zoo)}</Text>
       {/* add expenses, number of staff, number of exhibits? */}
       <Title title='STATISTICS' />
       <View style={styles.managerHomeView}>
         <Info name='Profit'> {zoo.profit}</Info>
         <Info name='Expenses'> {zoo.expenses}</Info>
+        <Info name='Tickets Sold'> {zoo.ticketssold}</Info>
+        {/* This will get shown when we get the inventory items lambda set up */}
         <Info name='Inventory Items'> {zoo.inventoryItems}</Info>
       </View>
     </View>
