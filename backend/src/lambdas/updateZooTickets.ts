@@ -4,7 +4,8 @@ exports.handler = async (event: any) => {
     const client = new Client();
     await client.connect();
     
-    const res = await client.query('update zoo set ticketssold = ticketssold + $1::int;', [event.body]);
+    const number: number = Number(event.body);
+    const res = await client.query('update zoo set ticketssold = ticketssold + $1::int;', [number]);
     await client.end();
 
     const response = {

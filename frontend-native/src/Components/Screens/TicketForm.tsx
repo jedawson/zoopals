@@ -84,9 +84,10 @@ function TicketForm() {
       dispatch(getUser(newUser));
 
       //update zoo table's ticket count
+      console.log('new tickets amount: ', ticketsArray.length);
       let resultZoo = await zooService.updateTickets(ticketsArray.length);
       console.log('result of updating tickets: ', resultZoo);
-
+      
       // update zoo table's profits
     }
     
