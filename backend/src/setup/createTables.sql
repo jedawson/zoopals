@@ -54,7 +54,8 @@ create table specialEvent
 	specialEventID serial primary key not null,
 	specialEventName text not null,
 	specialEventDate text not null,
-	specialEventTime text not null
+	specialEventTime text not null,
+	ticketsSold int default 0
 );
 
 create table zoo
