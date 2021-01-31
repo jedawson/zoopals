@@ -55,10 +55,10 @@ class userService {
   }
   // add user
 
-  // update user
-  updateUser(user: User): Promise<null> {
+  // update customer
+  updateCustomer(user: Customer): Promise<null> {
     return axios
-      .put('https://8cf402b61d.execute-api.us-west-2.amazonaws.com/default/users/' + user.username, user)
+      .put('https://8cf402b61d.execute-api.us-west-2.amazonaws.com/default/users', user)
       .then((result) => result.data)
       .catch((err) => {
         console.log(`Update user error: ${err}`);

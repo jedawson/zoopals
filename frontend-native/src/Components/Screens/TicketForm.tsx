@@ -38,7 +38,7 @@ function TicketForm() {
   let [totalPurchase, setTotal] = useState(0);
   let [ticketsPurchased, setPurchased] = useState(ticketArray);
   const currentUser = useSelector((state: UserState) => state.user);
-  const newUser: Customer = {...currentUser, tickets: [], membershipLevel: 'Basic'};
+  const newUser: Customer = {...currentUser};
   const dispatch = useDispatch();
   let [alertText, setAlertText] = useState('');
 
@@ -68,13 +68,16 @@ function TicketForm() {
         }
         ticketsArray.push(ticket);
       }
-
+      console.log('tickets array to add: ', ticketsArray);
       // update user's tickets
-      newUser.tickets = ticketsArray;
-      console.log('new tickets: ', newUser.tickets)
+      ticketsArray.forEach(ticket => {
+        newUser.tickets.push(ticket);
+      });
+
+      console.log('new user being sent: ', newUser);
 
       // update user in db
-      let resultUser = await userService.updateUser(newUser);
+      let resultUser = await userService.updateCustomer(newUser);
       console.log('result: ', resultUser);
 
       // update user in store

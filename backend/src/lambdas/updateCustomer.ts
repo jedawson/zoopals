@@ -15,9 +15,6 @@ export const handler = async (event: any) => {
   let response: any = 'failed';
 
   if (success) {
-    // send back updated user to make sure updates happened
-    let user = await getUserByUsername(event.body.username);
-    if (user) {
       response = {
         statusCode: 200,
         headers: {
@@ -27,7 +24,6 @@ export const handler = async (event: any) => {
         },
         body: JSON.stringify(user)
       };
-    }
   }
   
   return response;
@@ -58,19 +54,3 @@ async function updateCustomer(user: Customer) {
   });
 }
 
-async function getUserByUsername(name: string): Promise<User | Customer | Zookeeper | Manager | null> {
-  // GetItem api call allows us to get something by the key
-  const params = {
-      TableName: 'zooUsers',
-      Key: {
-          'username': name
-      }
-  };
-  return await docClient.get(params).promise().then((data) => {
-      if (data && data.Item) {
-          return data.Item as User | Customer | Zookeeper | Manager;
-      } else {
-          return null;
-      }
-  })
-}
