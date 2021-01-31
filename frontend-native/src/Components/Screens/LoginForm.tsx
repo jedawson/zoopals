@@ -21,7 +21,6 @@ function LoginForm({ navigation }: LoginProp) {
   function submitForm() {
     console.log(`User: ${JSON.stringify(user)}`);
     userService.signIn(user.username, user.password).then((user) => {
-      console.log('signed in user: ' + JSON.stringify(user));
       if (user) {
         let newUser = { ...user };
         dispatch(getUser(newUser));
