@@ -23,6 +23,7 @@ export interface AnimalState {
 //exhibit state - necessary?
 export interface ExhibitState {
   exhibits: Exhibit[];
+  exhibit: Exhibit;
 }
 
 // zoo state
