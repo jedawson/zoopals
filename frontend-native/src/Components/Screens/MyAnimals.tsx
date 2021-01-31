@@ -1,16 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { View, StyleSheet, Text, FlatList } from 'react-native';
-import { State } from 'react-native-gesture-handler';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import styles from '../../../gobal-styles';
-import { Animal } from '../../../models/animal';
 import { Exhibit } from '../../../models/exhibit';
-import { User } from '../../../models/user';
 import userService from '../../../services/user.service';
-import zooService from '../../../services/zoo.service';
-import { getExhibit, getUser, loginAction } from '../../../store/action';
-import { ExhibitState, UserState, ZooNameState } from '../../../store/store';
-import { AnimalDetails } from '../Details/AnimalDetails';
+import { UserState } from '../../../store/store';
 import { Title } from '../Title';
 
 function MyAnimals() {
@@ -21,7 +15,6 @@ function MyAnimals() {
   const [myAnimals, setAnimals] = useState(array);
   const [myAnimalsExhibit, setExhibit] = useState(exhibitArray)
   let myExhibits: Exhibit[] = []
-  let exhibitName: string;
 
 useEffect(() => {
     async function getAnimals() {
@@ -50,19 +43,19 @@ useEffect(() => {
       <Title title='MY ANIMALS' />
       <FlatList
         style={animalView.flatList}
-            data={myAnimals}
-            renderItem={({item}: {item: animal}) => (
-              <>
-              <Text> </Text>
-              <View style={styles.myAnimalsView}>
-                <Text style={{'fontWeight': '500', 'fontSize': 20, 'padding': '2%', 'alignSelf': 'flex-start'}}>Name <Text style={{'fontWeight':'normal', 'padding': '2%'}}>{item.name} </Text></Text>
-                <Text style={{'fontWeight': '500', 'fontSize': 20, 'padding': '2%'}}>Species <Text style={{'fontWeight':'normal', 'padding': '2%'}}>{item.species} </Text></Text>
-                <Text style={{'fontWeight': '500', 'fontSize': 20, 'padding': '2%'}}>Diet <Text style={{'fontWeight':'normal', 'padding': '2%'}}>{item.diet} </Text></Text>
-              </View>
-              </>
-            )}
-            keyExtractor={item => item.name + item.species}
-            />
+        data={myAnimals}
+        renderItem={({item}: {item: animal}) => (
+          <>
+            <Text> </Text>
+            <View style={styles.myAnimalsView}>
+              <Text style={{'fontWeight': '500', 'fontSize': 20, 'padding': '2%', 'alignSelf': 'flex-start'}}>Name <Text style={{'fontWeight':'normal', 'padding': '2%'}}>{item.name} </Text></Text>
+              <Text style={{'fontWeight': '500', 'fontSize': 20, 'padding': '2%'}}>Species <Text style={{'fontWeight':'normal', 'padding': '2%'}}>{item.species} </Text></Text>
+              <Text style={{'fontWeight': '500', 'fontSize': 20, 'padding': '2%'}}>Diet <Text style={{'fontWeight':'normal', 'padding': '2%'}}>{item.diet} </Text></Text>
+            </View>
+          </>
+        )}
+        keyExtractor={item => item.name + item.species}
+        />
       </View>
   )}
 
@@ -71,8 +64,6 @@ const animalView = StyleSheet.create ({
     marginTop: '5%',
     marginBottom: '5%',
   }
-}
-
-)
+})
 
 export { MyAnimals };
