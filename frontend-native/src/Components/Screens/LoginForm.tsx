@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { View, Text, TouchableOpacity, Button, TextInput } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from '../../../gobal-styles';
@@ -15,8 +15,8 @@ interface LoginProp {
 function LoginForm({ navigation }: LoginProp) {
   const selectUser = (state: UserState) => state.loginUser;
   const user = useSelector(selectUser);
-  //user.username = 'placeholder username'
   const dispatch = useDispatch();
+
   //handles the login button
   function submitForm() {
     console.log(`User: ${JSON.stringify(user)}`);

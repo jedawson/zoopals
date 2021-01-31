@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { Exhibit } from '../models/exhibit';
 import { Customer, Manager, User, Zookeeper } from '../models/user';
 
 class userService {
@@ -25,6 +26,20 @@ class userService {
         return null;
       });
   }
+
+  getUserExhibit(username:string): Promise<Exhibit[]> {
+    return axios
+      .post('https://8cf402b61d.execute-api.us-west-2.amazonaws.com/default/users/login', 
+      {username:username})
+      .then((result) => {
+        return result.data.exhibits
+      })
+      .catch((err) => {
+        console.log(`Error getting user exhibits: ${err}`);
+        return null;
+      })
+  }
+  
   // get user
   getLogin(): Promise<User> {
     return axios

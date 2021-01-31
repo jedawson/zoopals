@@ -7,20 +7,42 @@ let docClient = new AWS.DynamoDB.DocumentClient({
   endpoint: 'http://dynamodb.us-west-2.amazonaws.com',
 });
 
+interface MyEvent {
+  // username: any;
+  body: string;
+  // username: string
+}
 // create handler
-export const handler = async (event:any) => {
-    let username = JSON.parse(event.body)
+export const handler = async (event: MyEvent) => {
+    // let username = event.path.substring(event.path.lastIndexOf('/')+1, event.path.length);
+    let username = JSON.parse(event.body).username;
     const res = await getExhibitByUser(username);
-    const response = {
+    // console.log(`username: ${username}`)
+    // console.log(`res: ${res}`)
+    // console.log(event)
+    let response;
+    if (res) {
+      response = {
         statusCode: 200,
         headers: {
             "Access-Control-Allow-Headers" : "Content-Type",
             "Access-Control-Allow-Origin": "*",
             "Access-Control-Allow-Methods": "OPTIONS,POST,GET"
         },
-        body: JSON.stringify(res)
+        body: JSON.stringify(res)   
+    };
+    } else {
+      response = {
+        statusCode: 400,
+        headers: {
+            "Access-Control-Allow-Headers" : "Content-Type",
+            "Access-Control-Allow-Origin": "*",
+        },
+        body: JSON.stringify({})
         
     };
+    }
+    
     return response;
 };
 
