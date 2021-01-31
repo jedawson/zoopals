@@ -40,6 +40,7 @@ function TicketForm() {
   const currentUser = useSelector((state: UserState) => state.user);
   const newUser: Customer = {...currentUser, tickets: [], membershipLevel: 'Basic'};
   const dispatch = useDispatch();
+  let [alertText, setAlertText] = useState('');
 
   useEffect( () => {
     // get tickets from the database after each render
@@ -52,31 +53,43 @@ function TicketForm() {
 
   // on purchase, submit tickets to customer
   async function sendTickets() {
-    // change tickets to Tickets
-    const ticketsArray: Ticket[] = [];
-    for (let i = 0; i < ticketsPurchased.length; i++) {
-      let ticket: Ticket = {
-        price: ticketsPurchased[i].price, 
-        ticketType: ticketsPurchased[i].tickettype, 
-        specialEvent: {
-          name: ticketsPurchased[i].specialeventname, 
-          date: ticketsPurchased[i].specialeventdate,
-          time: ticketsPurchased[i].specialeventtime
+    if (ticketsPurchased.length > 0) {
+      // change tickets to Tickets
+      const ticketsArray: Ticket[] = [];
+      for (let i = 0; i < ticketsPurchased.length; i++) {
+        let ticket: Ticket = {
+          price: ticketsPurchased[i].price, 
+          ticketType: ticketsPurchased[i].tickettype, 
+          specialEvent: {
+            name: ticketsPurchased[i].specialeventname, 
+            date: ticketsPurchased[i].specialeventdate,
+            time: ticketsPurchased[i].specialeventtime
+          }
         }
+        ticketsArray.push(ticket);
       }
-      ticketsArray.push(ticket);
+
+      // update user's tickets
+      newUser.tickets = ticketsArray;
+      console.log('new tickets: ', newUser.tickets)
+
+      // update user in db
+      let resultUser = await userService.updateUser(newUser);
+      console.log('result: ', resultUser);
+
+      // update user in store
+      dispatch(getUser(newUser));
+
+      //update zoo table's ticket count
+      let resultZoo = await zooService.updateTickets(ticketsArray.length);
+      console.log('result of updating tickets: ', resultZoo);
+
+      // update zoo table's profits
     }
-
-    // update user's tickets
-    newUser.tickets = ticketsArray;
-    console.log('new tickets: ', newUser.tickets)
-
-    // update user in db
-    let result = await userService.updateUser(newUser);
-    console.log('result: ', result);
     
-    // update user in store
-    dispatch(getUser(newUser));
+    setTotal(0);
+    setPurchased([]);
+    setAlertText('Purchase complete!');
   }
 
   return (
@@ -110,6 +123,7 @@ function TicketForm() {
               onPress={() => {
                 setTotal(totalPurchase += item.price);
                 setPurchased([...ticketsPurchased, item]);
+                setAlertText('');
               }}
               >
                 <Text  style={{color: '#FFFFFF'}}>+</Text>
@@ -123,7 +137,7 @@ function TicketForm() {
           <Info name='Total'>{'$' + totalPurchase}</Info>
         </View>
         <View style={{flex: 1, flexDirection: 'row', alignItems: 'center', marginTop: 30, marginLeft: 50, marginRight: 50}}>
-          <TouchableOpacity style={flexStyle.globalButton} onPress={() => {setTotal(0); setPurchased([]); console.log(ticketsPurchased)}}>
+          <TouchableOpacity style={flexStyle.globalButton} onPress={() => {setTotal(0); setPurchased([]); setAlertText(''); console.log(ticketsPurchased)}}>
             <Text style={{color: '#FFF'}}>START OVER</Text>
           </TouchableOpacity>
           <View style={{flex: 1}}></View>
@@ -131,6 +145,7 @@ function TicketForm() {
             <Text style={{color: '#FFF'}}>PURCHASE</Text>
           </TouchableOpacity>
         </View>
+        <Text style={{color: '#2C7B56', alignSelf: 'center', marginTop: 30, fontWeight: 'bold'}}>{alertText}</Text>
       </ScrollView>
     </View>
   );

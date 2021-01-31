@@ -55,6 +55,10 @@ class zooService {
   }
 
   // update tickets
+  updateTickets(number: number) {
+    return axios.put('https://4xp40d62ra.execute-api.us-west-2.amazonaws.com/default/tickets', number)
+    .then((result) => result);
+  }
 }
 
 export default new zooService();
