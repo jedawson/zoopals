@@ -34,7 +34,9 @@ class zooService {
   }
   // get exhibits
   getExhibitByZookeeper(username:string) : Promise<Exhibit[]> {
-    return axios.get('arn:aws:lambda:us-west-2:640280721521:function:getExhibitByUser').then(result => result.data)
+    return axios
+    .get('arn:aws:lambda:us-west-2:640280721521:function:getExhibitByUser')
+    .then(result => result.data)
   }
   // update exhibits (for an event)
 
