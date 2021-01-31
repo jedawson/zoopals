@@ -1,5 +1,4 @@
-// Handler
-export const handler = async (/*event*/) => {
+exports.handler = async (/*event*/) => {
   const { Client } = require('pg');
   const client = new Client();
   await client.connect();
@@ -8,18 +7,13 @@ export const handler = async (/*event*/) => {
   await client.end();
 
   const response = {
-    statusCode: 404,
+    statusCode: 200,
     headers: {
       'Access-Control-Allow-Headers': 'Content-Type',
       'Access-Control-Allow-Origin': '*',
       'Access-Control-Allow-Methods': 'OPTIONS,POST,GET',
     },
-    body: 'There was an error.',
+    body: JSON.stringify(res),
   };
-  if (res) {
-    response.statusCode = 200;
-    response.body = JSON.stringify(res);
-  }
-
   return response;
 };
