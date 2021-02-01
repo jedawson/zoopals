@@ -11,7 +11,7 @@ class userService {
 
   signIn(username:string, password:string): Promise<Customer|Zookeeper|Manager> {
     return axios
-      .post('https://8cf402b61d.execute-api.us-west-2.amazonaws.com/default/users/login', 
+      .post(this.URI, 
       {username:username, password:password})
       .then((result) => {
         return result.data
@@ -36,6 +36,7 @@ class userService {
   }
   
   // get user
+  // to do: i don't think that we're using this, so can it be deleted?
   getLogin(): Promise<User> {
     return axios
       .get(this.URI, { withCredentials: true })
@@ -48,7 +49,20 @@ class userService {
         return null;
       });
   }
+
   // add user
+  addCustomer(user: Customer): Promise<Customer|null> {
+    return axios
+    .post('https://8cf402b61d.execute-api.us-west-2.amazonaws.com/default/users/register', user)
+    .then((response) => {
+      console.log(`addCustomer: ${response}`);
+      return response.data
+    })
+    .catch((err) => {
+      console.log(`Error adding customer`);
+      return null;
+    })
+  }
 
   // update user
   updateUser(user: User): Promise<null> {
