@@ -1,9 +1,7 @@
 import React from 'react';
 import { View, StyleSheet, Text } from 'react-native';
-import { Title } from '../Title';
 
 function TicketDetail(props: any) {
-  console.log('ticketdetail: ' + JSON.stringify(props));
 
   return (
     <View style={styles.ticketDetailView}>
