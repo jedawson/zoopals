@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { View, Dimensions, Image, Text } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { useDispatch, useSelector } from 'react-redux';
-import styles from '../../../gobal-styles';
+import styles from '../../../global-styles';
 import { Ticket } from '../../../models/ticket';
 import { Customer } from '../../../models/user';
 import userService from '../../../services/user.service';

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, StyleSheet, View, Image } from 'react-native';
-import styles from '../../gobal-styles';
+import styles from '../../global-styles';
 
 function Header(props: any) {
   return (

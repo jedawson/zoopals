@@ -41,6 +41,7 @@ class userService {
   }
   
   // get user
+  // to do: i don't think that we're using this, so can it be deleted?
   getLogin(): Promise<User> {
     return axios
       .get(this.URI, { withCredentials: true })
@@ -53,7 +54,20 @@ class userService {
         return null;
       });
   }
+
   // add user
+  addCustomer(user: Customer): Promise<Customer|null> {
+    return axios
+    .post(`${this.URI}/users/register`, user)
+    .then((response) => {
+      console.log(`addCustomer: ${response}`);
+      return response.data
+    })
+    .catch((err) => {
+      console.log(`Error adding customer`);
+      return null;
+    })
+  }
 
   // update customer
   updateCustomer(user: Customer): Promise<null> {
