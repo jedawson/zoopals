@@ -6,20 +6,25 @@ class userService {
   private URI: string;
 
   constructor() {
-    this.URI = ''; // process.env.gatewayURI
+    this.URI = 'https://8cf402b61d.execute-api.us-west-2.amazonaws.com/default'; // process.env.gatewayURI
   }
 
-  signIn(username:string, password:string): Promise<Customer|Zookeeper|Manager> {
+  signIn(
+    username: string,
+    password: string
+  ): Promise<Customer | Zookeeper | Manager> {
     return axios
-      .post(this.URI, 
-      {username:username, password:password})
+      .post(`${this.URI}/users/login`, {
+        username: username,
+        password: password,
+      })
       .then((result) => {
-        return result.data
+        return result.data;
       })
       .catch((err) => {
         console.log(`Error logging in: ${err}`);
         return null;
-      })
+      });
   }
 
   getUserExhibit(username:string): Promise<Exhibit[]> {
@@ -53,7 +58,7 @@ class userService {
   // add user
   addCustomer(user: Customer): Promise<Customer|null> {
     return axios
-    .post('https://8cf402b61d.execute-api.us-west-2.amazonaws.com/default/users/register', user)
+    .post(`${this.URI}/users/register`, user)
     .then((response) => {
       console.log(`addCustomer: ${response}`);
       return response.data
@@ -64,11 +69,11 @@ class userService {
     })
   }
 
-  // update user
-  updateUser(user: User): Promise<null> {
+  // update customer
+  updateCustomer(user: Customer): Promise<null> {
     return axios
-      .put(this.URI, user)
-      .then((result) => null)
+      .put('https://8cf402b61d.execute-api.us-west-2.amazonaws.com/default/users', user)
+      .then((result) => result.data)
       .catch((err) => {
         console.log(`Update user error: ${err}`);
         return null;

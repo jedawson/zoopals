@@ -11,7 +11,7 @@ function MyExhibits() {
   return (
     <View style={styles.viewContainer}>
       <Title title='MY EXHIBITS ' />
-      <View style={styles.customerHomeView}>
+      <View style={styles.managerHomeView}>
         <Info name='Exhibit Name'>Koalas </Info>
         <Info name='Species'>Koala </Info>
         {/* Maybe istead of diet, we can list animals inside exhibit? */}

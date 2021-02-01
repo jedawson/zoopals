@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, SafeAreaView} from 'react-native';
-import { FlatList, ScrollView, TextInput, TouchableOpacity } from 'react-native-gesture-handler';
+import { View, Text} from 'react-native';
+import { FlatList, ScrollView, TouchableOpacity } from 'react-native';
 import styles from '../../../global-styles';
 import zooService from '../../../services/zoo.service';
-import { Button } from '../Button';
 import { Info } from '../Info';
 import { Title } from '../Title';
-import { Dimensions, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
+import { UserState} from '../../../store/store';
+import { Customer } from '../../../models/user';
+import { Ticket } from '../../../models/ticket';
+import userService from '../../../services/user.service';
+import { getUser } from '../../../store/action';
 
 /**
  * TicketForm displays the available tickets for purchase.
@@ -14,27 +19,7 @@ import { Dimensions, StyleSheet } from 'react-native';
  */
 function TicketForm() {
 
-  // make initial array not of type never
-  const array: any[] | (() => any[]) = [];
-
-  // create ticket state
-  const [tickets, setTickets] = useState(array);
-
-  useEffect( () => {
-
-    // get tickets from the database after each render
-    async function getTickets() {
-      const tickets = await zooService.getTickets();
-      setTickets(tickets);
-    }
-    getTickets();
-  }, []);
   
-  // check if the tickets returned are accurate
-  console.log('Tickets returned from db: ', tickets);
-  console.log(typeof tickets);
-  console.log(Object.values(tickets));
-
   // create a ticket interface for rendering each ticket
   interface ticket {
     price: number,
@@ -44,6 +29,69 @@ function TicketForm() {
     specialeventtime: string
   }
 
+  // make initial array not of type never
+  const array: any[] | (() => any[]) = [];
+  const ticketArray: ticket[] = [];
+
+  // create component's state
+  const [tickets, setTickets] = useState(array);
+  let [totalPurchase, setTotal] = useState(0);
+  let [ticketsPurchased, setPurchased] = useState(ticketArray);
+  const currentUser = useSelector((state: UserState) => state.user);
+  const newUser: Customer = {...currentUser};
+  const dispatch = useDispatch();
+  let [alertText, setAlertText] = useState('');
+
+  useEffect( () => {
+    // get tickets from the database after each render
+    async function getTickets() {
+      const tickets = await zooService.getTickets();
+      setTickets(tickets);
+    }
+    getTickets();
+  }, [totalPurchase, ticketsPurchased]);
+
+  // on purchase, submit tickets to customer
+  async function sendTickets() {
+    if (ticketsPurchased.length > 0) {
+      // change tickets to Tickets
+      const ticketsArray: Ticket[] = [];
+      for (let i = 0; i < ticketsPurchased.length; i++) {
+        let ticket: Ticket = {
+          price: ticketsPurchased[i].price, 
+          ticketType: ticketsPurchased[i].tickettype, 
+          specialEvent: {
+            name: ticketsPurchased[i].specialeventname, 
+            date: ticketsPurchased[i].specialeventdate,
+            time: ticketsPurchased[i].specialeventtime
+          }
+        }
+        ticketsArray.push(ticket);
+      }
+
+      // update user's tickets
+      ticketsArray.forEach(ticket => {
+        newUser.tickets.push(ticket);
+      });
+
+      // update user in db
+      let resultUser = await userService.updateCustomer(newUser);
+
+      // update user in store
+      dispatch(getUser(newUser));
+
+      //update zoo table's ticket count
+      let resultZoo = await zooService.updateTickets(ticketsArray.length);
+      
+      // update zoo table's profits
+      let resultProfit = await zooService.updateProfit(totalPurchase);
+    }
+    
+    setTotal(0);
+    setPurchased([]);
+    setAlertText('Purchase complete!');
+  }
+
   return (
     <View style={styles.purchaseTicketView}>
       
@@ -51,84 +99,95 @@ function TicketForm() {
         <Title title='PURCHASE A TICKET' />
 
         {/* Table header */}
-        <View style={{
-            flex: 1,
-            flexDirection: 'row',
-            marginLeft: 10,
-            marginRight: 10,
-            backgroundColor: '#2C7B56',
-            padding: 5
-          }}>
-            <Text style={[flexStyle.flexPriority, {color: '#FFFFFF'}]}>Price</Text>
-            <Text style={[flexStyle.flexPriority, {color: '#FFFFFF'}]}>Ticket Type</Text>
-            <Text style={{ flex: 1.5,alignSelf: 'center',justifyContent: 'center', color: '#FFFFFF'}}>Event</Text>
-            <Text style={{ flex: 1.5,alignSelf: 'center',justifyContent: 'center', color: '#FFFFFF'}}>Date</Text>
-            <Text style={{ flex: 1.5,alignSelf: 'center',justifyContent: 'center', color: '#FFFFFF'}}>Time</Text>
-            <Text style={[flexStyle.flexPriority, {color: '#FFFFFF'}]}>Quantity</Text>
-          </View>
+        <View style={[flexStyle.horizontalFlexContainer, {backgroundColor: '#2C7B56'}]}>
+            <Text style={[flexStyle.tableHeaders, {flex: 1.2}]}>Price</Text>
+            <Text style={[flexStyle.tableHeaders, {flex: 1.5}]}>Ticket Type</Text>
+            <Text style={[flexStyle.tableHeaders, {flex: 1.5}]}>Event</Text>
+            <Text style={[flexStyle.tableHeaders, {flex: 1.5}]}>Date</Text>
+            <Text style={[flexStyle.tableHeaders, {flex: 1.5}]}>Time</Text>
+            <Text style={[flexStyle.tableHeaders, {flex: 1.75}]}>Add Ticket</Text>
+        </View>
 
-          {/* list of tickets */}
-          <FlatList
-            data={tickets}
-            renderItem={({item}: {item: ticket}) => (
-              <View style={flexStyle.horizontalFlexContainer}>
-                <Text style={[flexStyle.flexPriority]}>${item.price}</Text>
-                <Text style={[flexStyle.flexPriority]}>{item.tickettype}</Text>
-                <Text style={{ flex: 1.5,alignSelf: 'center',justifyContent: 'center'}}>{item.specialeventname}</Text>
-                <Text style={{flex: 1.5,alignSelf: 'center',justifyContent: 'center' }}>{item.specialeventdate}</Text>
-                <Text style={{flex: 1.5,alignSelf: 'center',justifyContent: 'center' }}>{item.specialeventtime}</Text>
-                <View style={{
-                  flex: 1,
-                  flexDirection: 'row',
-                  alignSelf: 'center',
-                  backgroundColor: '#FFF',
-                  padding: 5
-                  
-                }}>
-                  <TouchableOpacity style={[flexStyle.button, flexStyle.flexPriority]}><Text>-</Text></TouchableOpacity>
-                  <Text> 0 </Text>
-                  <TouchableOpacity style={[flexStyle.button, flexStyle.flexPriority]}><Text>+</Text></TouchableOpacity>
-                </View>
-              </View>)}
-            keyExtractor={ (item, index) => item.tickettype + index.toString()}
-          />
-          <View style={{flex: 1, flexDirection: 'column', alignItems: 'center', paddingBottom: 10, marginTop: 30}}>
-          <Info name='Total'>$XX.XX</Info>
-          <Button>PURCHASE</Button>
-      </View>
-        
+        {/* list of tickets */}
+        <FlatList
+          data={tickets}
+          renderItem={({item}: {item: ticket}) => (
+            <View style={[flexStyle.horizontalFlexContainer, {backgroundColor: '#FFF'}]}>
+              <Text style={[flexStyle.ticketInfo, {flex: 1}]}>${item.price}</Text>
+              <Text style={[flexStyle.ticketInfo, {flex: 1.5}]}>{item.tickettype}</Text>
+              <Text style={[flexStyle.ticketInfo, {flex: 2}]}>{item.specialeventname}</Text>
+              <Text style={[flexStyle.ticketInfo, {flex: 1.5}]}>{item.specialeventdate}</Text>
+              <Text style={[flexStyle.ticketInfo, {flex: 1.5}]}>{item.specialeventtime}</Text>
+              <TouchableOpacity 
+              style={[flexStyle.button, {marginLeft: 10, marginRight: 20}]} 
+              onPress={() => {
+                setTotal(totalPurchase += item.price);
+                setPurchased([...ticketsPurchased, item]);
+                setAlertText('');
+              }}
+              >
+                <Text  style={{color: '#FFFFFF'}}>+</Text>
+              </TouchableOpacity>
+            </View>)}
+          keyExtractor={ (item, index) => item.tickettype + index.toString()}
+        />
+
+        {/* Total and buttons */}
+        <View style={{alignItems: 'center', marginTop: 50}}>
+          <Info name='Total'>{'$' + totalPurchase}</Info>
+        </View>
+        <View style={{flex: 1, flexDirection: 'row', alignItems: 'center', marginTop: 30, marginLeft: 50, marginRight: 50}}>
+          <TouchableOpacity style={flexStyle.globalButton} onPress={() => {
+            setTotal(0); 
+            setPurchased([]); 
+            setAlertText(''); 
+          }}>
+            <Text style={{color: '#FFF'}}>START OVER</Text>
+          </TouchableOpacity>
+          <View style={{flex: 1}}></View>
+          <TouchableOpacity style={flexStyle.globalButton} onPress={(sendTickets)}>
+            <Text style={{color: '#FFF'}}>PURCHASE</Text>
+          </TouchableOpacity>
+        </View>
+        <Text style={{color: '#2C7B56', alignSelf: 'center', marginTop: 30, fontWeight: 'bold'}}>{alertText}</Text>
       </ScrollView>
     </View>
   );
 }
 
-
-const flexStyle = StyleSheet.create(
- {
+// styles
+const flexStyle = StyleSheet.create({
    horizontalFlexContainer: {
     flex: 1,
     flexDirection: 'row',
-    justifyContent: 'space-between',
     marginLeft: 10,
     marginRight: 10,
-    backgroundColor: '#FFF',
     marginBottom: 5,
     padding: 5
    },
-  flexPriority: {
-    flex: 1,
-    alignSelf: 'center',
-    justifyContent: 'center',
-  },
   button: {
     backgroundColor: '#67a2e5',
     padding: 5,
-    borderRadius: 5
+    borderRadius: 5,
+    alignItems: 'center',
+    width: 20
   },
-  title: {
+  globalButton: {
+    backgroundColor: '#67a2e5',
+    padding: 20,
+    alignItems: 'center',
+    borderRadius: 10,
+    alignSelf: 'center'
+  },
+  tableHeaders: {
+    color: '#FFFFFF',
+    alignSelf: 'center',
     fontWeight: 'bold'
+  },
+  ticketInfo: {
+    alignItems: 'center',
+    justifyContent: 'center'
   }
- }
-);
+ });
 
 export { TicketForm };

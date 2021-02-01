@@ -20,13 +20,10 @@ function LoginForm({ navigation }: LoginProp) {
   //handles the login button
   function submitForm() {
     console.log(`User: ${JSON.stringify(user)}`);
-
     userService.signIn(user.username, user.password).then((user) => {
-      console.log(user);
       if (user) {
         let newUser = { ...user };
         dispatch(getUser(newUser));
-        // Checks the user role to determine which Screen to go to.
         navigation.navigate(`${newUser.role}`, { screen: 'Home' });
       } else {
         alert('Username and/or password is incorrect');
@@ -42,9 +39,9 @@ function LoginForm({ navigation }: LoginProp) {
         <Text>Username: </Text>
         <TextInput
           style={styles.inputBox}
-          onChangeText={(value) => 
-            dispatch(loginAction({ ...user, username: value }))
-          }
+          onChangeText={(value) => {
+            dispatch(loginAction({ ...user, username: value }));
+          }}
           value={user.username}
         />
         <Text>Password: </Text>
