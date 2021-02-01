@@ -42,7 +42,7 @@ export class Ticket {
 // create dynamo client
 let docClient = new AWS.DynamoDB.DocumentClient({
   region: 'us-west-2',
-  endpoint: 'http://dynamodb.us-west-2.amazonaws.com',
+  endpoint: 'https://dynamodb.us-west-2.amazonaws.com',
 });
 
 // create handler
