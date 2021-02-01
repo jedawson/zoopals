@@ -6,7 +6,7 @@ import { getUser, registerAction } from '../../../store/action';
 import { UserState } from '../../../store/store';
 import { Title } from '../Title';
 import userService from '../../../services/user.service';
-import { Customer, User } from '../../../models/user';
+import { Customer } from '../../../models/user';
 
 interface LoginProp {
   navigation: any;
@@ -20,8 +20,8 @@ function RegisterForm({ navigation }: LoginProp) {
   //handles the register button
   function submitForm() {
     console.log(`User: ${JSON.stringify(user)}`);
-    userService.addCustomer(user).then((user) => {
-      if (user) {
+    userService.addCustomer(user).then((returnedUser) => {
+      if (returnedUser) {
         let newUser = { ...user };
         dispatch(getUser(newUser));
         navigation.navigate(`${newUser.role}`, { screen: 'Home' });
