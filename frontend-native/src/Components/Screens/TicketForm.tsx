@@ -75,16 +75,16 @@ function TicketForm() {
       });
 
       // update user in db
-      let resultUser = await userService.updateCustomer(newUser);
+      await userService.updateCustomer(newUser);
 
       // update user in store
       dispatch(getUser(newUser));
 
       //update zoo table's ticket count
-      let resultZoo = await zooService.updateTickets(ticketsArray.length);
+      await zooService.updateTickets(ticketsArray.length);
       
       // update zoo table's profits
-      let resultProfit = await zooService.updateProfit(totalPurchase);
+      await zooService.updateProfit(totalPurchase);
     }
     
     setTotal(0);
