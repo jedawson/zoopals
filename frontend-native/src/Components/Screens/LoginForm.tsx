@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, Button, TextInput } from 'react-native';
+import { View, Text, Button, TextInput } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from '../../../gobal-styles';
 import { getUser, loginAction } from '../../../store/action';
@@ -24,7 +24,12 @@ function LoginForm({ navigation }: LoginProp) {
       if (user) {
         let newUser = { ...user };
         dispatch(getUser(newUser));
-        navigation.navigate(`${newUser.role}`, { screen: 'Home' });
+        dispatch(loginAction(newUser));
+        navigation.navigate(
+          `${newUser.role}`,
+          { screen: 'Home' },
+          { navigation: navigation }
+        );
       } else {
         alert('Username and/or password is incorrect');
         dispatch(getUser(new User()));
@@ -54,7 +59,6 @@ function LoginForm({ navigation }: LoginProp) {
           value={user.password}
         />
         <Button onPress={submitForm} title='Login' />
-        <Text></Text>
       </View>
     </View>
   );

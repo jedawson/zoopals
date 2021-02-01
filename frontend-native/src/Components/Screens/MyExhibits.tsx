@@ -1,24 +1,47 @@
 import { useLinkProps } from '@react-navigation/native';
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
+import { FlatList, ScrollView } from 'react-native-gesture-handler';
 import styles from '../../../gobal-styles';
+import { Animal } from '../../../models/animal';
+import { Exhibit } from '../../../models/exhibit';
 import { Info } from '../Info';
 import { Title } from '../Title';
+import { MyAnimals } from './MyAnimals';
 
 // To-Do: make this view a dynamic list of exhibits
 
-function MyExhibits() {
+interface ExhibitsProps {
+  data: Exhibit;
+}
+
+function MyExhibits({ data }: ExhibitsProps) {
   return (
     <View style={styles.viewContainer}>
-      <Title title='MY EXHIBITS ' />
-      <View style={styles.managerHomeView}>
-        <Info name='Exhibit Name'>Koalas </Info>
-        <Info name='Species'>Koala </Info>
-        {/* Maybe istead of diet, we can list animals inside exhibit? */}
-        <Info name='Diet'>Eucalyptus </Info>
-      </View>
+      <ScrollView>
+        <View style={styles.managerHomeView}>
+          <Info name='Exhibit Name'>{data.name} </Info>
+          <FlatList
+            data={data.animals}
+            renderItem={({ item }) => <AnimalView data={item} />}
+          />
+        </View>
+      </ScrollView>
     </View>
   );
 }
 
 export { MyExhibits };
+
+interface AnimalProps {
+  data: Animal;
+}
+function AnimalView({ data }: AnimalProps) {
+  return (
+    <View>
+      <Info name={data.name}>
+        : {data.species}, {data.diet}
+      </Info>
+    </View>
+  );
+}
