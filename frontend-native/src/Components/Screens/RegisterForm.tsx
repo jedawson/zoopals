@@ -2,11 +2,11 @@ import React from 'react';
 import { View, Text, TouchableOpacity, Button, TextInput } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from '../../../global-styles';
-import { getUser, loginAction, registerAction } from '../../../store/action';
+import { getUser, registerAction } from '../../../store/action';
 import { UserState } from '../../../store/store';
 import { Title } from '../Title';
 import userService from '../../../services/user.service';
-import { User } from '../../../models/user';
+import { Customer, User } from '../../../models/user';
 
 interface LoginProp {
   navigation: any;
@@ -20,14 +20,14 @@ function RegisterForm({ navigation }: LoginProp) {
   //handles the register button
   function submitForm() {
     console.log(`User: ${JSON.stringify(user)}`);
-    userService.signIn(user.username, user.password).then((user) => {
+    userService.addCustomer(user).then((user) => {
       if (user) {
         let newUser = { ...user };
         dispatch(getUser(newUser));
         navigation.navigate(`${newUser.role}`, { screen: 'Home' });
       } else {
-        alert('Username and/or password is incorrect');
-        dispatch(getUser(new User()));
+        alert('Username is taken.');
+        dispatch(getUser(new Customer()));
       }
     });
   }
