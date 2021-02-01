@@ -68,30 +68,23 @@ function TicketForm() {
         }
         ticketsArray.push(ticket);
       }
-      console.log('tickets array to add: ', ticketsArray);
+
       // update user's tickets
       ticketsArray.forEach(ticket => {
         newUser.tickets.push(ticket);
       });
 
-      console.log('new user being sent: ', newUser);
-
       // update user in db
       let resultUser = await userService.updateCustomer(newUser);
-      console.log('result: ', resultUser);
 
       // update user in store
       dispatch(getUser(newUser));
 
       //update zoo table's ticket count
-      console.log('new tickets amount: ', ticketsArray.length);
       let resultZoo = await zooService.updateTickets(ticketsArray.length);
-      console.log('result of updating tickets: ', resultZoo);
       
       // update zoo table's profits
-      console.log('total purchase sent to db: ', totalPurchase)
       let resultProfit = await zooService.updateProfit(totalPurchase);
-      console.log('results after profit update: ', resultProfit);
     }
     
     setTotal(0);
@@ -144,7 +137,11 @@ function TicketForm() {
           <Info name='Total'>{'$' + totalPurchase}</Info>
         </View>
         <View style={{flex: 1, flexDirection: 'row', alignItems: 'center', marginTop: 30, marginLeft: 50, marginRight: 50}}>
-          <TouchableOpacity style={flexStyle.globalButton} onPress={() => {setTotal(0); setPurchased([]); setAlertText(''); console.log(ticketsPurchased)}}>
+          <TouchableOpacity style={flexStyle.globalButton} onPress={() => {
+            setTotal(0); 
+            setPurchased([]); 
+            setAlertText(''); 
+          }}>
             <Text style={{color: '#FFF'}}>START OVER</Text>
           </TouchableOpacity>
           <View style={{flex: 1}}></View>
