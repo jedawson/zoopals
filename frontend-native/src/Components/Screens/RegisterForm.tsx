@@ -8,11 +8,11 @@ import { Title } from '../Title';
 import userService from '../../../services/user.service';
 import { User } from '../../../models/user';
 
-interface LoginProp {
+interface RegisterProp {
   navigation: any;
 }
 
-function LoginForm({ navigation }: LoginProp) {
+function RegisterForm({ navigation }: RegisterProp) {
   const selectUser = (state: UserState) => state.loginUser;
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
@@ -30,10 +30,6 @@ function LoginForm({ navigation }: LoginProp) {
         dispatch(getUser(new User()));
       }
     });
-  }
-
-  function goToRegister() {
-    navigation.navigate('Register')
   }
 
   return (
@@ -58,14 +54,10 @@ function LoginForm({ navigation }: LoginProp) {
           value={user.password}
         />
         <TouchableOpacity style={styles.button}>
-          <Button onPress={submitForm} title='Login' />
-        </TouchableOpacity>
-        <Text>If you don't have a password, please create an account.</Text>
-        <TouchableOpacity style={styles.button}>
-          <Button onPress={goToRegister} title='Create an account' />
+          <Button onPress={submitForm} title='Register' />
         </TouchableOpacity>
       </View>
     </View>
   );
 }
-export { LoginForm };
+export { RegisterForm };
