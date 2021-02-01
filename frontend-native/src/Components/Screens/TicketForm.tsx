@@ -89,6 +89,9 @@ function TicketForm() {
       console.log('result of updating tickets: ', resultZoo);
       
       // update zoo table's profits
+      console.log('total purchase sent to db: ', totalPurchase)
+      let resultProfit = await zooService.updateProfit(totalPurchase);
+      console.log('results after profit update: ', resultProfit);
     }
     
     setTotal(0);

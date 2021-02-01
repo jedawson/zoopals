@@ -42,10 +42,7 @@ class zooService {
   }
   // update exhibits (for an event)
 
-  /* get tickets : result returns data. 
-  I console logged the result object to see what is being returned.
-  You need to get the data's body's results and from there the rows property,
-  which is an array of ticket objects. */
+  // get tickets
   getTickets(): Promise<Ticket[]> {
     return axios
       .get(
@@ -57,6 +54,12 @@ class zooService {
   // update tickets
   updateTickets(number: number) {
     return axios.put('https://4xp40d62ra.execute-api.us-west-2.amazonaws.com/default/tickets', number)
+    .then((result) => result);
+  }
+
+  // update profit
+  updateProfit(number: number) {
+    return axios.put('https://4xp40d62ra.execute-api.us-west-2.amazonaws.com/default/statistics', number)
     .then((result) => result);
   }
 }
