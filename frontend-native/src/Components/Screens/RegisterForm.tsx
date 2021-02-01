@@ -2,22 +2,22 @@ import React from 'react';
 import { View, Text, TouchableOpacity, Button, TextInput } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from '../../../global-styles';
-import { getUser, loginAction } from '../../../store/action';
+import { getUser, loginAction, registerAction } from '../../../store/action';
 import { UserState } from '../../../store/store';
 import { Title } from '../Title';
 import userService from '../../../services/user.service';
 import { User } from '../../../models/user';
 
-interface RegisterProp {
+interface LoginProp {
   navigation: any;
 }
 
-function RegisterForm({ navigation }: RegisterProp) {
-  const selectUser = (state: UserState) => state.loginUser;
+function RegisterForm({ navigation }: LoginProp) {
+  const selectUser = (state: UserState) => state.addCustomer;
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
 
-  //handles the login button
+  //handles the register button
   function submitForm() {
     console.log(`User: ${JSON.stringify(user)}`);
     userService.signIn(user.username, user.password).then((user) => {
@@ -40,7 +40,7 @@ function RegisterForm({ navigation }: RegisterProp) {
         <TextInput
           style={styles.inputBox}
           onChangeText={(value) => {
-            dispatch(loginAction({ ...user, username: value }));
+            dispatch(registerAction({ ...user, username: value }));
           }}
           value={user.username}
         />
@@ -49,7 +49,7 @@ function RegisterForm({ navigation }: RegisterProp) {
           style={styles.inputBox}
           secureTextEntry={true}
           onChangeText={(value) =>
-            dispatch(loginAction({ ...user, password: value }))
+            dispatch(registerAction({ ...user, password: value }))
           }
           value={user.password}
         />
