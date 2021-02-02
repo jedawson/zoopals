@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 import { useSelector } from 'react-redux';
-import styles from '../../../gobal-styles';
+import styles from '../../../global-styles';
 import { UserState } from '../../../store/store';
 import { Title } from '../Title';
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, TouchableOpacity } from 'react-native';
-import styles from '../../gobal-styles';
+import styles from '../../global-styles';
 
 function Button(props: any) {
   return (

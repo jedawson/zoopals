@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { View, Image, Text, StyleSheet } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 import { useDispatch, useSelector } from 'react-redux';
-import styles from '../../../gobal-styles';
+import styles from '../../../global-styles';
 import { SpecialEvent, Ticket } from '../../../models/ticket';
 import { Customer } from '../../../models/user';
 import userService from '../../../services/user.service';
