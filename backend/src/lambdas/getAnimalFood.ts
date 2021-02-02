@@ -3,7 +3,7 @@ exports.handler = async (event: any) => {
     const client = new Client();
     await client.connect();
   
-    const res = await client.query("select i.foodname, i.stock, i.price from inventoryitems i where foodtype = 'For Animals';");
+    const res = await client.query("select i.itemid, i.foodname, i.stock, i.price from inventoryitems i where foodtype = 'For Animals';");
     await client.end();
   
     const response = {

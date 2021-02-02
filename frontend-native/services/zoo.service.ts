@@ -29,6 +29,10 @@ class zooService {
     }
 
   // update animal food
+  updateAnimalFood(idAndStock: string) {
+    return axios.put('https://4xp40d62ra.execute-api.us-west-2.amazonaws.com/default/animalfood', idAndStock)
+      .then((result) => result).catch(err => console.error(`getAnimalFood error: ${err}`));
+  }
 
   // update animals
   getAnimalsByExhibit(exhibit: Exhibit) {
