@@ -39,7 +39,6 @@ useEffect(() => {
     <View style={styles.viewContainer}>
       {console.log(myAnimals)}
       {console.log(myAnimalsExhibit.name)}
-      {}
       <Title title='MY ANIMALS' />
       <FlatList
         style={animalView.flatList}

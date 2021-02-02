@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { Exhibit } from '../models/exhibit';
+import { Ticket } from '../models/ticket';
 import { Customer, Manager, User, Zookeeper } from '../models/user';
 
 class userService {
@@ -29,13 +30,26 @@ class userService {
 
   getUserExhibit(username:string): Promise<Exhibit[]> {
     return axios
-      .post('https://8cf402b61d.execute-api.us-west-2.amazonaws.com/default/users/login', 
+      .post(`${this.URI}/users/login`, 
       {username:username})
       .then((result) => {
         return result.data.exhibits
       })
       .catch((err) => {
         console.log(`Error getting user exhibits: ${err}`);
+        return null;
+      })
+  }
+
+  getUserTickets(username:string): Promise<Ticket[]> {
+    return axios
+      .post(`${this.URI}/users/login`, 
+      {username:username})
+      .then((result) => {
+        return result.data.tickets
+      })
+      .catch((err) => {
+        console.log(`Error getting user tickets: ${err}`);
         return null;
       })
   }

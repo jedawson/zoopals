@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
   },
   // TICKETS
   ticketView: {
-    flex: 6,
+    flex:7,
     backgroundColor: yellow,
     alignItems: 'center',
     justifyContent: 'center',
@@ -43,25 +43,24 @@ const styles = StyleSheet.create({
     height: height * 0.2,
   },
   ticketDetailView: {
+    marginTop: '1%',
     position: 'absolute',
     alignItems: 'center',
+    alignSelf: 'center',
+    flexDirection: 'column',
+    justifyContent: 'space-evenly'
   },
   ticketDetail: {
+    marginTop:'4%',
     fontSize: 20,
     fontWeight: '500',
+    alignSelf: 'center'
   },
   purchaseTicketView: {
     flex: 5,
     backgroundColor: yellow,
     fontSize: 25,
     justifyContent: 'center',
-  },
-  // MAP
-  mapView: {},
-  map: {
-    resizeMode: 'contain',
-    width: width,
-    height: height * 0.35,
   },
   /*
    * ZOOKEEPER VIEW
