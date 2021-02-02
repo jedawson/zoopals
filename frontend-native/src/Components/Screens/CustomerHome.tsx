@@ -14,8 +14,7 @@ interface CustomerHomeProps {
   user: Customer;
 }
 
-function CustomerHome(/*props: CustomerHomeProps*/) {
-  // console.log(JSON.stringify(props.data));
+function CustomerHome() {
 
   function selectUser(state: UserState) {
     return state.user;
@@ -86,17 +85,17 @@ function CustomerHome(/*props: CustomerHomeProps*/) {
           data = {myTickets}
           renderItem={({item}: {item: ticket}) => (
             <>
-            <Image
-              style={styles.ticket}
-              source={require('../../images/ticket.png')}
-            />
-            <View style={styles.ticketDetailView}>
-              <Text style={styles.ticketDetail}>{item.specialEvent.name} </Text>
-              <Text style={styles.ticketDetail}>{item.specialEvent.date} </Text>
-              <Text style={styles.ticketDetail}>{item.specialEvent.time} </Text>
-              <Text style={styles.ticketDetail}>{numTickets(item.price,item.ticketType)}</Text>
-            </View>
-            <Text> </Text>
+              <Image
+                style={styles.ticket}
+                source={require('../../images/ticket.png')}
+              />
+              <View style={styles.ticketDetailView}>
+                <Text style={styles.ticketDetail}>{item.specialEvent.name} </Text>
+                <Text style={styles.ticketDetail}>{item.specialEvent.date} </Text>
+                <Text style={styles.ticketDetail}>{item.specialEvent.time} </Text>
+                <Text style={styles.ticketDetail}>{numTickets(item.price,item.ticketType)}</Text>
+              </View>
+              <Text> </Text>
             </>
           )} 
           keyExtractor={(item, index) => item.ticketType + index.toString()}
