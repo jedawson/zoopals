@@ -1,6 +1,70 @@
 import * as AWS from 'aws-sdk';
-import logger from '../log';
-import { Customer, Manager, User, Zookeeper } from '../models/user';
+
+export class User {
+
+  public username = '';
+
+  public password = '';
+
+  public age = 0;
+
+  constructor(username: string, password: string, age: number) {
+      this.username = username;
+      this.password = password;
+      this.age = age;
+  }
+}
+
+export class Animal {
+
+  public name = '';
+
+  public species = '';
+
+  public diet = '';
+
+  constructor(name: string, species: string, diet: string){
+      this.name = name;
+      this.species = species;
+      this.diet = diet;
+  }
+}
+
+export class SpecialEvent {
+
+  public name = '';
+
+  public dateTime = '';
+  
+}
+
+export class Exhibit {
+
+  public name = '';
+
+  public animals: Animal[] = [];
+
+  public specialEvent: SpecialEvent = new SpecialEvent;
+
+  constructor(name: string, animals: Animal[]){
+      this.name = name;
+      this.animals = animals;
+  }
+}
+
+export class Zookeeper extends User {
+
+  public role: string = 'Zookeeper';
+
+  public exhibits: Exhibit[] = [];
+
+  public tasks: string[] = [];
+
+  constructor(username: string, password: string, age: number) {
+      super(username, password, age);
+  }
+}
+
 
 // create dynamo client
 let docClient = new AWS.DynamoDB.DocumentClient({
@@ -31,6 +95,7 @@ export const handler = async (event: any) => {
 };
 
 async function updateZookeeper(user: Zookeeper) {
+  console.log(user)
   const params = {
     TableName: 'zooUsers',
     Key: {
@@ -50,11 +115,11 @@ async function updateZookeeper(user: Zookeeper) {
     .update(params)
     .promise()
     .then((data) => {
-      logger.info('Updated Zookeeper successfully');
+      //logger.info('Updated Zookeeper successfully');
       return true;
     })
     .catch((error) => {
-      logger.error('Error updating Zookeeper: ' + error);
+      //logger.error('Error updating Zookeeper: ' + error);
       return null;
     });
 }
