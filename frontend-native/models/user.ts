@@ -22,5 +22,5 @@ export class Zookeeper extends User {
 
 export class Manager extends User {
   public role: string = 'Manager';
-  public zookeepers: Zookeeper[] = [];
+  public zookeepers: string[] = [];
 }
