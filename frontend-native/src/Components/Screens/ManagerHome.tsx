@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import styles from '../../../gobal-styles';
 import { Zoo } from '../../../models/zoo';
 import zooService from '../../../services/zoo.service';
-import { changeZoo } from '../../../store/action';
-import { UserState, ZooNameState } from '../../../store/store';
+import { changeZoo, GetZookeeper } from '../../../store/action';
+import { UserState, ZookeeperState, ZooNameState } from '../../../store/store';
 import { Info } from '../Info';
 import { Title } from '../Title';
 
@@ -15,6 +15,8 @@ interface ManagerProps {
 
 function ManagerHome(props: ManagerProps) {
   const zoo = useSelector((state: ZooNameState) => state.zoo);
+  const user = useSelector((state: UserState) => state.loginUser);
+  const zookeeper = useSelector((state: ZookeeperState) => state.zookeeper);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -26,6 +28,7 @@ function ManagerHome(props: ManagerProps) {
       dispatch(changeZoo(newZoo));
     }
     getZoo();
+    dispatch(GetZookeeper(user.zookeepers[0]));
   }, []);
 
   return (

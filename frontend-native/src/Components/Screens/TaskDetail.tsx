@@ -1,5 +1,6 @@
 import React from 'react';
 import { View } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 import { useSelector } from 'react-redux';
 import styles from '../../../gobal-styles';
 import { Zookeeper } from '../../../models/user';
@@ -17,8 +18,11 @@ function TaskDetail({ data }: TaskDetailProps) {
 
   return (
     <View style={styles.ticketView}>
-      <Title title={zookeeper.username} />
-      <Info>Tasks: {zookeeper.tasks}</Info>
+      <ScrollView>
+        <Title title={zookeeper.username} />
+        <Info> Current Tasks: {zookeeper.tasks}</Info>
+        <Title title='Available Tasks' />
+      </ScrollView>
     </View>
   );
 }

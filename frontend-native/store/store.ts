@@ -11,7 +11,7 @@ import reducer from './reducer';
 // Typescript kept saying "X attribute does not exist on type User"
 export interface UserState {
   user: User | Customer | Zookeeper | Manager;
-  loginUser: User | Customer | Zookeeper | Manager;
+  loginUser: Manager | Zookeeper | Customer | User;
 }
 
 export interface AnimalState {
