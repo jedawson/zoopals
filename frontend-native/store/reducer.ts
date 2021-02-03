@@ -1,6 +1,6 @@
 import { Animal } from '../models/animal';
 import { Exhibit } from '../models/exhibit';
-import { User, Zookeeper } from '../models/user';
+import { Customer, User, Zookeeper } from '../models/user';
 import { Zoo } from '../models/zoo';
 import * as Actions from './action';
 import { ZooNameState } from './store';
@@ -9,6 +9,7 @@ import { ZooNameState } from './store';
 export const initialState: ZooNameState = {
   user: new User(),
   loginUser: new User(),
+  addCustomer: new Customer(),
   animals: [],
   animal: new Animal(),
   exhibits: [],
@@ -31,6 +32,9 @@ const reducer = (
       return newState;
     case Actions.UserActions.LoginChange:
       newState.loginUser = action.payload as User;
+      return newState;
+    case Actions.UserActions.RegisterChange:
+      newState.addCustomer = action.payload as Customer;
       return newState;
     case Actions.ExhibitActions.GetAnimals:
       newState.animals = action.payload as Animal[];

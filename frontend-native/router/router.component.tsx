@@ -17,9 +17,11 @@ import { Staff } from '../src/Components/Screens/Staff';
 import { MyAnimals } from '../src/Components/Screens/MyAnimals';
 import { NavigationContainer } from '@react-navigation/native';
 import TaskDetail from '../src/Components/Screens/TaskDetail';
+import { RegisterForm } from '../src/Components/Screens/RegisterForm';
 
 export type Screens = {
   Login: undefined;
+  Register: undefined;
   Home: undefined;
   Zoo: Zoo;
   Zookeepers: undefined;
@@ -54,6 +56,7 @@ export function RouterComponent() {
     <NavigationContainer>
       <Stack.Navigator initialRouteName='Login'>
         <Stack.Screen name='Login' component={LoginForm} />
+        <Stack.Screen name='Register' component={RegisterForm} />
         <Stack.Screen name='Customer' component={CustomerComponent} />
         <Stack.Screen name='Zookeeper' component={ZookeeperComponent} />
         <Stack.Screen name='Manager' component={ManagerComponent} />

@@ -2,7 +2,7 @@ import React from 'react';
 import { View } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { useSelector } from 'react-redux';
-import styles from '../../../gobal-styles';
+import styles from '../../../global-styles';
 import { Zookeeper } from '../../../models/user';
 import { ZookeeperState } from '../../../store/store';
 import { Info } from '../Info';

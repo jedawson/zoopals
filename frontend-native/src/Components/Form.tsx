@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, TextInput, View, StyleSheet } from 'react-native';
-import styles from '../../gobal-styles';
+import styles from '../../global-styles';
 
 function Form(props: any) {
   return (

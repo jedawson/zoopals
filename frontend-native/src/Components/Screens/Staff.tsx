@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { View } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 import { useDispatch, useSelector } from 'react-redux';
-import styles from '../../../gobal-styles';
+import styles from '../../../global-styles';
 import { Manager } from '../../../models/user';
 import { GetZookeeper } from '../../../store/action';
 import { UserState } from '../../../store/store';

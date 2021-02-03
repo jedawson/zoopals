@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text} from 'react-native';
 import { FlatList, ScrollView, TouchableOpacity } from 'react-native';
-import styles from '../../../gobal-styles';
+import styles from '../../../global-styles';
 import zooService from '../../../services/zoo.service';
 import { Info } from '../Info';
 import { Title } from '../Title';

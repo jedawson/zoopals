@@ -1,8 +1,7 @@
 import { useLinkProps } from '@react-navigation/native';
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
-import { FlatList, ScrollView } from 'react-native-gesture-handler';
-import styles from '../../../gobal-styles';
+import { View, StyleSheet, ScrollView, FlatList } from 'react-native';
+import styles from '../../../global-styles';
 import { Animal } from '../../../models/animal';
 import { Exhibit } from '../../../models/exhibit';
 import { Info } from '../Info';

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import styles from '../../../gobal-styles';
+import styles from '../../../global-styles';
 import { Zoo } from '../../../models/zoo';
 import zooService from '../../../services/zoo.service';
 import { changeZoo, GetZookeeper } from '../../../store/action';
