@@ -1,12 +1,13 @@
 import { RouteProp } from '@react-navigation/native';
 import React, { useState } from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import { Button, View, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 import { useSelector } from 'react-redux';
 import styles from '../../../global-styles';
 import { Screens } from '../../../router/router.component';
 import { UserState, ZooNameState } from '../../../store/store';
-import { Button } from '../Button';
+
+
 import { Title } from '../Title';
 
 interface ZookeeperProps {
@@ -32,10 +33,12 @@ function ZookeeperHome(props: ZookeeperProps) {
           data = {user.tasks}
           renderItem = {({ item }: { item: string; }) => {
             console.log(item)
-            return (<>
-              <Text>{item}</Text>
-              <Button title='Finished' />
-            </>)
+            return (
+              <>
+                <Text>{item}</Text>
+                <Button onPress={()=>{console.log('pressed')}} title='Finished' />
+              </>
+            )
           }}
           keyExtractor={(item, index) => item + index.toString()}
         >
