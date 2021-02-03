@@ -1,9 +1,15 @@
 export class Animal {
+  public name = '';
 
-    public name = '';
+  public species = '';
 
-    public species = '';
-
-    public diet = '';
-
+  public diet = '';
 }
+
+export let tasks = [
+  'Feed Animals',
+  'Bathe Animals',
+  'Train Animals',
+  'Give Animals Water',
+  'Clean Pen',
+];
