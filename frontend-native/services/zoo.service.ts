@@ -24,13 +24,13 @@ class zooService {
 
   // get animal food
     getAnimalFood() {
-      return axios.get('https://4xp40d62ra.execute-api.us-west-2.amazonaws.com/default/animalfood')
+      return axios.get('https://4xp40d62ra.execute-api.us-west-2.amazonaws.com/default/animalfoods')
         .then((result) => result.data.rows).catch(err => console.error(`getAnimalFood error: ${err}`));
     }
 
   // update animal food
   updateAnimalFood(idAndStock: string) {
-    return axios.put('https://4xp40d62ra.execute-api.us-west-2.amazonaws.com/default/animalfood', idAndStock)
+    return axios.put('https://4xp40d62ra.execute-api.us-west-2.amazonaws.com/default/animalfoods', idAndStock)
       .then((result) => result).catch(err => console.error(`getAnimalFood error: ${err}`));
   }
 
@@ -68,7 +68,7 @@ class zooService {
 
   // update profit
   updateProfit(number: number) {
-    return axios.put('https://4xp40d62ra.execute-api.us-west-2.amazonaws.com/default/statistics', number)
+    return axios.put('https://4xp40d62ra.execute-api.us-west-2.amazonaws.com/default/statistics/profit', number)
     .then((result) => result).catch(err => console.error(`updateProfit error: ${err}`));;
   }
 }

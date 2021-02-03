@@ -134,6 +134,7 @@ function TicketForm() {
 
         {/* Total and buttons */}
         <View style={{alignItems: 'center', marginTop: 50}}>
+          <Text style={{color: '#2C7B56', alignSelf: 'center', marginTop: 30, fontWeight: 'bold'}}>{alertText}</Text>
           <Info name='Total'>{'$' + totalPurchase}</Info>
         </View>
         <View style={{flex: 1, flexDirection: 'row', alignItems: 'center', marginTop: 30, marginLeft: 50, marginRight: 50}}>
@@ -149,7 +150,6 @@ function TicketForm() {
             <Text style={{color: '#FFF'}}>PURCHASE</Text>
           </TouchableOpacity>
         </View>
-        <Text style={{color: '#2C7B56', alignSelf: 'center', marginTop: 30, fontWeight: 'bold'}}>{alertText}</Text>
       </ScrollView>
     </View>
   );
