@@ -38,7 +38,7 @@ async function updateZookeeper(user: Zookeeper) {
     },
     UpdateExpression: 'set #tasks = :tasks',
     ExpressionAttributeNames: {
-      '#tickets': 'tickets',
+      '#tasks': 'tasks',
     },
     ExpressionAttributeValues: {
       ':tasks': user.tasks,
