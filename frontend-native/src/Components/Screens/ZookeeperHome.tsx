@@ -2,20 +2,21 @@ import { RouteProp } from '@react-navigation/native';
 import React, { useState } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 import { useSelector } from 'react-redux';
-import styles from '../../../gobal-styles';
+import styles from '../../../global-styles';
 import { Screens } from '../../../router/router.component';
 import { ZooNameState } from '../../../store/store';
 import { Title } from '../Title';
 
-interface Props {
-  route: RouteProp<Screens, 'Home'>;
+interface ZookeeperProps {
+  data: any;
 }
 
 // To-Do: create a task component and add tasks dynamically into here
-function ZookeeperHome() {
+function ZookeeperHome(props: ZookeeperProps) {
+  console.log(`Zookeeper Home Props: ${JSON.stringify(props)}`);
+
   const [isSelected, setSelection] = useState(false);
   const user = useSelector((state: ZooNameState) => state.user);
-  
 
   return (
     <View style={styles.viewContainer}>
@@ -23,6 +24,7 @@ function ZookeeperHome() {
       <Text>Tasks here</Text>
       <View style={styles.myTasksView}>
         <Text> insert checkboxes here?</Text>
+        <Text>{JSON.stringify(props)}</Text>
       </View>
     </View>
   );

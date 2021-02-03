@@ -26,10 +26,13 @@ const styles = StyleSheet.create({
   /**
    *  CUSTOMER VIEW
    */
-  customerHomeView: {},
+  managerHomeView: {
+    flex: 6,
+    alignItems: 'center',
+  },
   // TICKETS
   ticketView: {
-    flex: 6,
+    flex:7,
     backgroundColor: yellow,
     alignItems: 'center',
     justifyContent: 'center',
@@ -40,12 +43,18 @@ const styles = StyleSheet.create({
     height: height * 0.2,
   },
   ticketDetailView: {
+    marginTop: '1%',
     position: 'absolute',
     alignItems: 'center',
+    alignSelf: 'center',
+    flexDirection: 'column',
+    justifyContent: 'space-evenly'
   },
   ticketDetail: {
+    marginTop:'4%',
     fontSize: 20,
     fontWeight: '500',
+    alignSelf: 'center'
   },
   purchaseTicketView: {
     flex: 5,
@@ -53,18 +62,21 @@ const styles = StyleSheet.create({
     fontSize: 25,
     justifyContent: 'center',
   },
-  // MAP
-  mapView: {},
-  map: {
-    resizeMode: 'contain',
-    width: width,
-    height: height * 0.35,
-  },
   /*
    * ZOOKEEPER VIEW
    */
   inventoryView: {},
-  myAnimalsView: {},
+  myAnimalsView: {
+    alignSelf: 'center',
+    borderColor: 'green',
+    borderTopWidth: 2,
+    borderLeftWidth: 2,
+    borderRightWidth: 2,
+    borderBottomWidth: 2,
+    width: '70%',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+  },
   profileView: {
     flex: 6,
     justifyContent: 'flex-start',
