@@ -1,6 +1,6 @@
+import styles from '../../../global-styles';
 import React, { useEffect, useState } from 'react';
 import { FlatList, Text, TouchableOpacity, View } from 'react-native';
-import styles from '../../../gobal-styles';
 import { Title } from '../Title';
 import { StyleSheet } from 'react-native';
 import zooService from '../../../services/zoo.service';

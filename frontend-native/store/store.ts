@@ -10,6 +10,7 @@ import reducer from './reducer';
 // changed to specific role types because
 // Typescript kept saying "X attribute does not exist on type User"
 export interface UserState {
+  addCustomer: Customer;
   user: User | Customer | Zookeeper | Manager;
   loginUser: User | Customer | Zookeeper | Manager;
 }

@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { Exhibit } from '../models/exhibit';
+import { Ticket } from '../models/ticket';
 import { Customer, Manager, User, Zookeeper } from '../models/user';
 
 class userService {
@@ -29,7 +30,7 @@ class userService {
 
   getUserExhibit(username:string): Promise<Exhibit[]> {
     return axios
-      .post('https://8cf402b61d.execute-api.us-west-2.amazonaws.com/default/users/login', 
+      .post(`${this.URI}/users/login`, 
       {username:username})
       .then((result) => {
         return result.data.exhibits
@@ -39,8 +40,22 @@ class userService {
         return null;
       })
   }
+
+  getUserTickets(username:string): Promise<Ticket[]> {
+    return axios
+      .post(`${this.URI}/users/login`, 
+      {username:username})
+      .then((result) => {
+        return result.data.tickets
+      })
+      .catch((err) => {
+        console.log(`Error getting user tickets: ${err}`);
+        return null;
+      })
+  }
   
   // get user
+  // to do: i don't think that we're using this, so can it be deleted?
   getLogin(): Promise<User> {
     return axios
       .get(this.URI, { withCredentials: true })
@@ -53,7 +68,20 @@ class userService {
         return null;
       });
   }
+
   // add user
+  addCustomer(user: Customer): Promise<Customer|null> {
+    return axios
+    .post(`${this.URI}/users/register`, user)
+    .then((response) => {
+      console.log(`addCustomer: ${response}`);
+      return response.data
+    })
+    .catch((err) => {
+      console.log(`Error adding customer`);
+      return null;
+    })
+  }
 
   // update customer
   updateCustomer(user: Customer): Promise<null> {

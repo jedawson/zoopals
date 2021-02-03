@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, StyleSheet, Text } from 'react-native';
-import styles from '../../../gobal-styles';
+import styles from '../../../global-styles';
 import { Title } from '../Title';
 
 function Staff() {

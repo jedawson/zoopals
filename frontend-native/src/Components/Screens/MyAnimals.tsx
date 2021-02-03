@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, StyleSheet, Text, FlatList } from 'react-native';
 import { useSelector } from 'react-redux';
-import styles from '../../../gobal-styles';
+import styles from '../../../global-styles';
 import { Exhibit } from '../../../models/exhibit';
 import userService from '../../../services/user.service';
 import { UserState } from '../../../store/store';
@@ -39,7 +39,6 @@ useEffect(() => {
     <View style={styles.viewContainer}>
       {console.log(myAnimals)}
       {console.log(myAnimalsExhibit.name)}
-      {}
       <Title title='MY ANIMALS' />
       <FlatList
         style={animalView.flatList}

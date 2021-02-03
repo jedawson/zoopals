@@ -7,9 +7,11 @@ import { Zoo } from '../models/zoo';
  * userActions set up
  * payload should be a User (whether it's a Customer, Zookeeper, Manager)
  */
+
 export enum UserActions {
   GetUser = 'GET_USER',
   LoginChange = 'CHANGE_LOGIN',
+  RegisterChange = "CHANGE_REGISTER"
 }
 export interface UserAction<P> extends AppAction {
   type: UserActions;
@@ -95,6 +97,18 @@ export function getUser(
 export function loginAction(user: User): UserAction<User> {
   const action: UserAction<User> = {
     type: UserActions.LoginChange,
+    payload: user,
+  };
+  return action;
+}
+
+/**
+ * registerAction does a registerChange with a payload of the given Customer
+ * @param user - Customer
+ */
+export function registerAction(user: Customer): UserAction<Customer> {
+  const action: UserAction<Customer> = {
+    type: UserActions.RegisterChange,
     payload: user,
   };
   return action;
