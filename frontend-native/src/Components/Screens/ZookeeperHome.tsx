@@ -1,10 +1,12 @@
 import { RouteProp } from '@react-navigation/native';
 import React, { useState } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
+import { FlatList } from 'react-native-gesture-handler';
 import { useSelector } from 'react-redux';
 import styles from '../../../global-styles';
 import { Screens } from '../../../router/router.component';
 import { UserState, ZooNameState } from '../../../store/store';
+import { Button } from '../Button';
 import { Title } from '../Title';
 
 interface ZookeeperProps {
@@ -19,13 +21,25 @@ function ZookeeperHome(props: ZookeeperProps) {
   //const user = useSelector((state: ZooNameState) => state.user);
   const selectUser = (state: UserState) => state.user;
   const user = useSelector(selectUser);
-  console.log(JSON.stringify(user))
+  console.log(JSON.stringify(user.tasks))
   return (
     <View style={styles.viewContainer}>
       <Title title='MY TASKS' />
-      <Text>{user.tasks}</Text>
+      <Text></Text>
       <View style={styles.myTasksView}>
         <Text> insert checkboxes here?</Text>
+        <FlatList
+          data = {user.tasks}
+          renderItem = {({ item }: { item: string; }) => {
+            console.log(item)
+            return (<>
+              <Text>{item}</Text>
+              <Button title='Finished' />
+            </>)
+          }}
+          keyExtractor={(item, index) => item + index.toString()}
+        >
+        </FlatList>
         <Text>{JSON.stringify(props)}</Text>
       </View>
     </View>
