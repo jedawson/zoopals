@@ -15,6 +15,7 @@ interface ManagerProps {
 
 function ManagerHome(props: ManagerProps) {
   const zoo = useSelector((state: ZooNameState) => state.zoo);
+  const request = useSelector((state: ZooNameState) => state.request);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -28,6 +29,8 @@ function ManagerHome(props: ManagerProps) {
     getZoo();
   }, []);
 
+  console.log('request state: ', request);
+
   return (
     <View style={styles.viewContainer}>
       {/* add expenses, number of staff, number of exhibits? */}
@@ -36,8 +39,7 @@ function ManagerHome(props: ManagerProps) {
         <Info name='Profit'> {zoo.profit}</Info>
         <Info name='Expenses'> {zoo.expenses}</Info>
         <Info name='Tickets Sold'> {zoo.ticketssold}</Info>
-        {/* This will get shown when we get the inventory items lambda set up */}
-        <Info name='Inventory Items'> {zoo.inventoryItems}</Info>
+        {request ? <Text style={{flex: 1, backgroundColor: '#c9483e', margin: 50, color: '#FFF', padding: 20, paddingBottom: 0, fontWeight: 'bold'}}>{request}</Text> : null}
       </View>
     </View>
   );
