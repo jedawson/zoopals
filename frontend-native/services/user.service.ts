@@ -84,10 +84,7 @@ class userService {
   // update customer
   updateCustomer(user: Customer): Promise<null> {
     return axios
-      .put(
-        'https://8cf402b61d.execute-api.us-west-2.amazonaws.com/default/users',
-        user
-      )
+      .put(`${this.URI}/users`, user)
       .then((result) => result.data)
       .catch((err) => {
         console.log(`Update user error: ${err}`);
@@ -99,10 +96,7 @@ class userService {
   //update zookeepers
   updateZookeeper(user: Zookeeper): Promise<null> {
     return axios
-      .put(
-        'https://8cf402b61d.execute-api.us-west-2.amazonaws.com/default/users',
-        user
-      )
+      .put(`${this.URI}/zookeepers`, user)
       .then((result) => result.data)
       .catch((err) => {
         console.log(`Update user error: ${err}`);

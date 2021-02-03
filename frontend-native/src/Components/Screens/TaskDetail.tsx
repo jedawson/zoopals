@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, View } from 'react-native';
 import { FlatList, ScrollView } from 'react-native-gesture-handler';
 import { useDispatch, useSelector } from 'react-redux';
@@ -52,10 +52,16 @@ interface AddTaskDetailProps {
 }
 function AddTaskDetail({ data, zookeeper }: AddTaskDetailProps) {
   const dispatch = useDispatch();
+  // setZookeeper(stateZookeeper);
   function handleAddTask() {
     console.log('button clicked');
     zookeeper.tasks.push(data);
-    // userService.updateZookeeper(zookeeper);
+    userService
+      .updateZookeeper(zookeeper)
+      .then((result) => {
+        console.log(`Result: ${result}`);
+      })
+      .catch((err) => console.log(err));
     console.log(zookeeper.tasks);
     dispatch(GetZookeeper(zookeeper));
     console.log('boolean: ' + zookeeper.tasks.includes(data));

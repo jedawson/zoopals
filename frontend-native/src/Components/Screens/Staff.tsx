@@ -3,7 +3,8 @@ import { View } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from '../../../global-styles';
-import { Manager } from '../../../models/user';
+import { Manager, Zookeeper } from '../../../models/user';
+import userService from '../../../services/user.service';
 import { GetZookeeper } from '../../../store/action';
 import { UserState } from '../../../store/store';
 import { Title } from '../Title';
@@ -12,10 +13,12 @@ import { ZookeeperDetail } from './ZookeeperDetail';
 function Staff() {
   const user = useSelector((state: UserState) => state.loginUser);
   const manager: Manager = { ...user };
+  let zookeepers: Zookeeper[] = [];
+
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(GetZookeeper(manager.zookeepers[0]));
+    dispatch(GetZookeeper(zookeepers[0]));
   }, []);
 
   return (
@@ -23,7 +26,7 @@ function Staff() {
       <Title title='STAFF' />
       <View style={styles.staffView}>
         <FlatList
-          data={manager.zookeepers}
+          data={zookeepers}
           renderItem={({ item }) => (
             <ZookeeperDetail data={item}></ZookeeperDetail>
           )}

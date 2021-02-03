@@ -95,7 +95,7 @@ zookeeper2.exhibits.push(wallabyExhibit);
 
 // populate table with managers
 let manager1 = new Manager('Manager1', 'password', 30);
-manager1.zookeepers.push(zookeeper1, zookeeper2);
+manager1.zookeepers.push(zookeeper1.username, zookeeper2.username);
 
 function populateUserTable() {
   userService.addUser(customer1).then(() => {});
