@@ -14,4 +14,7 @@ export class Zoo {
   // public ticketsAvailable: Ticket[] = [];
 
   public inventoryItems: InventoryItem[] = [];
+
+  public request = '';
+  
 }

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import styles from '../../../global-styles';
 import { Zoo } from '../../../models/zoo';
 import zooService from '../../../services/zoo.service';
-import { changeZoo } from '../../../store/action';
+import { changeZoo, getRequest } from '../../../store/action';
 import { UserState, ZooNameState } from '../../../store/store';
 import { Info } from '../Info';
 import { Title } from '../Title';
@@ -15,7 +15,9 @@ interface ManagerProps {
 
 function ManagerHome(props: ManagerProps) {
   const zoo = useSelector((state: ZooNameState) => state.zoo);
+  const request = useSelector((state: ZooNameState) => state.request);
   const dispatch = useDispatch();
+  let [localRequest, setLocalRequest] = useState('');
 
   useEffect(() => {
     async function getZoo() {
@@ -24,9 +26,13 @@ function ManagerHome(props: ManagerProps) {
       newZoo = { ...zooStats.rows[0] };
       console.log(JSON.stringify(newZoo));
       dispatch(changeZoo(newZoo));
+      dispatch(getRequest(newZoo.request));
+      setLocalRequest(newZoo.request);
     }
     getZoo();
-  }, []);
+  }, [request]);
+
+  console.log('request state: ', request);
 
   return (
     <View style={styles.viewContainer}>
@@ -36,8 +42,7 @@ function ManagerHome(props: ManagerProps) {
         <Info name='Profit'> {zoo.profit}</Info>
         <Info name='Expenses'> {zoo.expenses}</Info>
         <Info name='Tickets Sold'> {zoo.ticketssold}</Info>
-        {/* This will get shown when we get the inventory items lambda set up */}
-        <Info name='Inventory Items'> {zoo.inventoryItems}</Info>
+        {localRequest ? <Text style={{flex: 1, backgroundColor: '#c9483e', margin: 50, color: '#FFF', padding: 20, paddingBottom: 0, fontWeight: 'bold'}}>{request}</Text> : null}
       </View>
     </View>
   );
