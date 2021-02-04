@@ -89,7 +89,9 @@ const styles = StyleSheet.create({
   /*
    * MANAGER VIEW
    */
-  staffView: {},
+  staffView: {
+    flex: 6,
+  },
   staff: {
     fontWeight: '400',
     fontSize: 25,

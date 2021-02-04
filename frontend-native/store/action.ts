@@ -1,6 +1,6 @@
 import { Animal } from '../models/animal';
 import { Exhibit } from '../models/exhibit';
-import { Customer, Manager, User, Zookeeper } from '../models/user';
+import { Customer, User, Zookeeper } from '../models/user';
 import { Zoo } from '../models/zoo';
 
 /**
@@ -11,7 +11,7 @@ import { Zoo } from '../models/zoo';
 export enum UserActions {
   GetUser = 'GET_USER',
   LoginChange = 'CHANGE_LOGIN',
-  RegisterChange = "CHANGE_REGISTER"
+  RegisterChange = 'CHANGE_REGISTER',
 }
 export interface UserAction<P> extends AppAction {
   type: UserActions;
@@ -53,7 +53,7 @@ export interface ZookeeperAction extends AppAction {
  * payload will be numbers
  */
 export enum ZooActions {
-  GetZoo = 'GET_ZOO'
+  GetZoo = 'GET_ZOO',
 }
 
 export interface ZooAction extends AppAction {
@@ -80,9 +80,7 @@ export interface AppAction {
  * getUser takes in a User and returns an action with user as a payload
  * @param user - given User
  */
-export function getUser(
-  user: User | Customer | Zookeeper | Manager
-): UserAction<User> {
+export function getUser(user: any): UserAction<User> {
   const action: UserAction<User> = {
     type: UserActions.GetUser,
     payload: user,
@@ -169,6 +167,14 @@ export function getExhibit(exhibit: Exhibit): ExhibitAction {
     type: ExhibitActions.GetExhibit,
     payload: exhibit,
   };
+  return action;
+}
+
+export function GetZookeeper(zookeeper: Zookeeper): ZookeeperAction {
+  const action: ZookeeperAction = {
+    type: ZookeeperActions.GetZookeeper,
+    payload: zookeeper,
+  }
   return action;
 }
 

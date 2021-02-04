@@ -1,20 +1,26 @@
-import React from 'react';
-import { View, StyleSheet, Text } from 'react-native';
-import styles from '../../../global-styles';
-import { Title } from '../Title';
+import React from "react";
+import { View } from "react-native";
+import { FlatList } from "react-native-gesture-handler";
+import { useSelector } from "react-redux";
+import styles from "../../../global-styles";
+import { ZookeeperState } from "../../../store/store";
+import { Title } from "../Title";
+import { ZookeeperDetail } from "./ZookeeperDetail";
 
 function Staff() {
+  let zookeepers = useSelector((state: ZookeeperState) => state.zookeepers);
+
   return (
     <View style={styles.viewContainer}>
-      <Title title='STAFF' />
+      <Title title="STAFF" />
       <View style={styles.staffView}>
-        <Text style={styles.staff}>Staff1</Text>
-        <Text style={styles.staff}>Staff2</Text>
-        <Text style={styles.staff}>Staff3</Text>
-        <Text>
-          `do you want me to add '+' '-' and 'Add Tasks' buttons? when tapping
-          the staff? (not sure how I can do this but I can try)`
-        </Text>
+        <FlatList
+          data={zookeepers}
+          renderItem={({ item }) => (
+            <ZookeeperDetail data={item}></ZookeeperDetail>
+          )}
+          keyExtractor={(item) => item.username}
+        />
       </View>
     </View>
   );

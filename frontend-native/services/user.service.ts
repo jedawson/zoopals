@@ -83,7 +83,7 @@ class userService {
   // update customer
   updateCustomer(user: Customer): Promise<null> {
     return axios
-      .put('https://8cf402b61d.execute-api.us-west-2.amazonaws.com/default/users/customers', user)
+      .put(`${this.URI}/users/customers`, user)
       .then((result) => result.data)
       .catch((err) => {
         console.log(`Update user error: ${err}`);
@@ -91,14 +91,19 @@ class userService {
       });
   }
   // get zookeepers
-
+  getZookeeperByName(username: string): Promise<Zookeeper> {
+    return axios
+      .post(`${this.URI}/users/zookeepers/`, { username: username })
+      .then((result) => result.data)
+      .catch((err) => {
+        console.log(`Get Zookeeper Error: ${err}`);
+        return null;
+      });
+  }
   //update zookeepers
   updateZookeeper(user: Zookeeper): Promise<null> {
     return axios
-      .put(
-        `${this.URI}/users/zookeepers`,
-        user
-      )
+      .put(`${this.URI}/users/zookeepers`, user)
       .then((result) => result.data)
       .catch((err) => {
         console.log(`Update user error: ${err}`);

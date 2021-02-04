@@ -2,8 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { View, Text } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from '../../../global-styles';
+import { Manager } from '../../../models/user';
 import { Zoo } from '../../../models/zoo';
+import userService from '../../../services/user.service';
 import zooService from '../../../services/zoo.service';
+import {  GetZookeeper } from '../../../store/action';
+import { ZookeeperState } from '../../../store/store';
 import { changeZoo, getRequest } from '../../../store/action';
 import { UserState, ZooNameState } from '../../../store/store';
 import { Info } from '../Info';
@@ -15,6 +19,10 @@ interface ManagerProps {
 
 function ManagerHome(props: ManagerProps) {
   const zoo = useSelector((state: ZooNameState) => state.zoo);
+  const user = useSelector((state: UserState) => state.loginUser);
+  const manager: Manager = { ...user };
+  const zookeepers = useSelector((state: ZookeeperState) => state.zookeepers);
+
   const request = useSelector((state: ZooNameState) => state.request);
   const dispatch = useDispatch();
   let [localRequest, setLocalRequest] = useState('');
@@ -24,12 +32,22 @@ function ManagerHome(props: ManagerProps) {
       const zooStats = await zooService.getZoo();
       let newZoo: Zoo = new Zoo();
       newZoo = { ...zooStats.rows[0] };
-      console.log(JSON.stringify(newZoo));
       dispatch(changeZoo(newZoo));
       dispatch(getRequest(newZoo.request));
       setLocalRequest(newZoo.request);
     }
     getZoo();
+    async function getZookeepers() {
+      manager.zookeepers.forEach(async (zookeeperName) => {
+        await userService
+          .getZookeeperByName(zookeeperName)
+          .then((zookeeper) => {
+            zookeepers.push(zookeeper);
+          });
+        dispatch(GetZookeeper(zookeepers[0]));
+      });
+    }
+    getZookeepers();
   }, [localRequest]);
 
   console.log('request state: ', request);

@@ -12,7 +12,7 @@ import reducer from './reducer';
 export interface UserState {
   addCustomer: Customer;
   user: User | Customer | Zookeeper | Manager;
-  loginUser: User | Customer | Zookeeper | Manager;
+  loginUser: Manager | Zookeeper | Customer | User;
 }
 
 export interface AnimalState {
@@ -32,6 +32,12 @@ export interface ZooState {
   zoo: Zoo;
 }
 
+export interface ZookeeperState {
+  zookeeper: Zookeeper;
+  zookeepers: Zookeeper[];
+}
+
+// inventory state? I think so if we have a table for them
 // request state
 export interface RequestState {
   request: string;
@@ -41,6 +47,7 @@ export interface ZooNameState
   extends UserState,
     AnimalState,
     ExhibitState,
+    ZookeeperState,
     RequestState,
     ZooState {}
 
