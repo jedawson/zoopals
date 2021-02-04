@@ -105,6 +105,9 @@ function Inventory() {
                     });
                     setAnimalFood(newAnimalFood);
 
+                    //update expenses
+                    console.log(item.price * 10);
+                    zooService.updateExpenses(item.price * 10);
                 }}><Text style={{color: '#FFF'}}>Restock</Text></TouchableOpacity>}
             </View>)}
           keyExtractor={ (item, index) => item.foodname + index.toString()}

@@ -57,8 +57,8 @@ function ManagerHome(props: ManagerProps) {
       {/* add expenses, number of staff, number of exhibits? */}
       <Title title='STATISTICS' />
       <View style={styles.managerHomeView}>
-        <Info name='Profit'> {zoo.profit}</Info>
-        <Info name='Expenses'> {zoo.expenses}</Info>
+        <Info name='Profit'> {zoo.profit.toFixed(2)}</Info>
+        <Info name='Expenses'> {zoo.expenses.toFixed(2)}</Info>
         <Info name='Tickets Sold'> {zoo.ticketssold}</Info>
         {localRequest ? <Text style={{flex: 1, color: '#c9483e', padding: 20, paddingBottom: 0, fontWeight: 'bold'}}>{request}</Text> : null }
       </View>

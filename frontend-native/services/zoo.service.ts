@@ -72,6 +72,12 @@ class zooService {
     .then((result) => result).catch(err => console.error(`updateProfit error: ${err}`));
   }
 
+  // update Expenses
+  updateExpenses(number: number) {
+    return axios.put('https://4xp40d62ra.execute-api.us-west-2.amazonaws.com/default/statistics/expenses', number)
+    .then((result) => result).catch(err => console.error(`updateProfit error: ${err}`));
+  }
+
   // update request restock
   updateRequestRestock(string: string) {
     return axios.put('https://4xp40d62ra.execute-api.us-west-2.amazonaws.com/default/animalfoods/restockrequest', string)
