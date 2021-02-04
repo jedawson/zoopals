@@ -1,14 +1,12 @@
-import { RouteProp } from '@react-navigation/native';
-import React, { useState } from 'react';
-import { Button, View, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import React from 'react';
+import { Button, View, Text } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from '../../../global-styles';
-import { Screens } from '../../../router/router.component';
+import { Zookeeper } from '../../../models/user';
 import userService from '../../../services/user.service';
-import { getUser, loginAction } from '../../../store/action';
-import { UserState, ZooNameState } from '../../../store/store';
-
+import { getUser } from '../../../store/action';
+import { UserState } from '../../../store/store';
 
 import { Title } from '../Title';
 
@@ -18,23 +16,22 @@ interface ZookeeperProps {
 
 // To-Do: create a task component and add tasks dynamically into here
 function ZookeeperHome(props: ZookeeperProps) {
-
-  const [isSelected, setSelection] = useState(false);
-  //const user = useSelector((state: ZooNameState) => state.user);
   const selectUser = (state: UserState) => state.user;
-  const user = useSelector(selectUser);
+  const user: Zookeeper = useSelector(selectUser);
   const dispatch = useDispatch();
 
   function removeItem(task: string) {
-    let newUser = {...user}
-    newUser.tasks = newUser.tasks.filter((taskItem: string) => {return taskItem != task})
-    userService.updateZookeeper(newUser).then((data)=>{
+    let newUser = { ...user };
+    newUser.tasks = newUser.tasks.filter((taskItem: string) => {
+      return taskItem != task;
+    });
+    userService.updateZookeeper(newUser).then((data) => {
       if (data) {
-        dispatch(getUser(newUser))
+        dispatch(getUser(newUser));
       } else {
-        alert('Did not update the database with your finished task. Try again')
+        alert('Did not update the database with your finished task. Try again');
       }
-    })
+    });
   }
   return (
     <View style={styles.viewContainer}>
@@ -42,21 +39,21 @@ function ZookeeperHome(props: ZookeeperProps) {
       <Text></Text>
       <View style={styles.myTasksView}>
         <FlatList
-          data = {user.tasks}
-          renderItem = {({ item }: { item: string; }) => {
+          data={user.tasks}
+          renderItem={({ item }: { item: string }) => {
             return (
               <>
                 <Text>{item}</Text>
-                <Button onPress={()=>{
-                  removeItem(item)
-                  }} 
-                  title='Finished' />
+                <Button
+                  onPress={() => {
+                    removeItem(item);
+                  }}
+                  title='Finished'
+                />
               </>
-            )
+            );
           }}
-          keyExtractor={(item, index) => item + index.toString()}
-        >
-        </FlatList>
+          keyExtractor={(item, index) => item + index.toString()}></FlatList>
         <Text>{JSON.stringify(props)}</Text>
       </View>
     </View>
