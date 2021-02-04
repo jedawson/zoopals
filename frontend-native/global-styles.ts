@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
   },
   // TICKETS
   ticketView: {
-    flex:7,
+    flex: 7,
     backgroundColor: yellow,
     alignItems: 'center',
     justifyContent: 'center',
@@ -48,13 +48,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     alignSelf: 'center',
     flexDirection: 'column',
-    justifyContent: 'space-evenly'
+    justifyContent: 'space-evenly',
   },
   ticketDetail: {
-    marginTop:'4%',
+    marginTop: '4%',
     fontSize: 20,
     fontWeight: '500',
-    alignSelf: 'center'
+    alignSelf: 'center',
   },
   purchaseTicketView: {
     flex: 5,
@@ -150,7 +150,7 @@ const styles = StyleSheet.create({
     alignContent: 'center',
   },
   titleView: {
-    flex: 1,
+    flex: 0.75,
     margin: 20,
     backgroundColor: yellow,
   },
