@@ -11,14 +11,18 @@ interface ZookeeperDetailProps {
   data: Zookeeper;
 }
 
+/**
+ * shows the details of the Zookeeper (aka what animals/exhibits the given
+ * Zookeeper is in charge of)
+ * @param data - Zookeeper - current Zookeeper
+ */
 function ZookeeperDetail({ data }: ZookeeperDetailProps) {
   const navigation = useNavigation();
   const dispatch = useDispatch();
 
   function handleViewTasksButton() {
-    console.log('Data zookeeper: ' + JSON.stringify(data));
     dispatch(GetZookeeper(data));
-    navigation.navigate('Zookeeper Tasks', { props: data });
+    navigation.navigate('Zookeeper Tasks');
   }
   return (
     <View>
