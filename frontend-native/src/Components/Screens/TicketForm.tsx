@@ -75,16 +75,16 @@ function TicketForm() {
       });
 
       // update user in db
-      let resultUser = await userService.updateCustomer(newUser);
+      await userService.updateCustomer(newUser);
 
       // update user in store
       dispatch(getUser(newUser));
 
       //update zoo table's ticket count
-      let resultZoo = await zooService.updateTickets(ticketsArray.length);
+      await zooService.updateTickets(ticketsArray.length);
       
       // update zoo table's profits
-      let resultProfit = await zooService.updateProfit(totalPurchase);
+      await zooService.updateProfit(totalPurchase);
     }
     
     setTotal(0);
@@ -134,6 +134,7 @@ function TicketForm() {
 
         {/* Total and buttons */}
         <View style={{alignItems: 'center', marginTop: 50}}>
+          <Text style={{color: '#2C7B56', alignSelf: 'center', marginTop: 30, fontWeight: 'bold'}}>{alertText}</Text>
           <Info name='Total'>{'$' + totalPurchase}</Info>
         </View>
         <View style={{flex: 1, flexDirection: 'row', alignItems: 'center', marginTop: 30, marginLeft: 50, marginRight: 50}}>
@@ -149,7 +150,6 @@ function TicketForm() {
             <Text style={{color: '#FFF'}}>PURCHASE</Text>
           </TouchableOpacity>
         </View>
-        <Text style={{color: '#2C7B56', alignSelf: 'center', marginTop: 30, fontWeight: 'bold'}}>{alertText}</Text>
       </ScrollView>
     </View>
   );

@@ -1,10 +1,13 @@
-import { RouteProp } from '@react-navigation/native';
-import React, { useState } from 'react';
-import { View, StyleSheet, Text } from 'react-native';
-import { useSelector } from 'react-redux';
+import React from 'react';
+import { Button, View, Text } from 'react-native';
+import { FlatList } from 'react-native-gesture-handler';
+import { useDispatch, useSelector } from 'react-redux';
 import styles from '../../../global-styles';
-import { Screens } from '../../../router/router.component';
-import { ZooNameState } from '../../../store/store';
+import { Zookeeper } from '../../../models/user';
+import userService from '../../../services/user.service';
+import { getUser } from '../../../store/action';
+import { UserState } from '../../../store/store';
+
 import { Title } from '../Title';
 
 interface ZookeeperProps {
@@ -13,17 +16,44 @@ interface ZookeeperProps {
 
 // To-Do: create a task component and add tasks dynamically into here
 function ZookeeperHome(props: ZookeeperProps) {
-  console.log(`Zookeeper Home Props: ${JSON.stringify(props)}`);
+  const selectUser = (state: UserState) => state.user;
+  const user: Zookeeper = useSelector(selectUser);
+  const dispatch = useDispatch();
 
-  const [isSelected, setSelection] = useState(false);
-  const user = useSelector((state: ZooNameState) => state.user);
-
+  function removeItem(task: string) {
+    let newUser = { ...user };
+    newUser.tasks = newUser.tasks.filter((taskItem: string) => {
+      return taskItem != task;
+    });
+    userService.updateZookeeper(newUser).then((data) => {
+      if (data) {
+        dispatch(getUser(newUser));
+      } else {
+        alert('Did not update the database with your finished task. Try again');
+      }
+    });
+  }
   return (
     <View style={styles.viewContainer}>
       <Title title='MY TASKS' />
-      <Text>Tasks here</Text>
+      <Text></Text>
       <View style={styles.myTasksView}>
-        <Text> insert checkboxes here?</Text>
+        <FlatList
+          data={user.tasks}
+          renderItem={({ item }: { item: string }) => {
+            return (
+              <>
+                <Text>{item}</Text>
+                <Button
+                  onPress={() => {
+                    removeItem(item);
+                  }}
+                  title='Finished'
+                />
+              </>
+            );
+          }}
+          keyExtractor={(item, index) => item + index.toString()}></FlatList>
         <Text>{JSON.stringify(props)}</Text>
       </View>
     </View>

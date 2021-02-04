@@ -6,8 +6,10 @@ import { Manager } from '../../../models/user';
 import { Zoo } from '../../../models/zoo';
 import userService from '../../../services/user.service';
 import zooService from '../../../services/zoo.service';
-import { changeZoo, GetZookeeper } from '../../../store/action';
-import { UserState, ZookeeperState, ZooNameState } from '../../../store/store';
+import {  GetZookeeper } from '../../../store/action';
+import { ZookeeperState } from '../../../store/store';
+import { changeZoo, getRequest } from '../../../store/action';
+import { UserState, ZooNameState } from '../../../store/store';
 import { Info } from '../Info';
 import { Title } from '../Title';
 
@@ -21,7 +23,9 @@ function ManagerHome(props: ManagerProps) {
   const manager: Manager = { ...user };
   const zookeepers = useSelector((state: ZookeeperState) => state.zookeepers);
 
+  const request = useSelector((state: ZooNameState) => state.request);
   const dispatch = useDispatch();
+  let [localRequest, setLocalRequest] = useState('');
 
   useEffect(() => {
     async function getZoo() {
@@ -29,6 +33,8 @@ function ManagerHome(props: ManagerProps) {
       let newZoo: Zoo = new Zoo();
       newZoo = { ...zooStats.rows[0] };
       dispatch(changeZoo(newZoo));
+      dispatch(getRequest(newZoo.request));
+      setLocalRequest(newZoo.request);
     }
     getZoo();
     async function getZookeepers() {
@@ -42,7 +48,9 @@ function ManagerHome(props: ManagerProps) {
       });
     }
     getZookeepers();
-  }, []);
+  }, [request]);
+
+  console.log('request state: ', request);
 
   return (
     <View style={styles.viewContainer}>
@@ -52,8 +60,7 @@ function ManagerHome(props: ManagerProps) {
         <Info name='Profit'> {zoo.profit}</Info>
         <Info name='Expenses'> {zoo.expenses}</Info>
         <Info name='Tickets Sold'> {zoo.ticketssold}</Info>
-        {/* This will get shown when we get the inventory items lambda set up */}
-        <Info name='Inventory Items'> {zoo.inventoryItems}</Info>
+        {localRequest ? <Text style={{flex: 1, backgroundColor: '#c9483e', margin: 50, color: '#FFF', padding: 20, paddingBottom: 0, fontWeight: 'bold'}}>{request}</Text> : null}
       </View>
     </View>
   );

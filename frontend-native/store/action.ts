@@ -55,15 +55,26 @@ export interface ZookeeperAction extends AppAction {
 export enum ZooActions {
   GetZoo = 'GET_ZOO',
 }
+
 export interface ZooAction extends AppAction {
   type: ZooActions;
   payload: Zoo;
+}
+
+export enum RequestActions {
+  GetRequest = 'GET_REQUEST'
+}
+
+export interface RequestAction extends AppAction {
+  type: RequestActions;
+  payload: string;
 }
 
 export interface AppAction {
   type: string;
   payload: any;
 }
+
 
 /**
  * getUser takes in a User and returns an action with user as a payload
@@ -163,6 +174,14 @@ export function GetZookeeper(zookeeper: Zookeeper): ZookeeperAction {
   const action: ZookeeperAction = {
     type: ZookeeperActions.GetZookeeper,
     payload: zookeeper,
+  }
+  return action;
+}
+
+export function getRequest(request: string): RequestAction {
+  const action: RequestAction = {
+    type: RequestActions.GetRequest,
+    payload: request,
   };
   return action;
 }

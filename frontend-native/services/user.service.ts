@@ -66,7 +66,6 @@ class userService {
         return null;
       });
   }
-
   // add user
   addCustomer(user: Customer): Promise<Customer | null> {
     return axios
@@ -84,7 +83,7 @@ class userService {
   // update customer
   updateCustomer(user: Customer): Promise<null> {
     return axios
-      .put(`${this.URI}/users`, user)
+      .put(`${this.URI}/users/customers`, user)
       .then((result) => result.data)
       .catch((err) => {
         console.log(`Update user error: ${err}`);

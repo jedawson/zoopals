@@ -38,12 +38,17 @@ export interface ZookeeperState {
 }
 
 // inventory state? I think so if we have a table for them
+// request state
+export interface RequestState {
+  request: string;
+}
 
 export interface ZooNameState
   extends UserState,
     AnimalState,
     ExhibitState,
     ZookeeperState,
+    RequestState,
     ZooState {}
 
 const store: Store<ZooNameState, AppAction> = createStore(

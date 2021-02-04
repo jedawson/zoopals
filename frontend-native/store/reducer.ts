@@ -14,6 +14,7 @@ export const initialState: ZooNameState = {
   animal: new Animal(),
   exhibits: [],
   exhibit: new Exhibit(),
+  request: '',
   zoo: new Zoo(),
   zookeeper: new Zookeeper(),
   zookeepers: [],
@@ -56,6 +57,9 @@ const reducer = (
       return newState;
     case Actions.ZookeeperActions.GetZookeepers:
       newState.zookeepers = action.payload as Zookeeper[];
+      return newState;
+    case Actions.RequestActions.GetRequest:
+      newState.request = action.payload;
       return newState;
     default:
       return state;

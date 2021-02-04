@@ -55,7 +55,8 @@ create table specialEvent
 	specialEventName text not null,
 	specialEventDate text not null,
 	specialEventTime text not null,
-	ticketsSold int default 0
+	ticketsSold int default 0,
+	request text default ''
 );
 
 create table zoo

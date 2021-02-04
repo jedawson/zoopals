@@ -99,8 +99,8 @@ export function ZookeeperComponent() {
         },
       }}>
       <Tab.Screen name='Home' component={ZookeeperHome} />
-      <Tab.Screen name='View Inventory' component={Inventory} />
-      <Tab.Screen name='View Animals' component={MyAnimals} />
+      <Tab.Screen name='Inventory' component={Inventory} />
+      <Tab.Screen name='Animals' component={MyAnimals} />
       <Tab.Screen name='Profile' component={Profile} />
     </Tab.Navigator>
   );
@@ -120,8 +120,8 @@ export function ManagerComponent() {
         },
       }}>
       <Tab.Screen name='Home' component={ManagerHome} />
-      <Tab.Screen name='View Staff' component={Staff} />
-      <Tab.Screen name='View Inventory' component={Inventory} />
+      <Tab.Screen name='Staff' component={Staff} />
+      <Tab.Screen name='Inventory' component={Inventory} />
       <Tab.Screen name='Profile' component={Profile} />
       <Stack.Screen
         name='Zookeeper Tasks'
