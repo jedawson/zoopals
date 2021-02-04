@@ -18,7 +18,6 @@ interface ZookeeperProps {
 
 // To-Do: create a task component and add tasks dynamically into here
 function ZookeeperHome(props: ZookeeperProps) {
-  console.log(`Zookeeper Home Props: ${JSON.stringify(props)}`);
 
   const [isSelected, setSelection] = useState(false);
   //const user = useSelector((state: ZooNameState) => state.user);
@@ -30,7 +29,6 @@ function ZookeeperHome(props: ZookeeperProps) {
     let newUser = {...user}
     newUser.tasks = newUser.tasks.filter((taskItem: string) => {return taskItem != task})
     userService.updateZookeeper(newUser).then((data)=>{
-      console.log(data)
       if (data) {
         dispatch(getUser(newUser))
       } else {
@@ -43,7 +41,6 @@ function ZookeeperHome(props: ZookeeperProps) {
       <Title title='MY TASKS' />
       <Text></Text>
       <View style={styles.myTasksView}>
-        <Text> insert checkboxes here?</Text>
         <FlatList
           data = {user.tasks}
           renderItem = {({ item }: { item: string; }) => {
