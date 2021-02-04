@@ -81,10 +81,10 @@ function TicketForm() {
       dispatch(getUser(newUser));
 
       //update zoo table's ticket count
-      await zooService.updateTickets(ticketsArray.length);
+      zooService.updateTickets(ticketsArray.length);
       
       // update zoo table's profits
-      await zooService.updateProfit(totalPurchase);
+      zooService.updateProfit(totalPurchase);
     }
     
     setTotal(0);
