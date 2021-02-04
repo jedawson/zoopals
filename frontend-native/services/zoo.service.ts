@@ -63,13 +63,13 @@ class zooService {
   // update tickets
   updateTickets(number: number) {
     return axios.put('https://4xp40d62ra.execute-api.us-west-2.amazonaws.com/default/tickets', number)
-    .then((result) => result).catch(err => console.error(`updateTickets error: ${err}`));;
+    .then((result) => result).catch(err => console.error(`updateTickets error: ${err}`));
   }
 
   // update profit
   updateProfit(number: number) {
     return axios.put('https://4xp40d62ra.execute-api.us-west-2.amazonaws.com/default/statistics/profit', number)
-    .then((result) => result).catch(err => console.error(`updateProfit error: ${err}`));;
+    .then((result) => result).catch(err => console.error(`updateProfit error: ${err}`));
   }
 
   // update request restock
