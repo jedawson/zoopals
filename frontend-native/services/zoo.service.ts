@@ -7,15 +7,13 @@ class zooService {
   private URI: string;
 
   constructor() {
-    this.URI = ''; // process.env.gatewayURI
+    this.URI = 'https://4xp40d62ra.execute-api.us-west-2.amazonaws.com/default';
   }
 
   // get zoo
   getZoo() {
     return axios
-      .get(
-        'https://4xp40d62ra.execute-api.us-west-2.amazonaws.com/default/statistics'
-      )
+      .get(`${this.URI}/statistics`)
       .then((result) => result.data)
       .catch((err) => {
         console.error(`Error getZoo: ${err}`);
@@ -24,13 +22,13 @@ class zooService {
 
   // get animal food
     getAnimalFood() {
-      return axios.get('https://4xp40d62ra.execute-api.us-west-2.amazonaws.com/default/animalfoods')
+      return axios.get(`${this.URI}/animalfoods`)
         .then((result) => result.data.rows).catch(err => console.error(`getAnimalFood error: ${err}`));
     }
 
   // update animal food
   updateAnimalFood(idAndStock: string) {
-    return axios.put('https://4xp40d62ra.execute-api.us-west-2.amazonaws.com/default/animalfoods', idAndStock)
+    return axios.put(`${this.URI}/animalfoods`, idAndStock)
       .then((result) => result).catch(err => console.error(`getAnimalFood error: ${err}`));
   }
 
@@ -54,33 +52,31 @@ class zooService {
   // get tickets
   getTickets(): Promise<Ticket[]> {
     return axios
-      .get(
-        'https://4xp40d62ra.execute-api.us-west-2.amazonaws.com/default/tickets'
-      )
+      .get(`${this.URI}/tickets`)
       .then((result) => result.data.rows).catch(err => console.error(`getTickets error: ${err}`));
   }
 
   // update tickets
   updateTickets(number: number) {
-    return axios.put('https://4xp40d62ra.execute-api.us-west-2.amazonaws.com/default/tickets', number)
+    return axios.put(`${this.URI}/tickets`, number)
     .then((result) => result).catch(err => console.error(`updateTickets error: ${err}`));
   }
 
   // update profit
   updateProfit(number: number) {
-    return axios.put('https://4xp40d62ra.execute-api.us-west-2.amazonaws.com/default/statistics/profit', number)
+    return axios.put(`${this.URI}/statistics/profit`, number)
     .then((result) => result).catch(err => console.error(`updateProfit error: ${err}`));
   }
 
   // update Expenses
   updateExpenses(number: number) {
-    return axios.put('https://4xp40d62ra.execute-api.us-west-2.amazonaws.com/default/statistics/expenses', number)
+    return axios.put(`${this.URI}/statistics/expenses`, number)
     .then((result) => result).catch(err => console.error(`updateProfit error: ${err}`));
   }
 
   // update request restock
   updateRequestRestock(string: string) {
-    return axios.put('https://4xp40d62ra.execute-api.us-west-2.amazonaws.com/default/animalfoods/restockrequest', string)
+    return axios.put(`${this.URI}/animalfoods/restockrequest`, string)
     .then((result) => result).catch(err => console.error(`updateRequestRestock error: ${err}`));;
   }
 }
