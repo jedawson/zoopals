@@ -96,7 +96,7 @@ class userService {
   updateZookeeper(user: Zookeeper): Promise<null> {
     return axios
       .put(
-        'https://8cf402b61d.execute-api.us-west-2.amazonaws.com/default/users',
+        `${this.URI}/users/zookeepers`,
         user
       )
       .then((result) => result.data)
