@@ -6,7 +6,6 @@ import { Animal } from '../../../models/animal';
 import { Exhibit } from '../../../models/exhibit';
 import { Info } from '../Info';
 import { Title } from '../Title';
-import { MyAnimals } from './MyAnimals';
 
 // To-Do: make this view a dynamic list of exhibits
 
