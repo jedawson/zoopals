@@ -23,6 +23,7 @@ function MyExhibits({ data }: ExhibitsProps) {
           <FlatList
             data={data.animals}
             renderItem={({ item }) => <AnimalView data={item} />}
+            keyExtractor={(item, index) => item.name + index.toString()}
           />
         </View>
       </ScrollView>
