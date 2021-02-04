@@ -7,6 +7,7 @@ import zooService from '../../../services/zoo.service';
 import { UserState } from '../../../store/store';
 import { useDispatch, useSelector } from 'react-redux';
 import { getRequest } from '../../../store/action';
+import userService from '../../../services/user.service';
 
 function Inventory() {
 
@@ -25,6 +26,7 @@ function Inventory() {
   const dispatch = useDispatch();
   const selectUser = (state: UserState) => state.user;
   const user = useSelector(selectUser);
+  let [alertText, setAlertText] = useState('');
 
   useEffect( () => {
     // get animal food from db after each render
@@ -58,6 +60,7 @@ function Inventory() {
               {user.role === 'Zookeeper' ? 
                   <View>
                     <TouchableOpacity style={flexStyle.globalButton} onPress={async () => {
+                      setAlertText('');
                     // change quantity of food item available
                     let newAnimalFood: animalFood[] = [];
                     animalFood.forEach( foodItem => {
@@ -67,6 +70,7 @@ function Inventory() {
                         // if fooditem stock is 0, change state of request
                         if (foodItem.stock <= 5) {
                           dispatch(getRequest(`${item.foodname} is low in stock!`));
+                          zooService.updateRequestRestock(`${item.foodname} is low in stock!`);
                         }
                       }
                       newAnimalFood.push(foodItem);
@@ -81,14 +85,17 @@ function Inventory() {
                   }}><Text style={{color: '#FFF'}}>Use</Text></TouchableOpacity>
                   <TouchableOpacity style={flexStyle.globalButton} onPress={ () => {
                       dispatch(getRequest(`${user.username} requested that ${item.foodname} be restocked.`));
+                      setAlertText('Request made!');
+                      zooService.updateRequestRestock(`${user.username} requested that ${item.foodname} be restocked.`);
                   }}>
                   <Text style={{color: '#FFF'}}>Request Restock</Text>
                   </TouchableOpacity>
                 </View>:
                 <TouchableOpacity style={flexStyle.globalButton} onPress={() => {
                   dispatch(getRequest(''));
+                  zooService.updateRequestRestock('');
                 }}><Text style={{color: '#FFF'}}>Restock</Text></TouchableOpacity>}
-              
+              <Text style={{color: '#2C7B56', alignSelf: 'center', marginTop: 30, fontWeight: 'bold'}}>{alertText}</Text>
             </View>)}
           keyExtractor={ (item, index) => item.foodname + index.toString()}
     />  

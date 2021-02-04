@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import styles from '../../../global-styles';
 import { Zoo } from '../../../models/zoo';
 import zooService from '../../../services/zoo.service';
-import { changeZoo } from '../../../store/action';
+import { changeZoo, getRequest } from '../../../store/action';
 import { UserState, ZooNameState } from '../../../store/store';
 import { Info } from '../Info';
 import { Title } from '../Title';
@@ -25,9 +25,10 @@ function ManagerHome(props: ManagerProps) {
       newZoo = { ...zooStats.rows[0] };
       console.log(JSON.stringify(newZoo));
       dispatch(changeZoo(newZoo));
+      dispatch(getRequest(newZoo.request));
     }
     getZoo();
-  }, []);
+  }, [request]);
 
   console.log('request state: ', request);
 

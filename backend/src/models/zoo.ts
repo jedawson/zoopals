@@ -12,7 +12,9 @@ export class Zoo {
     public ticketsSold = 0;
 
     public ticketsAvailable: Ticket[] = [];
-
+    
+    public request = '';
+  
     constructor(exhibits: Exhibit[], ticketsAvailable: Ticket[]){
         this.exhibits = exhibits;
         this.ticketsAvailable = ticketsAvailable;
