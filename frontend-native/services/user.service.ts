@@ -92,11 +92,19 @@ class userService {
       });
   }
   // get zookeepers
-
+  getZookeeperByName(username: string): Promise<Zookeeper> {
+    return axios
+      .post(`${this.URI}/users/zookeepers/`, { username: username })
+      .then((result) => result.data)
+      .catch((err) => {
+        console.log(`Get Zookeeper Error: ${err}`);
+        return null;
+      });
+  }
   //update zookeepers
   updateZookeeper(user: Zookeeper): Promise<null> {
     return axios
-      .put(`${this.URI}/zookeepers`, user)
+      .put(`${this.URI}/users/zookeepers`, user)
       .then((result) => result.data)
       .catch((err) => {
         console.log(`Update user error: ${err}`);

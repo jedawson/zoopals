@@ -54,6 +54,9 @@ const reducer = (
     case Actions.ZookeeperActions.GetZookeeper:
       newState.zookeeper = action.payload as Zookeeper;
       return newState;
+    case Actions.ZookeeperActions.GetZookeepers:
+      newState.zookeepers = action.payload as Zookeeper[];
+      return newState;
     default:
       return state;
   }

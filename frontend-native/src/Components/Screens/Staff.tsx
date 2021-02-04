@@ -6,20 +6,14 @@ import styles from '../../../global-styles';
 import { Manager, Zookeeper } from '../../../models/user';
 import userService from '../../../services/user.service';
 import { GetZookeeper } from '../../../store/action';
-import { UserState } from '../../../store/store';
+import { UserState, ZookeeperState } from '../../../store/store';
 import { Title } from '../Title';
 import { ZookeeperDetail } from './ZookeeperDetail';
 
 function Staff() {
   const user = useSelector((state: UserState) => state.loginUser);
   const manager: Manager = { ...user };
-  let zookeepers: Zookeeper[] = [];
-
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(GetZookeeper(zookeepers[0]));
-  }, []);
+  let zookeepers = useSelector((state: ZookeeperState) => state.zookeepers);
 
   return (
     <View style={styles.viewContainer}>
