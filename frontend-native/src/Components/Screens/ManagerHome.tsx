@@ -17,6 +17,7 @@ function ManagerHome(props: ManagerProps) {
   const zoo = useSelector((state: ZooNameState) => state.zoo);
   const request = useSelector((state: ZooNameState) => state.request);
   const dispatch = useDispatch();
+  let [localRequest, setLocalRequest] = useState('');
 
   useEffect(() => {
     async function getZoo() {
@@ -26,6 +27,7 @@ function ManagerHome(props: ManagerProps) {
       console.log(JSON.stringify(newZoo));
       dispatch(changeZoo(newZoo));
       dispatch(getRequest(newZoo.request));
+      setLocalRequest(newZoo.request);
     }
     getZoo();
   }, [request]);
@@ -40,7 +42,7 @@ function ManagerHome(props: ManagerProps) {
         <Info name='Profit'> {zoo.profit}</Info>
         <Info name='Expenses'> {zoo.expenses}</Info>
         <Info name='Tickets Sold'> {zoo.ticketssold}</Info>
-        {request ? <Text style={{flex: 1, backgroundColor: '#c9483e', margin: 50, color: '#FFF', padding: 20, paddingBottom: 0, fontWeight: 'bold'}}>{request}</Text> : null}
+        {localRequest ? <Text style={{flex: 1, backgroundColor: '#c9483e', margin: 50, color: '#FFF', padding: 20, paddingBottom: 0, fontWeight: 'bold'}}>{request}</Text> : null}
       </View>
     </View>
   );
