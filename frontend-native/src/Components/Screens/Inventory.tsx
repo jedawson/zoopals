@@ -94,11 +94,23 @@ function Inventory() {
                 <TouchableOpacity style={flexStyle.globalButton} onPress={() => {
                   dispatch(getRequest(''));
                   zooService.updateRequestRestock('');
+
+                  zooService.updateAnimalFood(`${item.itemid},${item.stock + 10}`);
+                  let newAnimalFood: animalFood[] = [];
+                    animalFood.forEach( foodItem => {
+                      if (foodItem.foodname == item.foodname) {
+                        foodItem.stock += 10;
+                      }
+                      newAnimalFood.push(foodItem);
+                    });
+                    setAnimalFood(newAnimalFood);
+
                 }}><Text style={{color: '#FFF'}}>Restock</Text></TouchableOpacity>}
-              <Text style={{color: '#2C7B56', alignSelf: 'center', marginTop: 30, fontWeight: 'bold'}}>{alertText}</Text>
             </View>)}
           keyExtractor={ (item, index) => item.foodname + index.toString()}
     />  
+     <Text style={{flex: 1, color: '#2C7B56', alignSelf: 'center', marginTop: 30, fontWeight: 'bold'}}>{alertText}</Text>
+
   </View>
   );
 }

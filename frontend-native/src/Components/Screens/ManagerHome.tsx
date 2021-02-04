@@ -30,7 +30,7 @@ function ManagerHome(props: ManagerProps) {
       setLocalRequest(newZoo.request);
     }
     getZoo();
-  }, [request]);
+  }, [localRequest]);
 
   console.log('request state: ', request);
 
@@ -42,7 +42,7 @@ function ManagerHome(props: ManagerProps) {
         <Info name='Profit'> {zoo.profit}</Info>
         <Info name='Expenses'> {zoo.expenses}</Info>
         <Info name='Tickets Sold'> {zoo.ticketssold}</Info>
-        {localRequest ? <Text style={{flex: 1, backgroundColor: '#c9483e', margin: 50, color: '#FFF', padding: 20, paddingBottom: 0, fontWeight: 'bold'}}>{request}</Text> : null}
+        {localRequest ? <Text style={{flex: 1, color: '#c9483e', padding: 20, paddingBottom: 0, fontWeight: 'bold'}}>{request}</Text> : null }
       </View>
     </View>
   );
