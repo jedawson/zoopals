@@ -56,12 +56,15 @@ function ZookeeperHome(props: ZookeeperProps) {
           });
         })
         .flat();
-      animalDiets.forEach((foodString) => {
+      animalDiets.forEach((foodString, animalDietsIndex) => {
         animalFood.forEach((item) => {
           if (foodString == item.foodname && item.stock > 0) {
             item.stock--;
             let parameter = item.itemid + "," + item.stock;
-            zooService.updateAnimalFood(parameter);
+            if (animalDietsIndex == (animalDiets.length - 1)) {
+              zooService.updateAnimalFood(parameter);
+            }
+            
           }
         });
       });
