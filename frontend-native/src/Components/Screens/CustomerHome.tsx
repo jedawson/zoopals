@@ -6,6 +6,8 @@ import styles from '../../../global-styles';
 import { SpecialEvent, Ticket } from '../../../models/ticket';
 import { Customer } from '../../../models/user';
 import userService from '../../../services/user.service';
+import zooService from '../../../services/zoo.service';
+import { GetTickets } from '../../../store/action';
 import { UserState } from '../../../store/store';
 import { Title } from '../Title';
 
@@ -25,6 +27,7 @@ function CustomerHome() {
   const ticketArray: Ticket[] | (() => Ticket[]) = [];
   const [myTickets, setMyTickets] = useState(ticketArray);
   let tempTickets : Ticket[] = [];
+
   useEffect(() => {
     async function getMyTickets() {
       await userService.getUserTickets(user.username).then((tickets) => {
@@ -33,6 +36,11 @@ function CustomerHome() {
       })
       setMyTickets(tempTickets);
     }
+    async function getTickets() {
+      const tickets = await zooService.getTickets();
+      dispatch(GetTickets(tickets));
+    }
+    getTickets();
     getMyTickets();
   }, [])
 

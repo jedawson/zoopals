@@ -1,6 +1,7 @@
 import { Animal } from '../models/animal';
 import { AnimalFood } from '../models/animalFood';
 import { Exhibit } from '../models/exhibit';
+import { Ticket } from '../models/ticket';
 import { Customer, User, Zookeeper } from '../models/user';
 import { Zoo } from '../models/zoo';
 
@@ -69,6 +70,15 @@ export enum InventoryActions {
 export interface InventoryAction extends AppAction {
   type: InventoryActions;
   payload: AnimalFood[];
+}
+
+export enum TicketActions {
+  GetTickets = 'GET_TICKETS'
+}
+
+export interface TicketAction extends AppAction {
+  type: TicketActions;
+  payload: Ticket[];
 }
 
 export enum RequestActions {
@@ -200,6 +210,14 @@ export function GetInventory(food: AnimalFood[]): InventoryAction {
   const action: InventoryAction = {
     type: InventoryActions.GetInventory,
     payload: food,
+  };
+  return action;
+}
+
+export function GetTickets(tickets: Ticket[]): TicketAction {
+  const action: TicketAction = {
+    type: TicketActions.GetTickets,
+    payload: tickets,
   };
   return action;
 }

@@ -4,25 +4,18 @@ import { FlatList, Text, TouchableOpacity, View } from 'react-native';
 import { Title } from '../Title';
 import { StyleSheet } from 'react-native';
 import zooService from '../../../services/zoo.service';
-import { UserState, ZooState } from '../../../store/store';
+import { InventoryState, UserState, ZooState } from '../../../store/store';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeZoo, getRequest } from '../../../store/action';
 import userService from '../../../services/user.service';
+import { AnimalFood } from '../../../models/animalFood';
 
 function Inventory() {
 
-  // create types needed
-  interface animalFood {
-    itemid: 0,
-    foodname: '',
-    price: 0,
-    stock: 0
-  }
-
-  let animalFoodArray: animalFood[] = [];
-
   // create state needed
-  const [animalFood, setAnimalFood] = useState(animalFoodArray);
+  const selectAnimalFood = (state: InventoryState) => state.foodItems;
+  const inventory = useSelector(selectAnimalFood);
+  const [animalFood, setAnimalFood] = useState(inventory);
   const dispatch = useDispatch();
   const selectUser = (state: UserState) => state.user;
   const user = useSelector(selectUser);
@@ -54,7 +47,7 @@ function Inventory() {
     {/* List of Animal Food  */}
     <FlatList
           data={animalFood}
-          renderItem={({item}: {item: animalFood}) => (
+          renderItem={({item}: {item: AnimalFood}) => (
             <View style={[flexStyle.horizontalFlexContainer, {backgroundColor: '#FFF'}]}>
               <Text style={flexStyle.FoodItem}>{item.foodname}</Text>
               <Text style={flexStyle.FoodItem}>${item.price}</Text>
@@ -64,7 +57,7 @@ function Inventory() {
                     <TouchableOpacity style={flexStyle.globalButton} onPress={async () => {
                       setAlertText('');
                     // change quantity of food item available
-                    let newAnimalFood: animalFood[] = [];
+                    let newAnimalFood: AnimalFood[] = [];
                     animalFood.forEach( foodItem => {
                       if (foodItem.foodname == item.foodname && foodItem.stock > 0) {
                         foodItem.stock--;
@@ -98,7 +91,7 @@ function Inventory() {
                   zooService.updateRequestRestock('');
 
                   zooService.updateAnimalFood(`${item.itemid},${item.stock + 10}`);
-                  let newAnimalFood: animalFood[] = [];
+                  let newAnimalFood: AnimalFood[] = [];
                     animalFood.forEach( foodItem => {
                       if (foodItem.foodname == item.foodname) {
                         foodItem.stock += 10;
