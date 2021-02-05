@@ -60,7 +60,37 @@ const styles = StyleSheet.create({
     flex: 5,
     backgroundColor: yellow,
     fontSize: 25,
-    justifyContent: 'center',
+    justifyContent: 'center'
+  },
+  //EXHIBIT VIEW
+  exhibitView: {
+    flex: 7,
+  },
+  exhibitName: {
+    backgroundColor: green,
+    width: '60%',
+    alignSelf: 'center',
+  },
+  exhibitHeaders: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    backgroundColor: darkGray,
+    alignSelf: 'center',
+    width: '60%',
+  },
+  exhibitDetails: {
+    fontSize: 20,
+    fontWeight: '500',
+    alignSelf: 'center',
+    color: 'white',
+    padding: 15
+  },
+  animalDetails: {
+    fontSize: 20,
+    fontWeight: '500',
+    alignSelf: 'center',
+    color: 'black',
+    padding: 15
   },
   /*
    * ZOOKEEPER VIEW

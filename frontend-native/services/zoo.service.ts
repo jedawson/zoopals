@@ -49,6 +49,15 @@ class zooService {
       .then((result) => result.data.rows);
   }
 
+  //get all zoo animals
+  getAnimals(): Promise<[]> {
+    return axios
+      .get(
+        'https://4xp40d62ra.execute-api.us-west-2.amazonaws.com/default/animals'
+      )
+      .then((result) => result.data.rows);
+  }
+
   // update exhibits (for an event)
 
   // get tickets
