@@ -19,7 +19,7 @@ function Staff() {
           renderItem={({ item }) => (
             <ZookeeperDetail data={item}></ZookeeperDetail>
           )}
-          keyExtractor={(item) => item.username}
+          keyExtractor={(item, index) => item.username + index.toString()}
         />
       </View>
     </View>
