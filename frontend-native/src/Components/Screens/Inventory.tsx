@@ -4,9 +4,9 @@ import { FlatList, Text, TouchableOpacity, View } from 'react-native';
 import { Title } from '../Title';
 import { StyleSheet } from 'react-native';
 import zooService from '../../../services/zoo.service';
-import { UserState } from '../../../store/store';
+import { UserState, ZooState } from '../../../store/store';
 import { useDispatch, useSelector } from 'react-redux';
-import { getRequest } from '../../../store/action';
+import { changeZoo, getRequest } from '../../../store/action';
 import userService from '../../../services/user.service';
 
 function Inventory() {
@@ -26,6 +26,8 @@ function Inventory() {
   const dispatch = useDispatch();
   const selectUser = (state: UserState) => state.user;
   const user = useSelector(selectUser);
+  const selectZoo = (state: ZooState) => state.zoo;
+  const zoo = useSelector(selectZoo);
   let [alertText, setAlertText] = useState('');
 
   useEffect( () => {
@@ -94,11 +96,29 @@ function Inventory() {
                 <TouchableOpacity style={flexStyle.globalButton} onPress={() => {
                   dispatch(getRequest(''));
                   zooService.updateRequestRestock('');
+
+                  zooService.updateAnimalFood(`${item.itemid},${item.stock + 10}`);
+                  let newAnimalFood: animalFood[] = [];
+                    animalFood.forEach( foodItem => {
+                      if (foodItem.foodname == item.foodname) {
+                        foodItem.stock += 10;
+                      }
+                      newAnimalFood.push(foodItem);
+                    });
+                    setAnimalFood(newAnimalFood);
+
+                    //update expenses
+                    console.log(item.price * 10);
+                    zooService.updateExpenses(item.price * 10);
+                    const newZoo = {...zoo};
+                    newZoo.expenses += item.price * 10;
+                    dispatch(changeZoo(newZoo));
                 }}><Text style={{color: '#FFF'}}>Restock</Text></TouchableOpacity>}
-              <Text style={{color: '#2C7B56', alignSelf: 'center', marginTop: 30, fontWeight: 'bold'}}>{alertText}</Text>
             </View>)}
           keyExtractor={ (item, index) => item.foodname + index.toString()}
     />  
+     <Text style={{flex: 1, color: '#2C7B56', alignSelf: 'center', marginTop: 30, fontWeight: 'bold'}}>{alertText}</Text>
+
   </View>
   );
 }
