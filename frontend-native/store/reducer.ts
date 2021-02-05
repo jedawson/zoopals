@@ -1,4 +1,5 @@
 import { Animal } from '../models/animal';
+import { AnimalFood } from '../models/animalFood';
 import { Exhibit } from '../models/exhibit';
 import { Customer, User, Zookeeper } from '../models/user';
 import { Zoo } from '../models/zoo';
@@ -60,6 +61,9 @@ const reducer = (
       return newState;
     case Actions.RequestActions.GetRequest:
       newState.request = action.payload;
+      return newState;
+    case Actions.InventoryActions.GetInventory:
+      newState.foodItems = action.payload as AnimalFood[];
       return newState;
     default:
       return state;

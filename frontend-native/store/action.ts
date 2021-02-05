@@ -1,4 +1,5 @@
 import { Animal } from '../models/animal';
+import { AnimalFood } from '../models/animalFood';
 import { Exhibit } from '../models/exhibit';
 import { Customer, User, Zookeeper } from '../models/user';
 import { Zoo } from '../models/zoo';
@@ -59,6 +60,15 @@ export enum ZooActions {
 export interface ZooAction extends AppAction {
   type: ZooActions;
   payload: Zoo;
+}
+
+export enum InventoryActions {
+  GetInventory = 'GET_INVENTORY'
+}
+
+export interface InventoryAction extends AppAction {
+  type: InventoryActions;
+  payload: AnimalFood[];
 }
 
 export enum RequestActions {
@@ -182,6 +192,14 @@ export function getRequest(request: string): RequestAction {
   const action: RequestAction = {
     type: RequestActions.GetRequest,
     payload: request,
+  };
+  return action;
+}
+
+export function GetInventory(food: AnimalFood[]): InventoryAction {
+  const action: InventoryAction = {
+    type: InventoryActions.GetInventory,
+    payload: food,
   };
   return action;
 }

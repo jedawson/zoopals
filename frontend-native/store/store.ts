@@ -1,6 +1,7 @@
 import { applyMiddleware, createStore, Store } from 'redux';
 import thunk from 'redux-thunk';
 import { Animal } from '../models/animal';
+import { AnimalFood } from '../models/animalFood';
 import { Exhibit } from '../models/exhibit';
 import { Customer, Manager, User, Zookeeper } from '../models/user';
 import { Zoo } from '../models/zoo';
@@ -37,7 +38,11 @@ export interface ZookeeperState {
   zookeepers: Zookeeper[];
 }
 
-// inventory state? I think so if we have a table for them
+// inventory state
+export interface InventoryState {
+  foodItems: AnimalFood[];
+}
+
 // request state
 export interface RequestState {
   request: string;
@@ -48,6 +53,7 @@ export interface ZooNameState
     AnimalState,
     ExhibitState,
     ZookeeperState,
+    InventoryState,
     RequestState,
     ZooState {}
 

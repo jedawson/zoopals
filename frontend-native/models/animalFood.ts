@@ -1,8 +1,7 @@
 export class AnimalFood {
-    public animalFood = {
-        foodname: '',
-        itemid: 0,
-        price: 0,
-        stock: 0
-    }
+
+        public foodname = '';
+        public itemid = 0;
+        public price = 0;
+        public stock = 0;
   }
