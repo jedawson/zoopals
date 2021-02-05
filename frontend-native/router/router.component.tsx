@@ -8,18 +8,16 @@ import { Animal } from '../models/animal';
 import { Zookeeper } from '../models/user';
 import { Zoo } from '../models/zoo';
 import { CustomerHome } from '../src/Components/Screens/CustomerHome';
+import { ViewExhibits } from '../src/Components/Screens/ViewExhibits'
 import { TicketForm } from '../src/Components/Screens/TicketForm';
 import { Profile } from '../src/Components/Screens/Profile';
 import { ZookeeperHome } from '../src/Components/Screens/ZookeeperHome';
 import { ManagerHome } from '../src/Components/Screens/ManagerHome';
 import { Inventory } from '../src/Components/Screens/Inventory';
 import { Staff } from '../src/Components/Screens/Staff';
-import { useSelector } from 'react-redux';
-import store, { ZooNameState } from '../store/store';
 import { MyAnimals } from '../src/Components/Screens/MyAnimals';
-import { View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { createDrawerNavigator } from '@react-navigation/drawer';
+import TaskDetail from '../src/Components/Screens/TaskDetail';
 import { RegisterForm } from '../src/Components/Screens/RegisterForm';
 
 export type Screens = {
@@ -40,8 +38,6 @@ export type Screens = {
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 const headerOptions: StackHeaderOptions = {
-  // headerTitle: () => <Text>ZOONAME</Text>,
-  // headerRight: () => <NavBarComponent />,
   headerTitle: 'ZOONAME',
   headerStyle: {
     backgroundColor: '#2C7B56',
@@ -68,14 +64,7 @@ export function RouterComponent() {
   );
 }
 
-// export function LoginRouter() {
-//   return (
-
-//   );
-// }
-
 export function CustomerComponent() {
-  // console.log(JSON.stringify(props));
   return (
     <Tab.Navigator
       initialRouteName='Home'
@@ -89,6 +78,7 @@ export function CustomerComponent() {
         },
       }}>
       <Tab.Screen name='Home' component={CustomerHome} />
+      <Tab.Screen name='View Exhibits' component={ViewExhibits} />
       <Tab.Screen name='Buy Tickets' component={TicketForm} />
       <Tab.Screen name='Profile' component={Profile} />
     </Tab.Navigator>
@@ -109,8 +99,8 @@ export function ZookeeperComponent() {
         },
       }}>
       <Tab.Screen name='Home' component={ZookeeperHome} />
-      <Tab.Screen name='View Inventory' component={Inventory} />
-      <Tab.Screen name='View Animals' component={MyAnimals} />
+      <Tab.Screen name='Inventory' component={Inventory} />
+      <Tab.Screen name='Animals' component={MyAnimals} />
       <Tab.Screen name='Profile' component={Profile} />
     </Tab.Navigator>
   );
@@ -130,27 +120,14 @@ export function ManagerComponent() {
         },
       }}>
       <Tab.Screen name='Home' component={ManagerHome} />
-      <Tab.Screen name='View Staff' component={Staff} />
-      <Tab.Screen name='View Inventory' component={Inventory} />
+      <Tab.Screen name='Staff' component={Staff} />
+      <Tab.Screen name='Inventory' component={Inventory} />
       <Tab.Screen name='Profile' component={Profile} />
+      <Stack.Screen
+        name='Zookeeper Tasks'
+        component={TaskDetail}></Stack.Screen>
     </Tab.Navigator>
   );
 }
-
-// export const createRootNavigator = (signedIn = false) => {
-//     return createSwitchNavigator(
-//       {
-//         Login: {
-//           screen: LoginForm
-//         },
-//         Home: {
-//           screen: CustomerHome
-//         }
-//       },
-//       {
-//         initialRouteName: signedIn ? 'Home' : 'Login'
-//       }
-//     );
-//   };
 
 export default RouterComponent;

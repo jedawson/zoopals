@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
   },
   // TICKETS
   ticketView: {
-    flex:7,
+    flex: 7,
     backgroundColor: yellow,
     alignItems: 'center',
     justifyContent: 'center',
@@ -48,19 +48,49 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     alignSelf: 'center',
     flexDirection: 'column',
-    justifyContent: 'space-evenly'
+    justifyContent: 'space-evenly',
   },
   ticketDetail: {
-    marginTop:'4%',
+    marginTop: '4%',
     fontSize: 20,
     fontWeight: '500',
-    alignSelf: 'center'
+    alignSelf: 'center',
   },
   purchaseTicketView: {
     flex: 5,
     backgroundColor: yellow,
     fontSize: 25,
-    justifyContent: 'center',
+    justifyContent: 'center'
+  },
+  //EXHIBIT VIEW
+  exhibitView: {
+    flex: 7,
+  },
+  exhibitName: {
+    backgroundColor: green,
+    width: '60%',
+    alignSelf: 'center',
+  },
+  exhibitHeaders: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    backgroundColor: darkGray,
+    alignSelf: 'center',
+    width: '60%',
+  },
+  exhibitDetails: {
+    fontSize: 20,
+    fontWeight: '500',
+    alignSelf: 'center',
+    color: 'white',
+    padding: 15
+  },
+  animalDetails: {
+    fontSize: 20,
+    fontWeight: '500',
+    alignSelf: 'center',
+    color: 'black',
+    padding: 15
   },
   /*
    * ZOOKEEPER VIEW
@@ -89,7 +119,9 @@ const styles = StyleSheet.create({
   /*
    * MANAGER VIEW
    */
-  staffView: {},
+  staffView: {
+    flex: 6,
+  },
   staff: {
     fontWeight: '400',
     fontSize: 25,
@@ -150,7 +182,7 @@ const styles = StyleSheet.create({
     alignContent: 'center',
   },
   titleView: {
-    flex: 1,
+    flex: 0.75,
     margin: 20,
     backgroundColor: yellow,
   },

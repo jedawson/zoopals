@@ -4,8 +4,7 @@ exports.handler = async (event: any) => {
     const client = new Client();
     await client.connect();
 
-    const number: number = Number(event.body);
-    const res = await client.query('update zoo set profit = profit + $1::float;', [number]);
+    const res = await client.query('update zoo set request = $1::text;', [event.body]);
     await client.end();
 
     const response = {
@@ -13,7 +12,7 @@ exports.handler = async (event: any) => {
         headers: {
             "Access-Control-Allow-Headers" : "Content-Type",
             "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Methods": "OPTIONS,POST,GET"
+            "Access-Control-Allow-Methods": "OPTIONS,PUT,GET"
         },
         body: JSON.stringify(res)
         
