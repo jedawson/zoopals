@@ -48,7 +48,6 @@ function ZookeeperHome(props: ZookeeperProps) {
       return taskItem != task;
     });
     if (task == "Feed Animals") {
-      console.log(JSON.stringify(newUser));
       // animalDiets is an array of diet strings like ['Meat', 'Meat', 'Meat']
       let animalDiets = newUser.exhibits
         .map((exhibit) => {
@@ -57,7 +56,6 @@ function ZookeeperHome(props: ZookeeperProps) {
           });
         })
         .flat();
-      console.log(animalDiets);
       animalDiets.forEach((foodString) => {
         animalFood.forEach((item) => {
           if (foodString == item.foodname && item.stock > 0) {
