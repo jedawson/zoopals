@@ -2,12 +2,10 @@ import styles from '../../../global-styles';
 import React, { useEffect, useState } from 'react';
 import { FlatList, Text, TouchableOpacity, View } from 'react-native';
 import { Title } from '../Title';
-import { StyleSheet } from 'react-native';
 import zooService from '../../../services/zoo.service';
 import { InventoryState, UserState, ZooState } from '../../../store/store';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeZoo, getRequest } from '../../../store/action';
-import userService from '../../../services/user.service';
 import { AnimalFood } from '../../../models/animalFood';
 
 function Inventory() {
@@ -37,24 +35,24 @@ function Inventory() {
       <Title title='INVENTORY' />
 
       {/* Table header */}
-      <View style={[flexStyle.horizontalFlexContainer, {flex: 0.5, backgroundColor: '#2C7B56'}]}>
-        <Text style={flexStyle.tableHeaders}>Food Item</Text>
-        <Text style={flexStyle.tableHeaders}>Price</Text>
-        <Text style={flexStyle.tableHeaders}>Quantity</Text>
-        <Text style={flexStyle.tableHeaders}></Text>
+      <View style={[styles.horizontalFlexContainer, {flex: 0.5, backgroundColor: '#2C7B56'}]}>
+        <Text style={[styles.tableHeaders, {flex: 1}]}>Food Item</Text>
+        <Text style={[styles.tableHeaders, {flex: 1}]}>Price</Text>
+        <Text style={[styles.tableHeaders, {flex: 1}]}>Quantity</Text>
+        <Text style={[styles.tableHeaders, {flex: 1}]}></Text>
       </View>
 
     {/* List of Animal Food  */}
     <FlatList
           data={animalFood}
           renderItem={({item}: {item: AnimalFood}) => (
-            <View style={[flexStyle.horizontalFlexContainer, {backgroundColor: '#FFF'}]}>
-              <Text style={flexStyle.FoodItem}>{item.foodname}</Text>
-              <Text style={flexStyle.FoodItem}>${item.price}</Text>
-              <Text style={flexStyle.FoodItem}>{item.stock}</Text>
+            <View style={[styles.horizontalFlexContainer, {backgroundColor: '#FFF'}]}>
+              <Text style={[styles.tableItem, {alignSelf: 'center', color: '#000', flex: 1}]}>{item.foodname}</Text>
+              <Text style={[styles.tableItem, {alignSelf: 'center', color: '#000', flex: 1}]}>${item.price}</Text>
+              <Text style={[styles.tableItem, {alignSelf: 'center', color: '#000', flex: 1}]}>{item.stock}</Text>
               {user.role === 'Zookeeper' ? 
                   <View>
-                    <TouchableOpacity style={flexStyle.globalButton} onPress={async () => {
+                    <TouchableOpacity style={[styles.globalButtonNoWidth, {padding: 10, margin: 5}]} onPress={async () => {
                       setAlertText('');
                     // change quantity of food item available
                     let newAnimalFood: AnimalFood[] = [];
@@ -78,7 +76,7 @@ function Inventory() {
                     console.log('update to food stock: ', success);
 
                   }}><Text style={{color: '#FFF'}}>Use</Text></TouchableOpacity>
-                  <TouchableOpacity style={flexStyle.globalButton} onPress={ () => {
+                  <TouchableOpacity style={[styles.globalButtonNoWidth, {padding: 10, margin: 5}]} onPress={ () => {
                       dispatch(getRequest(`${user.username} requested that ${item.foodname} be restocked.`));
                       setAlertText('Request made!');
                       zooService.updateRequestRestock(`${user.username} requested that ${item.foodname} be restocked.`);
@@ -86,7 +84,7 @@ function Inventory() {
                   <Text style={{color: '#FFF'}}>Request Restock</Text>
                   </TouchableOpacity>
                 </View>:
-                <TouchableOpacity style={flexStyle.globalButton} onPress={() => {
+                <TouchableOpacity style={[styles.globalButtonNoWidth, {padding: 10, margin: 5}]} onPress={() => {
                   dispatch(getRequest(''));
                   zooService.updateRequestRestock('');
 
@@ -115,40 +113,5 @@ function Inventory() {
   </View>
   );
 }
-
-
-
-// styles
-const flexStyle = StyleSheet.create({
-  horizontalFlexContainer: {
-    flex: 1,
-    flexDirection: 'row',
-    marginLeft: 10,
-    marginRight: 10,
-    marginBottom: 5,
-    padding: 5
-   },
-  globalButton: {
-    backgroundColor: '#67a2e5',
-    padding: 10,
-    margin: 5,
-    alignItems: 'center',
-    borderRadius: 10,
-    alignSelf: 'center'
-  },
-  tableHeaders: {
-    color: '#FFFFFF',
-    alignSelf: 'center',
-    fontWeight: 'bold',
-    flex: 1
-  },
-  FoodItem: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    alignSelf: 'center',
-    color: '#000',
-    flex: 1
-  }
-});
 
 export { Inventory };

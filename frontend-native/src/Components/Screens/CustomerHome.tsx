@@ -7,14 +7,9 @@ import { SpecialEvent, Ticket } from '../../../models/ticket';
 import { Customer } from '../../../models/user';
 import userService from '../../../services/user.service';
 import zooService from '../../../services/zoo.service';
-import { GetTickets } from '../../../store/action';
+import { GetTickets, getUser } from '../../../store/action';
 import { UserState } from '../../../store/store';
 import { Title } from '../Title';
-
-interface CustomerHomeProps {
-  data: Ticket;
-  user: Customer;
-}
 
 function CustomerHome() {
 
@@ -23,7 +18,7 @@ function CustomerHome() {
   }
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
-
+  const [localUser, setLocalUser] = useState(user);
   const ticketArray: Ticket[] | (() => Ticket[]) = [];
   const [myTickets, setMyTickets] = useState(ticketArray);
   let tempTickets : Ticket[] = [];
@@ -35,6 +30,11 @@ function CustomerHome() {
         tempTickets = tickets;
       })
       setMyTickets(tempTickets);
+
+      let newUser: Customer = {...user};
+      newUser.tickets = tempTickets;
+      dispatch(getUser(newUser));
+      setLocalUser(newUser);
     }
     async function getTickets() {
       const tickets = await zooService.getTickets();
@@ -76,12 +76,6 @@ function CustomerHome() {
     price: number, 
     ticketType: string,
     specialEvent: SpecialEvent
-  }
-
-  interface specialEvent {
-    name: string,
-    date: string,
-    time: string
   }
 
   return (
