@@ -198,6 +198,14 @@ export function GetZookeeper(zookeeper: Zookeeper): ZookeeperAction {
   return action;
 }
 
+export function GetZookeepers(zookeepers: Zookeeper[]): ZookeeperAction {
+  const action: ZookeeperAction = {
+    type: ZookeeperActions.GetZookeepers,
+    payload: zookeepers,
+  }
+  return action;
+}
+
 export function getRequest(request: string): RequestAction {
   const action: RequestAction = {
     type: RequestActions.GetRequest,

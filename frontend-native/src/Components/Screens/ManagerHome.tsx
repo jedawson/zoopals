@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { View, Text } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from '../../../global-styles';
-import { Manager } from '../../../models/user';
+import { Manager, Zookeeper } from '../../../models/user';
 import { Zoo } from '../../../models/zoo';
 import userService from '../../../services/user.service';
 import zooService from '../../../services/zoo.service';
-import {  GetZookeeper } from '../../../store/action';
+import {  GetZookeeper, GetZookeepers } from '../../../store/action';
 import { ZookeeperState } from '../../../store/store';
 import { changeZoo, getRequest } from '../../../store/action';
 import { UserState, ZooNameState } from '../../../store/store';
@@ -22,7 +22,6 @@ function ManagerHome(props: ManagerProps) {
   const user = useSelector((state: UserState) => state.loginUser);
   const manager: Manager = { ...user };
   const zookeepers = useSelector((state: ZookeeperState) => state.zookeepers);
-
   const request = useSelector((state: ZooNameState) => state.request);
   const dispatch = useDispatch();
   let [localRequest, setLocalRequest] = useState('');
@@ -38,19 +37,19 @@ function ManagerHome(props: ManagerProps) {
     }
     getZoo();
     async function getZookeepers() {
+      const newZookeeperArray: Zookeeper[] = [];
+      console.log('manager', manager);
       manager.zookeepers.forEach(async (zookeeperName) => {
         await userService
           .getZookeeperByName(zookeeperName)
           .then((zookeeper) => {
-            zookeepers.push(zookeeper);
+            newZookeeperArray.push(zookeeper);
+            dispatch(GetZookeepers(newZookeeperArray));
           });
-        dispatch(GetZookeeper(zookeepers[0]));
       });
     }
     getZookeepers();
   }, [localRequest]);
-
-  console.log('request state: ', request);
 
   return (
     <View style={styles.viewContainer}>

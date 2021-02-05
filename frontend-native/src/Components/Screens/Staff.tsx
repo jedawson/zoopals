@@ -9,6 +9,7 @@ import { ZookeeperDetail } from "./ZookeeperDetail";
 
 function Staff() {
   let zookeepers = useSelector((state: ZookeeperState) => state.zookeepers);
+  console.log('zookeepers in state: ', zookeepers);
 
   return (
     <View style={styles.viewContainer}>
