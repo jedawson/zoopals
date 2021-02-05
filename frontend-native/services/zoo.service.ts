@@ -41,12 +41,30 @@ class zooService {
         console.error(`getAnimalsByExhibit error: ${err}`);
       });
   }
-  // get exhibits
+  // get exhibit by zookeeper
   getExhibitByZookeeper(username: string): Promise<Exhibit[]> {
     return axios
       .get('arn:aws:lambda:us-west-2:640280721521:function:getExhibitByUser')
       .then((result) => result.data).catch(err => console.error(`getExhibitByZookeeper error: ${err}`));
   }
+  //get all zoo exhibits
+  getExhibits(): Promise<[]> {
+    return axios
+      .get(
+        'https://4xp40d62ra.execute-api.us-west-2.amazonaws.com/default/exhibits'
+      )
+      .then((result) => result.data.rows);
+  }
+
+  //get all zoo animals
+  getAnimals(): Promise<[]> {
+    return axios
+      .get(
+        'https://4xp40d62ra.execute-api.us-west-2.amazonaws.com/default/animals'
+      )
+      .then((result) => result.data.rows);
+  }
+
   // update exhibits (for an event)
 
   // get tickets

@@ -9,7 +9,6 @@ import { Provider } from 'react-redux';
 import store from './store/store';
 
 export default function App() {
-  //this is set to true so I can see the different screens
   let signedIn = 'Customer';
   console.log('store: ' + JSON.stringify(store));
 
@@ -20,11 +19,6 @@ export default function App() {
       </View>
     </Provider>
 
-    // <Provider store={store}>
-    //   <NavigationContainer>
-    //     <ZookeeperRouter></ZookeeperRouter>
-    //   </NavigationContainer>
-    // </Provider>
   );
 }
 
