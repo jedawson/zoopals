@@ -15,7 +15,7 @@ class userService {
     password: string
   ): Promise<Customer | Zookeeper | Manager> {
     return axios
-      .post(`${this.URI}/users/login`, {
+      .post(`${this.URI}/users`, {
         username: username,
         password: password,
       })
