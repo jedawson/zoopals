@@ -204,6 +204,38 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'space-around',
   },
+  /* Styling for tables */
+  horizontalFlexContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    marginLeft: 10,
+    marginRight: 10,
+    marginBottom: 5,
+    padding: 5
+   },
+   tableHeaders: {
+    color: '#FFFFFF',
+    alignSelf: 'center',
+    fontWeight: 'bold'
+  },
+  tableItem: {
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  tableButton: {
+    backgroundColor: '#67a2e5',
+    padding: 5,
+    borderRadius: 5,
+    alignItems: 'center',
+    width: 20
+  },
+  globalButtonNoWidth: {
+    backgroundColor: '#67a2e5',
+    padding: 20,
+    alignItems: 'center',
+    borderRadius: 10,
+    alignSelf: 'center'
+  },
 });
 
 export default styles;
