@@ -51,13 +51,13 @@ ddb.deleteTable(removeUsers, function (err, data) {
     );
   }
   setTimeout(() => {
-    ddb.createTable(customerSchema, (err, data) => {
-      if (err) {
+    ddb.createTable(customerSchema, (createTableError, createTableData) => {
+      if (createTableError) {
         // log the error
-        logger.error('Create user table error: ' + err);
+        logger.error('Create user table error: ' + createTableError);
       } else {
         // celebrate, I guess
-        logger.info('Created user table successfully: ' + data);
+        logger.info('Created user table successfully: ' + createTableData);
         setTimeout(() => {
           populateUserTable();
         }, 10000);

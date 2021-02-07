@@ -1,11 +1,9 @@
-import { useLinkProps } from '@react-navigation/native';
 import React from 'react';
-import { View, StyleSheet, ScrollView, FlatList } from 'react-native';
+import { View, ScrollView, FlatList } from 'react-native';
 import styles from '../../../global-styles';
 import { Animal } from '../../../models/animal';
 import { Exhibit } from '../../../models/exhibit';
 import { Info } from '../Info';
-import { Title } from '../Title';
 
 // To-Do: make this view a dynamic list of exhibits
 

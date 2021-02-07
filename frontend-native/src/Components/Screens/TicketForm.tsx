@@ -43,8 +43,8 @@ function TicketForm() {
   useEffect( () => {
     // get tickets from the database after each render
     async function getTickets() {
-      const tickets = await zooService.getTickets();
-      setTickets(tickets);
+      const ticketsFromZooService = await zooService.getTickets();
+      setTickets(ticketsFromZooService);
     }
     getTickets();
   }, [totalPurchase, ticketsPurchased]);

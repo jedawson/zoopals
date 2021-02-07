@@ -1,5 +1,4 @@
 import express from 'express';
-import * as user from '../models/user';
 import axios from 'axios';
 import logger from '../log';
 
@@ -43,13 +42,13 @@ async function login (username:string, password:string) {
 router.post('/', function(req: any, res, next) {
   logger.debug(req.body);
   logger.debug(req.body.username)
-  login(req.body.username, req.body.password).then((user) => {
-    if(user === null || user.password != req.body.password) {
+  login(req.body.username, req.body.password).then((responseUser) => {
+    if(responseUser === null || responseUser.password != req.body.password) {
       res.sendStatus(401);
     } 
-    logger.debug(user)
-    req.session.user = user;
-    res.json(JSON.stringify(user))
+    logger.debug(responseUser)
+    req.session.user = responseUser;
+    res.json(JSON.stringify(responseUser))
   }).catch((err) => {
     console.log(err)
   });

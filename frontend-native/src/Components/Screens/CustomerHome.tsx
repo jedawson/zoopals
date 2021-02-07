@@ -16,7 +16,7 @@ function CustomerHome() {
   function selectUser(state: UserState) {
     return state.user;
   }
-  const user = useSelector(selectUser);
+  const user = useSelector(selectUser) as Customer;
   const dispatch = useDispatch();
   const [localUser, setLocalUser] = useState(user);
   const ticketArray: Ticket[] | (() => Ticket[]) = [];
