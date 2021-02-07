@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
   exhibitHeaders: {
     flexDirection: 'row',
     justifyContent: 'space-around',
-    backgroundColor: darkGray,
+    backgroundColor: '#82bda1',
     alignSelf: 'center',
     width: '60%',
   },
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     alignSelf: 'center',
     color: 'white',
-    padding: 15
+    padding: 5
   },
   animalDetails: {
     fontSize: 20,
