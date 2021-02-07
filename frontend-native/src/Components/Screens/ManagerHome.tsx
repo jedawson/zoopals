@@ -19,7 +19,7 @@ interface ManagerProps {
 
 function ManagerHome(props: ManagerProps) {
   const zoo = useSelector((state: ZooNameState) => state.zoo);
-  const user = useSelector((state: UserState) => state.loginUser);
+  const user = useSelector((state: UserState) => state.loginUser as Manager);
   const manager: Manager = { ...user };
   const zookeepers = useSelector((state: ZookeeperState) => state.zookeepers);
   const request = useSelector((state: ZooNameState) => state.request);

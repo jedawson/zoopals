@@ -17,7 +17,7 @@ interface ZookeeperProps {
 
 // To-Do: create a task component and add tasks dynamically into here
 function ZookeeperHome(props: ZookeeperProps) {
-  const selectUser = (state: UserState) => state.user;
+  const selectUser = (state: UserState) => state.user as Zookeeper;
   const user: Zookeeper = useSelector(selectUser);
   const dispatch = useDispatch();
   // create types needed
