@@ -35,7 +35,7 @@ function TicketForm() {
   const [tickets, setTickets] = useState(ticketsFromAppState);
   let [totalPurchase, setTotal] = useState(0);
   let [ticketsPurchased, setPurchased] = useState(ticketArray);
-  const currentUser = useSelector((state: UserState) => state.user);
+  const currentUser = useSelector((state: UserState) => state.user as Customer);
   const newUser: Customer = {...currentUser};
   const dispatch = useDispatch();
   let [alertText, setAlertText] = useState('');
