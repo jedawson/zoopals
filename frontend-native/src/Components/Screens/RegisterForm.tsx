@@ -7,7 +7,6 @@ import { UserState } from '../../../store/store';
 import { Title } from '../Title';
 import userService from '../../../services/user.service';
 import { Customer } from '../../../models/user';
-import { sub } from 'react-native-reanimated';
 
 interface LoginProp {
   navigation: any;
