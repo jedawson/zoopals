@@ -141,11 +141,11 @@ function TicketForm() {
             setPurchased([]); 
             setAlertText(''); 
           }}>
-            <Text style={{color: '#FFF'}}>START OVER</Text>
+            <Text style={{color: '#FFF', fontWeight: 'bold'}}>START OVER</Text>
           </TouchableOpacity>
           <View style={{flex: 1}}></View>
           <TouchableOpacity style={styles.globalButtonNoWidth} onPress={(sendTickets)}>
-            <Text style={{color: '#FFF'}}>PURCHASE</Text>
+            <Text style={{color: '#FFF', fontWeight: 'bold'}}>PURCHASE</Text>
           </TouchableOpacity>
         </View>
       </ScrollView>

@@ -1,10 +1,10 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import { Button, FlatList, View } from 'react-native';
+import { FlatList, TouchableOpacity, View, Text } from 'react-native';
 import { useDispatch } from 'react-redux';
+import styles from '../../../global-styles';
 import { Zookeeper } from '../../../models/user';
 import { GetZookeeper } from '../../../store/action';
-import { Info } from '../Info';
 import { MyExhibits } from './MyExhibits';
 
 interface ZookeeperDetailProps {
@@ -25,15 +25,25 @@ function ZookeeperDetail({ data }: ZookeeperDetailProps) {
     navigation.navigate('Zookeeper Tasks');
   }
   return (
-    <View>
-      <Info name='Zookeeper'>{data.username}</Info>
-      <Button onPress={handleViewTasksButton} title='View Tasks' />
-      <FlatList
-        data={data.exhibits}
-        renderItem={({ item }) => <MyExhibits data={item} />}
-        keyExtractor={(item) => item.name}
-      />
-    </View>
+    <>
+      <View style={[styles.horizontalFlexContainer, {backgroundColor: '#2C7B56'}]}>
+        <Text style={[styles.tableHeaders, {flex: 1}]}>{data.username}</Text>
+      </View>
+        <View style={[styles.horizontalFlexContainer, {backgroundColor: '#FFF'}]}>
+          <View style={{flex: 3}}>
+            <FlatList
+            data={data.exhibits}
+            renderItem={({ item }) => <MyExhibits data={item} />}
+            keyExtractor={(item) => item.name}
+            />
+          </View>
+          <View style={{flex: 1, flexDirection: 'row'}}>
+            <TouchableOpacity style={[styles.button, {flex: 1}]} onPress={handleViewTasksButton}>
+              <Text style={{color: '#FFF', fontWeight: 'bold'}}>VIEW TASKS</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+    </>
   );
 }
 

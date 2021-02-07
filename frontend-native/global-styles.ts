@@ -18,18 +18,12 @@ const styles = StyleSheet.create({
   },
   loginView: {
     flex: 6,
-    backgroundColor: yellow,
     alignItems: 'center',
     justifyContent: 'flex-start',
-    padding: 20,
   },
   /**
    *  CUSTOMER VIEW
    */
-  managerHomeView: {
-    flex: 6,
-    alignItems: 'center',
-  },
   // TICKETS
   ticketView: {
     flex: 7,
@@ -48,11 +42,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     alignSelf: 'center',
     flexDirection: 'column',
-    justifyContent: 'space-evenly',
   },
   ticketDetail: {
-    marginTop: '4%',
-    fontSize: 20,
+    marginTop: '5%',
+    fontSize: 15,
     fontWeight: '500',
     alignSelf: 'center',
   },
@@ -95,26 +88,17 @@ const styles = StyleSheet.create({
   /*
    * ZOOKEEPER VIEW
    */
-  inventoryView: {},
-  myAnimalsView: {
-    alignSelf: 'center',
-    borderColor: 'green',
-    borderTopWidth: 2,
-    borderLeftWidth: 2,
-    borderRightWidth: 2,
-    borderBottomWidth: 2,
-    width: '70%',
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-  },
-  profileView: {
+  cardView: {
     flex: 6,
-    justifyContent: 'flex-start',
-  },
-  myTasksView: {
-    flex: 2,
     alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: 'white',
+    marginLeft: 50,
+    marginRight: 50,
+    marginBottom: 50,
+    borderRadius: 10,
+    borderBottomWidth: 10,
+    borderBottomColor: green,
+    paddingTop: 50
   },
   /*
    * MANAGER VIEW
@@ -151,12 +135,10 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: blue,
-    width: '50%',
     padding: 20,
     alignItems: 'center',
     borderRadius: 10,
     alignSelf: 'center',
-    // width: '100%'
   },
   buttonText: {
     color: lightGray,
@@ -169,11 +151,13 @@ const styles = StyleSheet.create({
     color: darkGray,
   },
   inputBox: {
-    backgroundColor: 'white',
-    borderRadius: 10,
+    backgroundColor: '#e3e3e3',
+    borderRadius: 5,
     height: 50,
     padding: 10,
     margin: 10,
+    borderBottomColor: green,
+    borderBottomWidth: 5
   },
   header: {
     flex: 0.1,

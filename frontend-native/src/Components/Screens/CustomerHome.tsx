@@ -89,7 +89,7 @@ function CustomerHome() {
             <>
               <Image
                 style={styles.ticket}
-                source={require('../../images/ticket.png')}
+                source={require('../../images/ticket2.png')}
               />
               <View style={styles.ticketDetailView}>
                 <Text style={styles.ticketDetail}>{item.specialEvent.name} </Text>

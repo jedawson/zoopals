@@ -7,6 +7,7 @@ import { UserState } from '../../../store/store';
 import { Title } from '../Title';
 import userService from '../../../services/user.service';
 import { Customer } from '../../../models/user';
+import { sub } from 'react-native-reanimated';
 
 interface LoginProp {
   navigation: any;
@@ -35,7 +36,7 @@ function RegisterForm({ navigation }: LoginProp) {
   return (
     <View style={styles.viewContainer}>
       <Title title='WELCOME!' />
-      <View style={styles.loginView}>
+      <View style={[styles.cardView, {alignItems: 'center', justifyContent: 'flex-start'}]}>
         <Text>Username: </Text>
         <TextInput
           style={styles.inputBox}
@@ -62,8 +63,9 @@ function RegisterForm({ navigation }: LoginProp) {
           }
           value={user.password}
         />
-        <TouchableOpacity style={styles.button}>
-          <Button onPress={submitForm} title='Register' />
+        <View style={{flex: 1}}></View>
+        <TouchableOpacity style={[styles.button, {marginBottom: 30, width: 200}]} onPress={submitForm}>
+          <Text style={{color: '#FFF', fontWeight: 'bold'}}>REGISTER</Text>
         </TouchableOpacity>
       </View>
     </View>
