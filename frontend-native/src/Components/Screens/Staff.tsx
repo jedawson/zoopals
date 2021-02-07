@@ -13,17 +13,18 @@ function Staff() {
 
   return (
     <View style={styles.viewContainer}>
-      <Title title="STAFF" />
-      <View style={styles.staffView}>
+      <Title style={{flex: 1}} title="STAFF"></Title>
+      <View style={{flex: 5}}>
         <FlatList
-          data={zookeepers}
-          renderItem={({ item }) => (
-            <ZookeeperDetail data={item}></ZookeeperDetail>
-          )}
-          keyExtractor={(item, index) => item.username + index.toString()}
-        />
+            data={zookeepers}
+            renderItem={({ item }) => (
+              <ZookeeperDetail data={item}></ZookeeperDetail>
+            )}
+            keyExtractor={(item, index) => item.username + index.toString()}
+          />
       </View>
     </View>
+    
   );
 }
 

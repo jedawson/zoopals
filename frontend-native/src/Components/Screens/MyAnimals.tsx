@@ -35,34 +35,29 @@ useEffect(() => {
     diet: string
   }
   return (
-    
     <View style={styles.viewContainer}>
-      {console.log(myAnimals)}
-      {console.log(myAnimalsExhibit.name)}
+      <View style={{flex: 1, marginLeft: 30, marginRight: 30}}>
       <Title title='MY ANIMALS' />
-      <FlatList
-        style={animalView.flatList}
-        data={myAnimals}
-        renderItem={({item}: {item: animal}) => (
-          <>
-            <Text> </Text>
-            <View style={styles.myAnimalsView}>
-              <Text style={{'fontWeight': '500', 'fontSize': 20, 'padding': '2%', 'alignSelf': 'flex-start'}}>Name <Text style={{'fontWeight':'normal', 'padding': '2%'}}>{item.name} </Text></Text>
-              <Text style={{'fontWeight': '500', 'fontSize': 20, 'padding': '2%'}}>Species <Text style={{'fontWeight':'normal', 'padding': '2%'}}>{item.species} </Text></Text>
-              <Text style={{'fontWeight': '500', 'fontSize': 20, 'padding': '2%'}}>Diet <Text style={{'fontWeight':'normal', 'padding': '2%'}}>{item.diet} </Text></Text>
+        {/* Table header */}
+        <View style={[styles.horizontalFlexContainer, {flex: 0.25, backgroundColor: '#2C7B56'}]}>
+            <Text style={[styles.tableHeaders, {flex: 1}]}>Name</Text>
+            <Text style={[styles.tableHeaders, {flex: 1}]}>Species</Text>
+            <Text style={[styles.tableHeaders, {flex: 1}]}>Diet</Text>
+        </View>
+        <FlatList
+          data={myAnimals}
+          renderItem={({item}: {item: animal}) => (
+            // table rows
+            <View style={[styles.horizontalFlexContainer, {backgroundColor: '#FFF'}]}>
+            <Text style={[styles.tableItem, {flex: 1}]}>{item.name}</Text>
+            <Text style={[styles.tableItem, {flex: 1}]}>{item.species}</Text>
+            <Text style={[styles.tableItem, {flex: 1}]}>{item.diet}</Text>
             </View>
-          </>
-        )}
-        keyExtractor={item => item.name + item.species}
-        />
+          )}
+          keyExtractor={item => item.name + item.species}
+          />
       </View>
+    </View>
   )}
-
-const animalView = StyleSheet.create ({
-  flatList: {
-    marginTop: '5%',
-    marginBottom: '5%',
-  }
-})
 
 export { MyAnimals };

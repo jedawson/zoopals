@@ -59,6 +59,9 @@ export function RouterComponent() {
         <Stack.Screen name='Customer' component={CustomerComponent} />
         <Stack.Screen name='Zookeeper' component={ZookeeperComponent} />
         <Stack.Screen name='Manager' component={ManagerComponent} />
+        <Stack.Screen
+        name='Zookeeper Tasks'
+        component={TaskDetail}></Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -123,9 +126,6 @@ export function ManagerComponent() {
       <Tab.Screen name='Staff' component={Staff} />
       <Tab.Screen name='Inventory' component={Inventory} />
       <Tab.Screen name='Profile' component={Profile} />
-      <Stack.Screen
-        name='Zookeeper Tasks'
-        component={TaskDetail}></Stack.Screen>
     </Tab.Navigator>
   );
 }

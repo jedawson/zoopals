@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Button, View, Text } from 'react-native';
+import { View, Text, TouchableOpacity } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from '../../../global-styles';
@@ -88,22 +88,20 @@ function ZookeeperHome(props: ZookeeperProps) {
   }
   return (
     <View style={styles.viewContainer}>
+      <View style={{flex: 1, marginLeft: 50, marginRight: 50}}>
       <Title title="MY TASKS" />
-      <Text></Text>
-      <View style={styles.myTasksView}>
         <FlatList
           data={user.tasks}
           renderItem={({ item }: { item: string }) => {
             return (
-              <>
-                <Text>{item}</Text>
-                <Button
-                  onPress={() => {
-                    removeItem(item);
-                  }}
-                  title="Finished"
-                />
-              </>
+              <View style={[styles.horizontalFlexContainer, {backgroundColor: 'white'}]}>
+                <Text style={[styles.tableItem, {flex: 1}]}>{item}</Text>
+                <View style={{flex: 1, flexDirection: 'row'}}>
+                  <TouchableOpacity style={[styles.button, {flex: 1}]} onPress={() => removeItem(item)}>
+                    <Text style={{color: '#FFF', fontWeight: 'bold'}}>FINISHED</Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
             );
           }}
           keyExtractor={(item, index) => item + index.toString()}

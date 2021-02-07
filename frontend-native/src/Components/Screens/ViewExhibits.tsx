@@ -101,7 +101,7 @@ const exhibitStyle  = StyleSheet.create({
     justifyContent: 'center',
   },
   animalStyle: {
-    backgroundColor: '#EDDFBC',
+    backgroundColor: '#FFFFFF',
     flexDirection: 'row',
     justifyContent: 'space-around',
     width: '60%',

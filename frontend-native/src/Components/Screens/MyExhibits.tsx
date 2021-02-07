@@ -1,11 +1,9 @@
 import React from 'react';
-import { View, ScrollView, FlatList } from 'react-native';
+import { View, ScrollView, FlatList, Text } from 'react-native';
 import styles from '../../../global-styles';
 import { Animal } from '../../../models/animal';
 import { Exhibit } from '../../../models/exhibit';
 import { Info } from '../Info';
-
-// To-Do: make this view a dynamic list of exhibits
 
 interface ExhibitsProps {
   data: Exhibit;
@@ -13,16 +11,20 @@ interface ExhibitsProps {
 
 function MyExhibits({ data }: ExhibitsProps) {
   return (
-    <View style={styles.viewContainer}>
+    <View style={[styles.viewContainer, {backgroundColor: 'white', padding: 30}]}>
       <ScrollView>
-        <View style={styles.managerHomeView}>
-          <Info name='Exhibit Name'>{data.name} </Info>
+        <View style={[styles.horizontalFlexContainer, {backgroundColor: '#82bda1'}]}>
+          <Text style={[styles.tableHeaders, {flex: 1}]}>Zookeeper's Exhibits</Text>
+        </View>
+        <Text style={{margin: 10}}>{data.name}</Text>
+        <View style={[styles.horizontalFlexContainer, {backgroundColor: '#82bda1'}]}>
+          <Text style={[styles.tableHeaders, {flex: 1}]}>Zookeeper's Animals</Text>
+        </View>
           <FlatList
             data={data.animals}
             renderItem={({ item }) => <AnimalView data={item} />}
             keyExtractor={(item, index) => item.name + index.toString()}
           />
-        </View>
       </ScrollView>
     </View>
   );
@@ -35,10 +37,8 @@ interface AnimalProps {
 }
 function AnimalView({ data }: AnimalProps) {
   return (
-    <View>
-      <Info name={data.name}>
-        : {data.species}, {data.diet}
-      </Info>
+    <View style={{margin: 10}}>
+      <Text>{data.name}: {data.species}, {data.diet}</Text>
     </View>
   );
 }
