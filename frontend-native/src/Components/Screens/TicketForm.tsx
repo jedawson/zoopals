@@ -5,9 +5,8 @@ import styles from '../../../global-styles';
 import zooService from '../../../services/zoo.service';
 import { Info } from '../Info';
 import { Title } from '../Title';
-import { StyleSheet } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { UserState} from '../../../store/store';
+import { TicketState, UserState} from '../../../store/store';
 import { Customer } from '../../../models/user';
 import { Ticket } from '../../../models/ticket';
 import userService from '../../../services/user.service';
@@ -19,7 +18,6 @@ import { getUser } from '../../../store/action';
  */
 function TicketForm() {
 
-  
   // create a ticket interface for rendering each ticket
   interface ticket {
     price: number,
@@ -29,15 +27,15 @@ function TicketForm() {
     specialeventtime: string
   }
 
-  // make initial array not of type never
-  const array: any[] | (() => any[]) = [];
   const ticketArray: ticket[] = [];
 
   // create component's state
-  const [tickets, setTickets] = useState(array);
+  const selectTickets = (state: TicketState) => state.tickets;
+  const ticketsFromAppState = useSelector(selectTickets);
+  const [tickets, setTickets] = useState(ticketsFromAppState);
   let [totalPurchase, setTotal] = useState(0);
   let [ticketsPurchased, setPurchased] = useState(ticketArray);
-  const currentUser = useSelector((state: UserState) => state.user);
+  const currentUser = useSelector((state: UserState) => state.user as Customer);
   const newUser: Customer = {...currentUser};
   const dispatch = useDispatch();
   let [alertText, setAlertText] = useState('');
@@ -99,27 +97,27 @@ function TicketForm() {
         <Title title='PURCHASE A TICKET' />
 
         {/* Table header */}
-        <View style={[flexStyle.horizontalFlexContainer, {backgroundColor: '#2C7B56'}]}>
-            <Text style={[flexStyle.tableHeaders, {flex: 1.2}]}>Price</Text>
-            <Text style={[flexStyle.tableHeaders, {flex: 1.5}]}>Ticket Type</Text>
-            <Text style={[flexStyle.tableHeaders, {flex: 1.5}]}>Event</Text>
-            <Text style={[flexStyle.tableHeaders, {flex: 1.5}]}>Date</Text>
-            <Text style={[flexStyle.tableHeaders, {flex: 1.5}]}>Time</Text>
-            <Text style={[flexStyle.tableHeaders, {flex: 1.75}]}>Add Ticket</Text>
+        <View style={[styles.horizontalFlexContainer, {backgroundColor: '#2C7B56'}]}>
+            <Text style={[styles.tableHeaders, {flex: 1.2}]}>Price</Text>
+            <Text style={[styles.tableHeaders, {flex: 1.5}]}>Ticket Type</Text>
+            <Text style={[styles.tableHeaders, {flex: 1.5}]}>Event</Text>
+            <Text style={[styles.tableHeaders, {flex: 1.5}]}>Date</Text>
+            <Text style={[styles.tableHeaders, {flex: 1.5}]}>Time</Text>
+            <Text style={[styles.tableHeaders, {flex: 1.75}]}>Add Ticket</Text>
         </View>
 
         {/* list of tickets */}
         <FlatList
           data={tickets}
           renderItem={({item}: {item: ticket}) => (
-            <View style={[flexStyle.horizontalFlexContainer, {backgroundColor: '#FFF'}]}>
-              <Text style={[flexStyle.ticketInfo, {flex: 1}]}>${item.price}</Text>
-              <Text style={[flexStyle.ticketInfo, {flex: 1.5}]}>{item.tickettype}</Text>
-              <Text style={[flexStyle.ticketInfo, {flex: 2}]}>{item.specialeventname}</Text>
-              <Text style={[flexStyle.ticketInfo, {flex: 1.5}]}>{item.specialeventdate}</Text>
-              <Text style={[flexStyle.ticketInfo, {flex: 1.5}]}>{item.specialeventtime}</Text>
+            <View style={[styles.horizontalFlexContainer, {backgroundColor: '#FFF'}]}>
+              <Text style={[styles.tableItem, {flex: 1}]}>${item.price}</Text>
+              <Text style={[styles.tableItem, {flex: 1.5}]}>{item.tickettype}</Text>
+              <Text style={[styles.tableItem, {flex: 2}]}>{item.specialeventname}</Text>
+              <Text style={[styles.tableItem, {flex: 1.5}]}>{item.specialeventdate}</Text>
+              <Text style={[styles.tableItem, {flex: 1.5}]}>{item.specialeventtime}</Text>
               <TouchableOpacity 
-              style={[flexStyle.button, {marginLeft: 10, marginRight: 20}]} 
+              style={[styles.tableButton, {marginLeft: 10, marginRight: 20}]} 
               onPress={() => {
                 setTotal(totalPurchase += item.price);
                 setPurchased([...ticketsPurchased, item]);
@@ -138,7 +136,7 @@ function TicketForm() {
           <Info name='Total'>{'$' + totalPurchase}</Info>
         </View>
         <View style={{flex: 1, flexDirection: 'row', alignItems: 'center', marginTop: 30, marginLeft: 50, marginRight: 50}}>
-          <TouchableOpacity style={flexStyle.globalButton} onPress={() => {
+          <TouchableOpacity style={styles.globalButtonNoWidth} onPress={() => {
             setTotal(0); 
             setPurchased([]); 
             setAlertText(''); 
@@ -146,7 +144,7 @@ function TicketForm() {
             <Text style={{color: '#FFF'}}>START OVER</Text>
           </TouchableOpacity>
           <View style={{flex: 1}}></View>
-          <TouchableOpacity style={flexStyle.globalButton} onPress={(sendTickets)}>
+          <TouchableOpacity style={styles.globalButtonNoWidth} onPress={(sendTickets)}>
             <Text style={{color: '#FFF'}}>PURCHASE</Text>
           </TouchableOpacity>
         </View>
@@ -154,40 +152,5 @@ function TicketForm() {
     </View>
   );
 }
-
-// styles
-const flexStyle = StyleSheet.create({
-   horizontalFlexContainer: {
-    flex: 1,
-    flexDirection: 'row',
-    marginLeft: 10,
-    marginRight: 10,
-    marginBottom: 5,
-    padding: 5
-   },
-  button: {
-    backgroundColor: '#67a2e5',
-    padding: 5,
-    borderRadius: 5,
-    alignItems: 'center',
-    width: 20
-  },
-  globalButton: {
-    backgroundColor: '#67a2e5',
-    padding: 20,
-    alignItems: 'center',
-    borderRadius: 10,
-    alignSelf: 'center'
-  },
-  tableHeaders: {
-    color: '#FFFFFF',
-    alignSelf: 'center',
-    fontWeight: 'bold'
-  },
-  ticketInfo: {
-    alignItems: 'center',
-    justifyContent: 'center'
-  }
- });
 
 export { TicketForm };

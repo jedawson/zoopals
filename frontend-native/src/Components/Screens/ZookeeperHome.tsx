@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
-import { Button, View, Text } from "react-native";
-import { FlatList } from "react-native-gesture-handler";
-import { useDispatch, useSelector } from "react-redux";
-import styles from "../../../global-styles";
-import { Zookeeper } from "../../../models/user";
-import userService from "../../../services/user.service";
-import zooService from "../../../services/zoo.service";
-import { getUser } from "../../../store/action";
-import { UserState } from "../../../store/store";
+import React, { useEffect, useState } from 'react';
+import { Button, View, Text } from 'react-native';
+import { FlatList } from 'react-native-gesture-handler';
+import { useDispatch, useSelector } from 'react-redux';
+import styles from '../../../global-styles';
+import { Zookeeper } from '../../../models/user';
+import userService from '../../../services/user.service';
+import zooService from '../../../services/zoo.service';
+import { GetInventory, getUser } from '../../../store/action';
+import { UserState } from '../../../store/store';
 
 import { Title } from "../Title";
 
@@ -17,7 +17,7 @@ interface ZookeeperProps {
 
 // To-Do: create a task component and add tasks dynamically into here
 function ZookeeperHome(props: ZookeeperProps) {
-  const selectUser = (state: UserState) => state.user;
+  const selectUser = (state: UserState) => state.user as Zookeeper;
   const user: Zookeeper = useSelector(selectUser);
   const dispatch = useDispatch();
   // create types needed
@@ -38,6 +38,15 @@ function ZookeeperHome(props: ZookeeperProps) {
     async function getAnimalFood() {
       const animalFoodReturned = await zooService.getAnimalFood();
       setAnimalFood(animalFoodReturned);
+    }
+    getAnimalFood();
+  }, []);
+
+  useEffect( () => {
+    // get animal food from db after each render
+    async function getAnimalFood() {
+      const animalFoodReturned = await zooService.getAnimalFood();
+      dispatch(GetInventory(animalFoodReturned));
     }
     getAnimalFood();
   }, []);
@@ -99,7 +108,6 @@ function ZookeeperHome(props: ZookeeperProps) {
           }}
           keyExtractor={(item, index) => item + index.toString()}
         ></FlatList>
-        <Text>{JSON.stringify(props)}</Text>
       </View>
     </View>
   );

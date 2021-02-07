@@ -9,6 +9,7 @@ import { ZookeeperDetail } from "./ZookeeperDetail";
 
 function Staff() {
   let zookeepers = useSelector((state: ZookeeperState) => state.zookeepers);
+  console.log('zookeepers in state: ', zookeepers);
 
   return (
     <View style={styles.viewContainer}>
@@ -19,7 +20,7 @@ function Staff() {
           renderItem={({ item }) => (
             <ZookeeperDetail data={item}></ZookeeperDetail>
           )}
-          keyExtractor={(item) => item.username}
+          keyExtractor={(item, index) => item.username + index.toString()}
         />
       </View>
     </View>

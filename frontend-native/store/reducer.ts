@@ -1,5 +1,7 @@
 import { Animal } from '../models/animal';
+import { AnimalFood } from '../models/animalFood';
 import { Exhibit } from '../models/exhibit';
+import { Ticket } from '../models/ticket';
 import { Customer, User, Zookeeper } from '../models/user';
 import { Zoo } from '../models/zoo';
 import * as Actions from './action';
@@ -18,7 +20,8 @@ export const initialState: ZooNameState = {
   zoo: new Zoo(),
   zookeeper: new Zookeeper(),
   zookeepers: [],
-  // food: new
+  foodItems: [],
+  tickets: []
 };
 
 const reducer = (
@@ -60,6 +63,12 @@ const reducer = (
       return newState;
     case Actions.RequestActions.GetRequest:
       newState.request = action.payload;
+      return newState;
+    case Actions.InventoryActions.GetInventory:
+      newState.foodItems = action.payload as AnimalFood[];
+      return newState;
+    case Actions.TicketActions.GetTickets:
+      newState.tickets = action.payload as Ticket[];
       return newState;
     default:
       return state;
