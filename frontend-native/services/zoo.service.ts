@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { Exhibit } from '../models/exhibit';
-import { Zoo } from '../models/zoo';
 import { Ticket } from '../models/ticket';
 
 class zooService {
@@ -95,7 +94,7 @@ class zooService {
   // update request restock
   updateRequestRestock(string: string) {
     return axios.put(`${this.URI}/animalfoods/restockrequest`, string)
-    .then((result) => result).catch(err => console.error(`updateRequestRestock error: ${err}`));;
+    .then((result) => result).catch(err => console.error(`updateRequestRestock error: ${err}`));
   }
 }
 

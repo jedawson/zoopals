@@ -1,4 +1,3 @@
-import logger from '../log';
 const { Client } = require('pg');
 
 class ZooService {
