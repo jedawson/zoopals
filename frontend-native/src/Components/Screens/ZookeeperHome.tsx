@@ -108,7 +108,6 @@ function ZookeeperHome(props: ZookeeperProps) {
           }}
           keyExtractor={(item, index) => item + index.toString()}
         ></FlatList>
-        <Text>{JSON.stringify(props)}</Text>
       </View>
     </View>
   );
