@@ -22,8 +22,7 @@ function LoginForm({ navigation }: LoginProp) {
   useEffect(() => {
     async function getZoo() {
       const zooStats = await zooService.getZoo();
-      let newZoo: Zoo = new Zoo();
-      newZoo = { ...zooStats.rows[0] };
+      let newZoo: Zoo = { ...zooStats.rows[0] };
       dispatch(changeZoo(newZoo));
     }
     getZoo();
@@ -33,9 +32,9 @@ function LoginForm({ navigation }: LoginProp) {
   //handles the login button
   function submitForm() {
     console.log(`User: ${JSON.stringify(user)}`);
-    userService.signIn(user.username, user.password).then((user) => {
-      if (user) {
-        let newUser = { ...user };
+    userService.signIn(user.username, user.password).then((responseUser) => {
+      if (responseUser) {
+        let newUser = { ...responseUser };
         dispatch(getUser(newUser));
         dispatch(loginAction(newUser));
         navigation.navigate(

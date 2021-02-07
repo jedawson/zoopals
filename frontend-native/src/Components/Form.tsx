@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, TextInput, View, StyleSheet } from 'react-native';
+import { Text, TextInput, View } from 'react-native';
 import styles from '../../global-styles';
 
 function Form(props: any) {

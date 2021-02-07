@@ -1,5 +1,5 @@
 import * as AWS from 'aws-sdk';
-import { Customer, Manager, User, Zookeeper } from '../models/user';
+import { Customer } from '../models/user';
 
 // create dynamo client
 let docClient = new AWS.DynamoDB.DocumentClient({

@@ -1,7 +1,6 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Info } from '../Info';
-import { Title } from '../Title';
 
 function AnimalDetails(props:any) {
     return (
