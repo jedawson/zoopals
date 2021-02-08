@@ -44,11 +44,81 @@ test('getExhibits', async () => {
 
   await zooService.getExhibits().then((result) => {
     returnValue = result;
+    console.log(result);
   });
 
-  // expect(axios.get).toHaveBeenCalledTimes(1);
+  expect(axios.get).toHaveBeenCalledTimes(1);
   // expect(returnValue).toStrictEqual(exhibitPromise.data);
-  expect(axios.get).toBeCalledWith(
-    `https://4xp40d62ra.execute-api.us-west-2.amazonaws.com/default/exhibits`
+  // expect(axios.get).toBeCalledWith(`${URI}/exhibits`);
+});
+
+test('getTickets', async () => {
+  let returnValue;
+  let ticketsPromise = { data: [] };
+  axios.get = jest.fn().mockResolvedValue(ticketsPromise);
+
+  await zooService.getTickets().then((result) => {
+    returnValue = result;
+  });
+  expect(axios.get).toHaveBeenCalledTimes(1);
+  // expect(returnValue).toStrictEqual(ticketsPromise.data);
+  // expect(axios.get).toBeCalledWith(`${URI}/tickets`);
+});
+
+test('updateTickets', async () => {
+  let returnValue;
+  let tickets = 10;
+  axios.put = jest.fn().mockResolvedValue({ data: tickets });
+
+  await zooService.updateTickets(tickets).then((result) => {
+    returnValue = tickets;
+  });
+
+  expect(axios.put).toHaveBeenCalledTimes(1);
+  expect(returnValue).toBe(tickets);
+  expect(axios.put).toBeCalledWith(`${URI}/tickets`, tickets);
+});
+
+test('updateProfits', async () => {
+  let returnValue;
+  let profit = 10;
+  axios.put = jest.fn().mockResolvedValue({ data: profit });
+
+  await zooService.updateProfit(profit).then((result) => {
+    returnValue = profit;
+  });
+
+  expect(axios.put).toHaveBeenCalledTimes(1);
+  expect(returnValue).toBe(profit);
+  expect(axios.put).toBeCalledWith(`${URI}/statistics/profit`, profit);
+});
+
+test('updateExpenses', async () => {
+  let returnValue;
+  let expenses = { data: 10 };
+  axios.put = jest.fn().mockResolvedValue(expenses);
+
+  await zooService.updateExpenses(expenses.data).then((result) => {
+    returnValue = result;
+  });
+
+  expect(axios.put).toHaveBeenCalledTimes(1);
+  expect(returnValue).toBe(expenses);
+  expect(axios.put).toBeCalledWith(`${URI}/statistics/expenses`, expenses.data);
+});
+
+test('updateRequestRestock', async () => {
+  let returnValue;
+  let request = { data: 'string' };
+  axios.put = jest.fn().mockResolvedValue(request);
+
+  await zooService.updateRequestRestock(request.data).then((result) => {
+    returnValue = result;
+  });
+  expect(axios.put).toHaveBeenCalledTimes(1);
+  expect(returnValue).toBe(request);
+  expect(axios.put).toBeCalledWith(
+    `${URI}/animalfoods/restockrequest`,
+    request.data
   );
 });

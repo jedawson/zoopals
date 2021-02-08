@@ -6,7 +6,8 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject",
-    "test": "jest"
+    "test": "jest",
+    "cov": "jest --coverage"
   },
   "dependencies": {
     "@react-native-community/checkbox": "^0.5.7",
