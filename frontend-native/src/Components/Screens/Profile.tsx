@@ -8,15 +8,15 @@ import { Title } from '../Title';
 
 function Profile() {
   const user = useSelector((state: UserState) => state.user);
-console.log(`User:`)
-console.log(user)
+  console.log(`User:`);
+  console.log(user);
   return (
     <View style={styles.viewContainer}>
       <Title title='PROFILE ' />
       <View style={styles.cardView}>
-        <Info name='Profit:'> {user.username}</Info>
-        <Info name='Expenses:'> {user.age}</Info>
-        <Info name='Tickets Sold:'> {user.role}</Info>
+        <Info name='Username:'> {user.username}</Info>
+        <Info name='Age:'> {user.age}</Info>
+        <Info name='Role:'> {user.role}</Info>
       </View>
     </View>
   );
