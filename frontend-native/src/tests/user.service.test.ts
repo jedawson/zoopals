@@ -29,6 +29,22 @@ test('tests the signIn for the user and returns a promise with data in it', asyn
   });
 });
 
+test('getUserExhibit', async () => {
+  let returnValue;
+  let exhibits = { data: [] };
+  axios.post = jest.fn().mockResolvedValue(exhibits);
+
+  await userService.getUserExhibit('Zookeeper1').then((result) => {
+    returnValue = result;
+  });
+
+  expect(axios.post).toHaveBeenCalledTimes(1);
+  expect(axios.post).toHaveBeenCalledWith(`${URI}/users/login`, {
+    username: 'Zookeeper1',
+  });
+  // expect(returnValue).toBe(exhibits.data);
+});
+
 test('AddCustomer', async () => {
   let returnValue;
   let user = {
@@ -68,5 +84,51 @@ test('UpdateCustomer', async () => {
 
   expect(axios.put).toHaveBeenCalledTimes(1);
   expect(axios.put).toHaveBeenCalledWith(`${URI}/users/customers`, user);
+  expect(returnValue).toBe(user);
+});
+
+test('getZookeeperByName', async () => {
+  let returnValue;
+  let user = {
+    age: 25,
+    password: 'pass',
+    username: 'UserName',
+    role: 'Zookeeper',
+    exhibits: [],
+    tasks: [],
+  };
+
+  axios.post = jest.fn().mockResolvedValue({ data: user });
+
+  await userService.getZookeeperByName(user.username).then((result) => {
+    returnValue = result;
+  });
+
+  expect(axios.post).toBeCalledTimes(1);
+  expect(axios.post).toHaveBeenCalledWith(`${URI}/users/zookeepers/`, {
+    username: user.username,
+  });
+  expect(returnValue).toBe(user);
+});
+
+test('updateZookeeper', async () => {
+  let returnValue;
+  let user = {
+    age: 25,
+    password: 'pass',
+    username: 'UserName',
+    role: 'Zookeeper',
+    exhibits: [],
+    tasks: [],
+  };
+
+  axios.put = jest.fn().mockResolvedValue({ data: user });
+
+  await userService.updateZookeeper(user).then((result) => {
+    returnValue = result;
+  });
+
+  expect(axios.put).toBeCalledTimes(1);
+  expect(axios.put).toHaveBeenCalledWith(`${URI}/users/zookeepers`, user);
   expect(returnValue).toBe(user);
 });

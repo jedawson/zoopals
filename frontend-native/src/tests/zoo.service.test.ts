@@ -20,6 +20,33 @@ test('get Zoo gets the Zoo', async () => {
   expect(axios.get).toHaveBeenCalledWith(`${URI}/statistics`);
 });
 
+test('getAnimalFood', async () => {
+  let returnValue;
+  let food = { data: [] };
+  axios.get = jest.fn().mockResolvedValue(food);
+
+  await zooService.getAnimalFood().then((result) => {
+    returnValue = result;
+  });
+
+  expect(axios.get).toBeCalledTimes(1);
+  expect(axios.get).toHaveBeenCalledWith(`${URI}/animalfoods`);
+  // expect(returnValue).toBe(food.data);
+});
+
+test('updateAnimalFood', async () => {
+  let returnValue;
+  let idAndStock = { data: '5-10' };
+  axios.put = jest.fn().mockResolvedValue(idAndStock);
+
+  await zooService.updateAnimalFood(idAndStock.data).then((result) => {
+    returnValue = result;
+  });
+  expect(axios.put).toBeCalledTimes(1);
+  expect(axios.put).toHaveBeenCalledWith(`${URI}/animalfoods`, idAndStock.data);
+  expect(returnValue).toBe(idAndStock);
+});
+
 test('that getAnimalsByExhibit returns', async () => {
   let returnValue;
   let exhibitPromise = { data: [] };
@@ -37,6 +64,22 @@ test('that getAnimalsByExhibit returns', async () => {
   expect(axios.get).toBeCalledWith(`${URI}/${exhibit}`);
 });
 
+test('getExhibitByZookeeper', async () => {
+  let returnValue;
+  let zookeeperName = { data: 'ZookeeperName' };
+  axios.get = jest.fn().mockResolvedValue(zookeeperName);
+
+  await zooService.getExhibitByZookeeper(zookeeperName.data).then((result) => {
+    returnValue = result;
+  });
+
+  expect(axios.get).toBeCalledTimes(1);
+  expect(axios.get).toBeCalledWith(
+    `arn:aws:lambda:us-west-2:640280721521:function:getExhibitByUser`
+  );
+  expect(returnValue).toBe(zookeeperName.data);
+});
+
 test('getExhibits', async () => {
   let returnValue;
   let exhibitPromise = { data: [] };
@@ -48,8 +91,8 @@ test('getExhibits', async () => {
   });
 
   expect(axios.get).toHaveBeenCalledTimes(1);
+  expect(axios.get).toBeCalledWith(`${URI}/exhibits`);
   // expect(returnValue).toStrictEqual(exhibitPromise.data);
-  // expect(axios.get).toBeCalledWith(`${URI}/exhibits`);
 });
 
 test('getTickets', async () => {
@@ -61,8 +104,8 @@ test('getTickets', async () => {
     returnValue = result;
   });
   expect(axios.get).toHaveBeenCalledTimes(1);
+  expect(axios.get).toBeCalledWith(`${URI}/tickets`);
   // expect(returnValue).toStrictEqual(ticketsPromise.data);
-  // expect(axios.get).toBeCalledWith(`${URI}/tickets`);
 });
 
 test('updateTickets', async () => {
@@ -122,3 +165,5 @@ test('updateRequestRestock', async () => {
     request.data
   );
 });
+
+``;

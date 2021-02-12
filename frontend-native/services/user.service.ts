@@ -53,19 +53,18 @@ class userService {
   }
 
   // get user
-  // to do: i don't think that we're using this, so can it be deleted?
-  // getLogin(): Promise<User> {
-  //   return axios
-  //     .get(this.URI, { withCredentials: true })
-  //     .then((result) => {
-  //       console.log(`getLogin: ${result}`);
-  //       return result.data;
-  //     })
-  //     .catch((err) => {
-  //       console.log(`Error logging in: ${err}`);
-  //       return null;
-  //     });
-  // }
+  getLogin(): Promise<User> {
+    return axios
+      .get(this.URI, { withCredentials: true })
+      .then((result) => {
+        console.log(`getLogin: ${result}`);
+        return result.data;
+      })
+      .catch((err) => {
+        console.log(`Error logging in: ${err}`);
+        return null;
+      });
+  }
   // add user
   addCustomer(user: Customer): Promise<Customer | null> {
     return axios
