@@ -17,6 +17,9 @@ function Profile() {
         <Info name='Username:'> {user.username}</Info>
         <Info name='Age:'> {user.age}</Info>
         <Info name='Role:'> {user.role}</Info>
+        {(user.role == 'Customer' && 
+          <Info name='Membership Level:'> {user.membershipLevel} </Info>)
+        }
       </View>
     </View>
   );
