@@ -3,7 +3,6 @@ import { View, ScrollView, FlatList, Text } from 'react-native';
 import styles from '../../../global-styles';
 import { Animal } from '../../../models/animal';
 import { Exhibit } from '../../../models/exhibit';
-import { Info } from '../Info';
 
 interface ExhibitsProps {
   data: Exhibit;

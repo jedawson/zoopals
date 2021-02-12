@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, StyleSheet, Text, FlatList } from 'react-native';
+import { View, Text, FlatList } from 'react-native';
 import { useSelector } from 'react-redux';
 import styles from '../../../global-styles';
 import { Exhibit } from '../../../models/exhibit';
