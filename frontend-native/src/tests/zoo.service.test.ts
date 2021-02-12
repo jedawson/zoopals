@@ -1,6 +1,4 @@
 import axios from 'axios';
-import { exp } from 'react-native-reanimated';
-import { Exhibit } from '../../models/exhibit';
 import { SpecialEvent } from '../../models/ticket';
 import { Zoo } from '../../models/zoo';
 import zooService from '../../services/zoo.service';
@@ -12,8 +10,8 @@ test('get Zoo gets the Zoo', async () => {
   let zoo = { data: new Zoo() };
   axios.get = jest.fn().mockResolvedValue(zoo);
 
-  await zooService.getZoo().then((zoo) => {
-    returnValue = zoo;
+  await zooService.getZoo().then((zooReturned) => {
+    returnValue = zooReturned;
   });
   expect(axios.get).toHaveBeenCalledTimes(1);
   expect(returnValue).toBe(zoo.data);
@@ -38,12 +36,12 @@ test('that getAnimalsByExhibit returns', async () => {
 });
 
 test('getExhibits', async () => {
-  let returnValue;
+  //let returnValue;
   let exhibitPromise = { data: [] };
   axios.get = jest.fn().mockResolvedValue(exhibitPromise);
 
   await zooService.getExhibits().then((result) => {
-    returnValue = result;
+    //returnValue = result;
     console.log(result);
   });
 
@@ -53,12 +51,12 @@ test('getExhibits', async () => {
 });
 
 test('getTickets', async () => {
-  let returnValue;
+  //let returnValue;
   let ticketsPromise = { data: [] };
   axios.get = jest.fn().mockResolvedValue(ticketsPromise);
 
   await zooService.getTickets().then((result) => {
-    returnValue = result;
+    //returnValue = result;
   });
   expect(axios.get).toHaveBeenCalledTimes(1);
   // expect(returnValue).toStrictEqual(ticketsPromise.data);

@@ -1,7 +1,5 @@
 import axios from 'axios';
-import { User } from '../../models/user';
 import userService from '../../services/user.service';
-import zooService from '../../services/zoo.service';
 
 const URI = 'https://8cf402b61d.execute-api.us-west-2.amazonaws.com/default';
 
