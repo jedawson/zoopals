@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, Button, TextInput, ScrollView } from 'react-native';
+import { View, Text, TouchableOpacity, TextInput, ScrollView } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import styles from '../../../global-styles';
 import { getUser, registerAction } from '../../../store/action';
