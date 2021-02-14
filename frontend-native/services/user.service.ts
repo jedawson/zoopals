@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { Exhibit } from '../models/exhibit';
 import { Ticket } from '../models/ticket';
-import { Customer, Manager, User, Zookeeper } from '../models/user';
+import { Customer, Manager, Zookeeper } from '../models/user';
 
 class userService {
   private URI: string;
