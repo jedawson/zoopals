@@ -82,7 +82,7 @@ test('getExhibitByZookeeper', async () => {
 
 test('getExhibits', async () => {
   let returnValue;
-  let exhibitPromise = { data: [] };
+  let exhibitPromise = { data: { rows: [] } };
   axios.get = jest.fn().mockResolvedValue(exhibitPromise);
 
   await zooService.getExhibits().then((result) => {
@@ -92,12 +92,12 @@ test('getExhibits', async () => {
 
   expect(axios.get).toHaveBeenCalledTimes(1);
   expect(axios.get).toBeCalledWith(`${URI}/exhibits`);
-  // expect(returnValue).toStrictEqual(exhibitPromise.data);
+  expect(returnValue).toBe(exhibitPromise.data.rows);
 });
 
 test('getTickets', async () => {
   let returnValue;
-  let ticketsPromise = { data: [] };
+  let ticketsPromise = { data: { rows: [] } };
   axios.get = jest.fn().mockResolvedValue(ticketsPromise);
 
   await zooService.getTickets().then((result) => {
@@ -105,7 +105,7 @@ test('getTickets', async () => {
   });
   expect(axios.get).toHaveBeenCalledTimes(1);
   expect(axios.get).toBeCalledWith(`${URI}/tickets`);
-  // expect(returnValue).toStrictEqual(ticketsPromise.data);
+  expect(returnValue).toBe(ticketsPromise.data.rows);
 });
 
 test('updateTickets', async () => {
@@ -165,5 +165,3 @@ test('updateRequestRestock', async () => {
     request.data
   );
 });
-
-``;

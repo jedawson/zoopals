@@ -31,8 +31,8 @@ test('tests the signIn for the user and returns a promise with data in it', asyn
 
 test('getUserExhibit', async () => {
   let returnValue;
-  let exhibits = { data: [] };
-  axios.post = jest.fn().mockResolvedValue(exhibits);
+  let zookeeperPromise = { data: { exhibits: [] } };
+  axios.post = jest.fn().mockResolvedValue(zookeeperPromise);
 
   await userService.getUserExhibit('Zookeeper1').then((result) => {
     returnValue = result;
@@ -42,7 +42,7 @@ test('getUserExhibit', async () => {
   expect(axios.post).toHaveBeenCalledWith(`${URI}/users/login`, {
     username: 'Zookeeper1',
   });
-  // expect(returnValue).toBe(exhibits.data);
+  expect(returnValue).toBe(zookeeperPromise.data.exhibits);
 });
 
 test('AddCustomer', async () => {
