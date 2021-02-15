@@ -8,7 +8,7 @@ import { Animal } from '../models/animal';
 import { Zookeeper } from '../models/user';
 import { Zoo } from '../models/zoo';
 import { CustomerHome } from '../src/Components/Screens/CustomerHome';
-import { ViewExhibits } from '../src/Components/Screens/ViewExhibits'
+import { ViewExhibits } from '../src/Components/Screens/ViewExhibits';
 import { TicketForm } from '../src/Components/Screens/TicketForm';
 import { Profile } from '../src/Components/Screens/Profile';
 import { ZookeeperHome } from '../src/Components/Screens/ZookeeperHome';
@@ -37,19 +37,12 @@ export type Screens = {
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
-const headerOptions: StackHeaderOptions = {
-  headerTitle: 'ZOONAME',
-  headerStyle: {
-    backgroundColor: '#2C7B56',
-  },
-  headerTintColor: '#fff',
-  headerTitleStyle: {
-    fontWeight: 'bold',
-    fontSize: 30,
-    alignSelf: 'center',
-  },
-};
 
+/**
+ * Overall Stack Screen Component to have the different
+ * views per role and the initial login/register views.
+ * The Zookeeper Tasks are also an outside (inner) Stack Screen.
+ */
 export function RouterComponent() {
   return (
     <NavigationContainer>
@@ -60,13 +53,17 @@ export function RouterComponent() {
         <Stack.Screen name='Zookeeper' component={ZookeeperComponent} />
         <Stack.Screen name='Manager' component={ManagerComponent} />
         <Stack.Screen
-        name='Zookeeper Tasks'
-        component={TaskDetail}></Stack.Screen>
+          name='Zookeeper Tasks'
+          component={TaskDetail}></Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
 
+/**
+ * Tab Navigator for Customer View
+ * Home (tickets), View Exhibits, Purchase Tickets, Profile
+ */
 export function CustomerComponent() {
   return (
     <Tab.Navigator
@@ -88,6 +85,10 @@ export function CustomerComponent() {
   );
 }
 
+/**
+ * Tab Navigator for the Zookeeper View
+ * Home (shows tasks), Inventory, Animals, Profile
+ */
 export function ZookeeperComponent() {
   return (
     <Tab.Navigator
@@ -109,6 +110,10 @@ export function ZookeeperComponent() {
   );
 }
 
+/**
+ * Tab Navigator for Manager View
+ * Home (shows statistics), Staff, Inventory, Profile
+ */
 export function ManagerComponent() {
   return (
     <Tab.Navigator
