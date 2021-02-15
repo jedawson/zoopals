@@ -53,20 +53,12 @@ class zooService {
   }
   //get all zoo exhibits
   getExhibits(): Promise<[]> {
-    return axios
-      .get(
-        'https://4xp40d62ra.execute-api.us-west-2.amazonaws.com/default/exhibits'
-      )
-      .then((result) => result.data.rows);
+    return axios.get(`${this.URI}/exhibits`).then((result) => result.data.rows);
   }
 
   //get all zoo animals
   getAnimals(): Promise<[]> {
-    return axios
-      .get(
-        'https://4xp40d62ra.execute-api.us-west-2.amazonaws.com/default/animals'
-      )
-      .then((result) => result.data.rows);
+    return axios.get(`${this.URI}/animals`).then((result) => result.data.rows);
   }
 
   // get tickets
