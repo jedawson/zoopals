@@ -58,8 +58,7 @@ function RegisterForm({ navigation }: LoginProp) {
             <TextInput
               style={styles.inputBox}
               onChangeText={(value) => {
-                let numValue = Number(value)
-                dispatch(registerAction({ ...user, age: numValue }));
+                dispatch(registerAction({ ...user, age: Number(value) }));
               }}
               value={String(user.age)}
             />
