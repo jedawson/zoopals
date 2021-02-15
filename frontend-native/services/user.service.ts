@@ -66,22 +66,6 @@ class userService {
   }
 
   /**
-   * get login
-   */
-  getLogin(): Promise<User> {
-    return axios
-      .get(this.URI, { withCredentials: true })
-      .then((result) => {
-        console.log(`getLogin: ${result}`);
-        return result.data;
-      })
-      .catch((err) => {
-        console.log(`Error logging in: ${err}`);
-        return null;
-      });
-  }
-
-  /**
    * adds a customer to the DynamoDB database.
    * @param user - the user to add
    */
