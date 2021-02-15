@@ -3,7 +3,7 @@ import { View,  Text, StyleSheet } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 import styles from '../../../global-styles';
 import zooService from '../../../services/zoo.service';
-import { Title } from '../Title';
+import { Title } from '../general/Title';
 
 interface Animal {
   animalname: string,

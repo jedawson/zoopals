@@ -8,7 +8,7 @@ import { Zookeeper } from '../../../models/user';
 import userService from '../../../services/user.service';
 import { GetZookeeper } from '../../../store/action';
 import { ZookeeperState } from '../../../store/store';
-import { Title } from '../Title';
+import { Title } from '../general/Title';
 
 function AllTaskScreen() {
   const zookeeper = useSelector((state: ZookeeperState) => state.zookeeper);

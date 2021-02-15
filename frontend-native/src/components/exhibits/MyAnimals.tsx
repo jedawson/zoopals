@@ -5,7 +5,7 @@ import styles from '../../../global-styles';
 import { Exhibit } from '../../../models/exhibit';
 import userService from '../../../services/user.service';
 import { UserState } from '../../../store/store';
-import { Title } from '../Title';
+import { Title } from '../general/Title';
 
 function MyAnimals() {
   const selectUser = (state: UserState) => state.user;

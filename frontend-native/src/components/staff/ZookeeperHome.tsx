@@ -9,7 +9,7 @@ import zooService from '../../../services/zoo.service';
 import { GetInventory, getUser } from '../../../store/action';
 import { UserState } from '../../../store/store';
 
-import { Title } from "../Title";
+import { Title } from "../general/Title";
 
 interface ZookeeperProps {
   data: any;

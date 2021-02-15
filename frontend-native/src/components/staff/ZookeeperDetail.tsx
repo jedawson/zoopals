@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import styles from '../../../global-styles';
 import { Zookeeper } from '../../../models/user';
 import { GetZookeeper } from '../../../store/action';
-import { MyExhibits } from './MyExhibits';
+import { MyExhibits } from '../exhibits/MyExhibits';
 
 interface ZookeeperDetailProps {
   data: Zookeeper;

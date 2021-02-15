@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, View } from 'react-native';
-import styles from '../../global-styles';
+import styles from '../../../global-styles';
 
 function Info(props: any) {
   return (

@@ -1,24 +1,24 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { LoginForm } from '../src/Components/Screens/LoginForm';
+import { LoginForm } from '../src/components/userinfo/LoginForm';
 import { StackHeaderOptions } from '@react-navigation/stack/lib/typescript/src/types';
 import { Exhibit } from '../models/exhibit';
 import { Animal } from '../models/animal';
 import { Zookeeper } from '../models/user';
 import { Zoo } from '../models/zoo';
-import { CustomerHome } from '../src/Components/Screens/CustomerHome';
-import { ViewExhibits } from '../src/Components/Screens/ViewExhibits'
-import { TicketForm } from '../src/Components/Screens/TicketForm';
-import { Profile } from '../src/Components/Screens/Profile';
-import { ZookeeperHome } from '../src/Components/Screens/ZookeeperHome';
-import { ManagerHome } from '../src/Components/Screens/ManagerHome';
-import { Inventory } from '../src/Components/Screens/Inventory';
-import { Staff } from '../src/Components/Screens/Staff';
-import { MyAnimals } from '../src/Components/Screens/MyAnimals';
+import { CustomerHome } from '../src/components/tickets/CustomerHome';
+import { ViewExhibits } from '../src/components/exhibits/ViewExhibits'
+import { TicketForm } from '../src/components/tickets/TicketForm';
+import { Profile } from '../src/components/userinfo/Profile';
+import { ZookeeperHome } from '../src/components/staff/ZookeeperHome';
+import { ManagerHome } from '../src/components/zooinfo/ManagerHome';
+import { Inventory } from '../src/components/zooinfo/Inventory';
+import { Staff } from '../src/components/staff/Staff';
+import { MyAnimals } from '../src/components/exhibits/MyAnimals';
 import { NavigationContainer } from '@react-navigation/native';
-import TaskDetail from '../src/Components/Screens/TaskDetail';
-import { RegisterForm } from '../src/Components/Screens/RegisterForm';
+import TaskDetail from '../src/components/staff/TaskDetail';
+import { RegisterForm } from '../src/components/userinfo/RegisterForm';
 
 export type Screens = {
   Login: undefined;

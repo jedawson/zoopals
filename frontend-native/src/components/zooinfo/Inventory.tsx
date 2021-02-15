@@ -1,7 +1,7 @@
 import styles from '../../../global-styles';
 import React, { useEffect, useState } from 'react';
 import { FlatList, Text, TouchableOpacity, View } from 'react-native';
-import { Title } from '../Title';
+import { Title } from '../general/Title';
 import zooService from '../../../services/zoo.service';
 import { InventoryState, UserState, ZooState } from '../../../store/store';
 import { useDispatch, useSelector } from 'react-redux';
