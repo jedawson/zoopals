@@ -9,7 +9,11 @@ class zooService {
     this.URI = 'https://4xp40d62ra.execute-api.us-west-2.amazonaws.com/default';
   }
 
-  // get zoo
+  /**
+   * this gets all of the statistics in the Zoo from postgreSQL.
+   * profit, expenses, and tickets sold
+   * This is for the Manager home view.
+   */
   getZoo() {
     return axios
       .get(`${this.URI}/statistics`)
@@ -19,7 +23,10 @@ class zooService {
       });
   }
 
-  // get animal food
+  /**
+   * gets the inventory and types of food that the Zoo currently has
+   * from PostgreSQL.
+   */
   getAnimalFood() {
     return axios
       .get(`${this.URI}/animalfoods`)
@@ -27,7 +34,10 @@ class zooService {
       .catch((err) => console.error(`getAnimalFood error: ${err}`));
   }
 
-  // update animal food
+  /**
+   * updates the amount of food based on the given id and stock.
+   * @param idAndStock - id of the food and stock number to change it to
+   */
   updateAnimalFood(idAndStock: string) {
     return axios
       .put(`${this.URI}/animalfoods`, idAndStock)
@@ -35,7 +45,10 @@ class zooService {
       .catch((err) => console.error(`getAnimalFood error: ${err}`));
   }
 
-  // update animals
+  /**
+   * gets the animals within an exhibit.
+   * @param exhibit -
+   */
   getAnimalsByExhibit(exhibit: Exhibit) {
     return axios
       .get(`${this.URI}/${exhibit}`)
