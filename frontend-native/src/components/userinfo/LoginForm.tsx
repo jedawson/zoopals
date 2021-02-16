@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import styles from '../../../global-styles';
 import { changeZoo, getUser, loginAction } from '../../../store/action';
 import { UserState } from '../../../store/store';
-import { Title } from '../Title';
+import { Title } from '../general/Title';
 import userService from '../../../services/user.service';
 import { User } from '../../../models/user';
 import zooService from '../../../services/zoo.service';

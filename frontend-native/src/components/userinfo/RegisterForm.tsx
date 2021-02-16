@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import styles from '../../../global-styles';
 import { getUser, registerAction } from '../../../store/action';
 import { UserState } from '../../../store/store';
-import { Title } from '../Title';
+import { Title } from '../general/Title';
 import userService from '../../../services/user.service';
 import { Customer } from '../../../models/user';
 

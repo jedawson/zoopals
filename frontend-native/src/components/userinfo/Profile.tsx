@@ -3,8 +3,8 @@ import { View } from 'react-native';
 import { useSelector } from 'react-redux';
 import styles from '../../../global-styles';
 import { UserState } from '../../../store/store';
-import { Info } from '../Info';
-import { Title } from '../Title';
+import { Info } from '../general/Info';
+import { Title } from '../general/Title';
 
 function Profile() {
   const user = useSelector((state: UserState) => state.user);
