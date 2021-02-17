@@ -9,8 +9,8 @@ import zooService from '../../../services/zoo.service';
 import {  GetZookeepers } from '../../../store/action';
 import { changeZoo, getRequest } from '../../../store/action';
 import { UserState, ZooNameState } from '../../../store/store';
-import { Info } from '../Info';
-import { Title } from '../Title';
+import { Info } from '../general/Info';
+import { Title } from '../general/Title';
 
 function ManagerHome() {
   const zoo = useSelector((state: ZooNameState) => state.zoo);

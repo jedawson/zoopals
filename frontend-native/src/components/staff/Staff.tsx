@@ -4,7 +4,7 @@ import { FlatList } from 'react-native-gesture-handler';
 import { useSelector } from 'react-redux';
 import styles from '../../../global-styles';
 import { ZookeeperState } from '../../../store/store';
-import { Title } from '../Title';
+import { Title } from '../general/Title';
 import { ZookeeperDetail } from './ZookeeperDetail';
 
 function Staff() {

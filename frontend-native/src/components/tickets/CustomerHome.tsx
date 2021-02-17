@@ -9,7 +9,7 @@ import userService from '../../../services/user.service';
 import zooService from '../../../services/zoo.service';
 import { GetTickets, getUser } from '../../../store/action';
 import { UserState } from '../../../store/store';
-import { Title } from '../Title';
+import { Title } from '../general/Title';
 
 function CustomerHome() {
 
