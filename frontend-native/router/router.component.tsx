@@ -1,24 +1,24 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { LoginForm } from '../src/Components/Screens/LoginForm';
+import { LoginForm } from '../src/components/userinfo/LoginForm';
 import { StackHeaderOptions } from '@react-navigation/stack/lib/typescript/src/types';
 import { Exhibit } from '../models/exhibit';
 import { Animal } from '../models/animal';
 import { Zookeeper } from '../models/user';
 import { Zoo } from '../models/zoo';
-import { CustomerHome } from '../src/Components/Screens/CustomerHome';
-import { ViewExhibits } from '../src/Components/Screens/ViewExhibits'
-import { TicketForm } from '../src/Components/Screens/TicketForm';
-import { Profile } from '../src/Components/Screens/Profile';
-import { ZookeeperHome } from '../src/Components/Screens/ZookeeperHome';
-import { ManagerHome } from '../src/Components/Screens/ManagerHome';
-import { Inventory } from '../src/Components/Screens/Inventory';
-import { Staff } from '../src/Components/Screens/Staff';
-import { MyAnimals } from '../src/Components/Screens/MyAnimals';
+import { CustomerHome } from '../src/components/tickets/CustomerHome';
+import { ViewExhibits } from '../src/components/exhibits/ViewExhibits'
+import { TicketForm } from '../src/components/tickets/TicketForm';
+import { Profile } from '../src/components/userinfo/Profile';
+import { ZookeeperHome } from '../src/components/staff/ZookeeperHome';
+import { ManagerHome } from '../src/components/zooinfo/ManagerHome';
+import { Inventory } from '../src/components/zooinfo/Inventory';
+import { Staff } from '../src/components/staff/Staff';
+import { MyAnimals } from '../src/components/exhibits/MyAnimals';
 import { NavigationContainer } from '@react-navigation/native';
-import TaskDetail from '../src/Components/Screens/TaskDetail';
-import { RegisterForm } from '../src/Components/Screens/RegisterForm';
+import TaskDetail from '../src/components/staff/TaskDetail';
+import { RegisterForm } from '../src/components/userinfo/RegisterForm';
 
 export type Screens = {
   Login: undefined;
@@ -37,19 +37,12 @@ export type Screens = {
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
-const headerOptions: StackHeaderOptions = {
-  headerTitle: 'ZOONAME',
-  headerStyle: {
-    backgroundColor: '#2C7B56',
-  },
-  headerTintColor: '#fff',
-  headerTitleStyle: {
-    fontWeight: 'bold',
-    fontSize: 30,
-    alignSelf: 'center',
-  },
-};
 
+/**
+ * Overall Stack Screen Component to have the different
+ * views per role and the initial login/register views.
+ * The Zookeeper Tasks are also an outside (inner) Stack Screen.
+ */
 export function RouterComponent() {
   return (
     <NavigationContainer>
@@ -59,11 +52,18 @@ export function RouterComponent() {
         <Stack.Screen name='Customer' component={CustomerComponent} />
         <Stack.Screen name='Zookeeper' component={ZookeeperComponent} />
         <Stack.Screen name='Manager' component={ManagerComponent} />
+        <Stack.Screen
+          name='Zookeeper Tasks'
+          component={TaskDetail}></Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
 
+/**
+ * Tab Navigator for Customer View
+ * Home (tickets), View Exhibits, Purchase Tickets, Profile
+ */
 export function CustomerComponent() {
   return (
     <Tab.Navigator
@@ -85,6 +85,10 @@ export function CustomerComponent() {
   );
 }
 
+/**
+ * Tab Navigator for the Zookeeper View
+ * Home (shows tasks), Inventory, Animals, Profile
+ */
 export function ZookeeperComponent() {
   return (
     <Tab.Navigator
@@ -106,6 +110,10 @@ export function ZookeeperComponent() {
   );
 }
 
+/**
+ * Tab Navigator for Manager View
+ * Home (shows statistics), Staff, Inventory, Profile
+ */
 export function ManagerComponent() {
   return (
     <Tab.Navigator
@@ -123,9 +131,6 @@ export function ManagerComponent() {
       <Tab.Screen name='Staff' component={Staff} />
       <Tab.Screen name='Inventory' component={Inventory} />
       <Tab.Screen name='Profile' component={Profile} />
-      <Stack.Screen
-        name='Zookeeper Tasks'
-        component={TaskDetail}></Stack.Screen>
     </Tab.Navigator>
   );
 }

@@ -10,6 +10,11 @@ class userService {
     this.URI = 'https://8cf402b61d.execute-api.us-west-2.amazonaws.com/default'; // process.env.gatewayURI
   }
 
+  /**
+   * sign in for the user to login
+   * @param username - username of user
+   * @param password - password of user
+   */
   signIn(
     username: string,
     password: string
@@ -28,6 +33,10 @@ class userService {
       });
   }
 
+  /**
+   * gets the Exhibits of the Zookeeper based on their username.
+   * @param username - username of Zookeeper
+   */
   getUserExhibit(username: string): Promise<Exhibit[]> {
     return axios
       .post(`${this.URI}/users/login`, { username: username })
@@ -40,6 +49,10 @@ class userService {
       });
   }
 
+  /**
+   * gets the tickets of the specified Customer
+   * @param username - name of the Customer to get the tickets of
+   */
   getUserTickets(username: string): Promise<Ticket[]> {
     return axios
       .post(`${this.URI}/users/login`, { username: username })
@@ -52,21 +65,10 @@ class userService {
       });
   }
 
-  // get user
-  // to do: i don't think that we're using this, so can it be deleted?
-  getLogin(): Promise<User> {
-    return axios
-      .get(this.URI, { withCredentials: true })
-      .then((result) => {
-        console.log(`getLogin: ${result}`);
-        return result.data;
-      })
-      .catch((err) => {
-        console.log(`Error logging in: ${err}`);
-        return null;
-      });
-  }
-  // add user
+  /**
+   * adds a customer to the DynamoDB database.
+   * @param user - the user to add
+   */
   addCustomer(user: Customer): Promise<Customer | null> {
     return axios
       .post(`${this.URI}/users/register`, user)
@@ -80,7 +82,11 @@ class userService {
       });
   }
 
-  // update customer
+  /**
+   * updates the Customer with the properties that changed. This is mostly
+   * for the tickets array.
+   * @param user - user with updated properties
+   */
   updateCustomer(user: Customer): Promise<null> {
     return axios
       .put(`${this.URI}/users/customers`, user)
@@ -90,7 +96,11 @@ class userService {
         return null;
       });
   }
-  // get zookeepers
+
+  /**
+   * gets the Zookeeper's information based on their username.
+   * @param username - username to search for in the database
+   */
   getZookeeperByName(username: string): Promise<Zookeeper> {
     return axios
       .post(`${this.URI}/users/zookeepers/`, { username: username })
@@ -100,7 +110,11 @@ class userService {
         return null;
       });
   }
-  //update zookeepers
+  /**
+   * updates the Zookeeper based on the given User object. This is
+   * mostly for the Zookeeper tasks.
+   * @param user - Zookeeper object with the changed properties.
+   */
   updateZookeeper(user: Zookeeper): Promise<null> {
     return axios
       .put(`${this.URI}/users/zookeepers`, user)
