@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text} from 'react-native';
-import { FlatList, ScrollView, TouchableOpacity } from 'react-native';
+import { View, Text, FlatList, ScrollView, TouchableOpacity } from 'react-native';
 import styles from '../../../global-styles';
 import zooService from '../../../services/zoo.service';
 import { Info } from '../general/Info';
@@ -19,7 +18,7 @@ import { getUser } from '../../../store/action';
 function TicketForm() {
 
   // create a ticket interface for rendering each ticket
-  interface ticket {
+  interface TicketInterface {
     price: number,
     tickettype: string,
     specialeventname: string,
@@ -27,7 +26,7 @@ function TicketForm() {
     specialeventtime: string
   }
 
-  const ticketArray: ticket[] = [];
+  const ticketArray: TicketInterface[] = [];
 
   // create component's state
   const selectTickets = (state: TicketState) => state.tickets;
@@ -54,14 +53,14 @@ function TicketForm() {
     if (ticketsPurchased.length > 0) {
       // change tickets to Tickets
       const ticketsArray: Ticket[] = [];
-      for (let i = 0; i < ticketsPurchased.length; i++) {
+      for (let ticketsPurchasedItem of ticketsPurchased) {
         let ticket: Ticket = {
-          price: ticketsPurchased[i].price, 
-          ticketType: ticketsPurchased[i].tickettype, 
+          price: ticketsPurchasedItem.price, 
+          ticketType: ticketsPurchasedItem.tickettype, 
           specialEvent: {
-            name: ticketsPurchased[i].specialeventname, 
-            date: ticketsPurchased[i].specialeventdate,
-            time: ticketsPurchased[i].specialeventtime
+            name: ticketsPurchasedItem.specialeventname, 
+            date: ticketsPurchasedItem.specialeventdate,
+            time: ticketsPurchasedItem.specialeventtime
           }
         }
         ticketsArray.push(ticket);
@@ -109,7 +108,7 @@ function TicketForm() {
         {/* list of tickets */}
         <FlatList
           data={tickets}
-          renderItem={({item}: {item: ticket}) => (
+          renderItem={({item}: {item: TicketInterface}) => (
             <View style={[styles.horizontalFlexContainer, {backgroundColor: '#FFF'}]}>
               <Text style={[styles.tableItem, {flex: 1}]}>${item.price}</Text>
               <Text style={[styles.tableItem, {flex: 1.5}]}>{item.tickettype}</Text>

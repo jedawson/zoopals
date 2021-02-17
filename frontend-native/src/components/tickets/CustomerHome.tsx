@@ -72,7 +72,7 @@ function CustomerHome() {
     return ticketLine;
   }
 
-  interface ticket {
+  interface Ticket {
     price: number, 
     ticketType: string,
     specialEvent: SpecialEvent
@@ -85,7 +85,7 @@ function CustomerHome() {
           <FlatList
           showsVerticalScrollIndicator={false}
           data = {myTickets}
-          renderItem={({item}: {item: ticket}) => (
+          renderItem={({item}: {item: Ticket}) => (
             <>
               <Image
                 style={styles.ticket}

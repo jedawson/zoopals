@@ -35,11 +35,11 @@ function ViewExhibits() {
       })
       setAnimals(resultArray)
 
-      for (let i = 0; i < resultArray.length; i++ ){
-        if (!exhibitAndAnimals.has(resultArray[i].exhibitname)) {
-          exhibitAndAnimals.set(resultArray[i].exhibitname, new Array())
+      for (let animal of resultArray ){
+        if (!exhibitAndAnimals.has(animal.exhibitname)) {
+          exhibitAndAnimals.set(animal.exhibitname, new Array())
         }
-        exhibitAndAnimals.get(resultArray[i].exhibitname).push(resultArray[i])
+        exhibitAndAnimals.get(animal.exhibitname).push(animal)
       }
       console.log(exhibitAndAnimals)
       const  result = Array.from(exhibitAndAnimals).map(([exhibitname, animals]) => ({exhibitname, animals}))
