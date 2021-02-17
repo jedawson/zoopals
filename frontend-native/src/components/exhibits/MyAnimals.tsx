@@ -29,7 +29,7 @@ function MyAnimals() {
     getAnimals();
   }, []);
 
-  interface animal {
+  interface Animal {
     name: string;
     species: string;
     diet: string;
@@ -50,7 +50,7 @@ function MyAnimals() {
         </View>
         <FlatList
           data={myAnimals}
-          renderItem={({ item }: { item: animal }) => (
+          renderItem={({ item }: { item: Animal }) => (
             // table rows
             <View
               style={[

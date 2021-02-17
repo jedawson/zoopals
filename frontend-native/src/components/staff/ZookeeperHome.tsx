@@ -21,14 +21,14 @@ function ZookeeperHome(props: ZookeeperProps) {
   const user: Zookeeper = useSelector(selectUser);
   const dispatch = useDispatch();
   // create types needed
-  interface animalFood {
+  interface AnimalFood {
     itemid: 0;
     foodname: "";
     price: 0;
     stock: 0;
   }
 
-  let animalFoodArray: animalFood[] = [];
+  let animalFoodArray: AnimalFood[] = [];
 
   // create state needed
   const [animalFood, setAnimalFood] = useState(animalFoodArray);
